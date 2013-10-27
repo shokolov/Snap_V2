@@ -10,6 +10,15 @@
 
 @interface MainViewController ()
 
+@property (strong, nonatomic) IBOutlet UIView *overlayView;
+
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *takePictureButton;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *startStopButton;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *delayedPhotoButton;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *doneButton;
+
+@property (nonatomic) UIImagePickerController *imagePickerController;
+
 @end
 
 @implementation MainViewController
@@ -19,6 +28,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        NSLog(@"MainViewController.initWithNibName");
     }
     return self;
 }
@@ -26,8 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    NSLog(@"MainViewController");
+    NSLog(@"MainViewController.viewDidLoad");
     
     UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
     ipc.allowsEditing = NO;
@@ -37,25 +46,52 @@
          UIImagePickerControllerSourceTypeCamera]) {
         ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
         
+        // 카메라 뷰 커스터마이징
+        /*
+        ipc.showsCameraControls = NO;
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        float cameraAspectRatio = 4.0 / 3.0;
+        float imageWidth = floorf(screenSize.width * cameraAspectRatio);
+        float scale = ceilf((screenSize.height / imageWidth) * 10.0) / 10.0;
+        ipc.cameraViewTransform = CGAffineTransformMakeScale(scale, scale);
+        
+        [[NSBundle mainBundle] loadNibNamed:@"OverlayView" owner:self options:nil];
+        self.overlayView.frame = ipc.cameraOverlayView.frame;
+        ipc.cameraOverlayView = self.overlayView;
+        self.overlayView = nil;
+        */
+
     } else {
         if ([UIImagePickerController isSourceTypeAvailable:
              UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
             ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         }
     }
+
     
-    [self.navigationController presentViewController:ipc animated:YES completion:nil];
+    self.imagePickerController = ipc;
+
+    [self presentViewController:self.imagePickerController animated:YES completion:nil];
+    
+    //[self.navigationController presentViewController:ipc animated:YES completion:nil];
+}
+
+- (void)onClickButtonCamReverse
+{
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    NSLog(@"MainViewController.didReceiveMemoryWarning");
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark UIImagePickerControllerDelegate
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    NSLog(@"MainViewController.imagePickerController");
     NSString *mediaType = info[UIImagePickerControllerMediaType];
     
     // 사진,앨범선택창 닫기
@@ -140,7 +176,7 @@
 
 -(void)image:(UIImage *)image finishedSaving:(NSError *)error contextInfo:(void *)contextInfo
 {
-    NSLog(@"finishedSaving");
+    NSLog(@"MainViewController.finishedSaving");
     if (error) {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle: @"Save failed"
@@ -154,7 +190,7 @@
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    NSLog(@"imagePickerControllerDidCancel");
+    NSLog(@"MainViewController.imagePickerControllerDidCancel");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
