@@ -42,28 +42,19 @@
     ipc.allowsEditing = NO;
     ipc.delegate = self;
     
-    if ([UIImagePickerController isSourceTypeAvailable:
-         UIImagePickerControllerSourceTypeCamera]) {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
+
+        ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
+        ipc.navigationBarHidden = YES;
+        ipc.toolbarHidden = YES;
         
-        // 카메라 뷰 커스터마이징
-        /*
-        ipc.showsCameraControls = NO;
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        float cameraAspectRatio = 4.0 / 3.0;
-        float imageWidth = floorf(screenSize.width * cameraAspectRatio);
-        float scale = ceilf((screenSize.height / imageWidth) * 10.0) / 10.0;
-        ipc.cameraViewTransform = CGAffineTransformMakeScale(scale, scale);
-        
-        [[NSBundle mainBundle] loadNibNamed:@"OverlayView" owner:self options:nil];
-        self.overlayView.frame = ipc.cameraOverlayView.frame;
-        ipc.cameraOverlayView = self.overlayView;
-        self.overlayView = nil;
-        */
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"OverLayView"];
+        ipc.cameraOverlayView = vc.view;
 
     } else {
-        if ([UIImagePickerController isSourceTypeAvailable:
-             UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
             ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         }
     }
