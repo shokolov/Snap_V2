@@ -10,18 +10,15 @@
 
 @interface MainViewController ()
 
-@property (strong, nonatomic) IBOutlet UIView *overlayView;
-
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *takePictureButton;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *startStopButton;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *delayedPhotoButton;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *doneButton;
-
-@property (nonatomic) UIImagePickerController *imagePickerController;
+//@property (nonatomic) UIImagePickerController *imagePickerController;
 
 @end
 
 @implementation MainViewController
+{
+    CGRect screenRect;
+    UIViewController *vc;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +35,8 @@
     [super viewDidLoad];
     NSLog(@"MainViewController.viewDidLoad");
     
+    screenRect = [[UIScreen mainScreen] bounds];
+    
     UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
     ipc.allowsEditing = NO;
     ipc.delegate = self;
@@ -45,12 +44,12 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
 
-        ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
+        ipc.showsCameraControls = NO;
         ipc.navigationBarHidden = YES;
         ipc.toolbarHidden = YES;
         
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"OverLayView"];
+        vc = [sb instantiateViewControllerWithIdentifier:@"OverLayView"];
         ipc.cameraOverlayView = vc.view;
 
     } else {
@@ -60,16 +59,17 @@
     }
 
     
-    self.imagePickerController = ipc;
-
-    [self presentViewController:self.imagePickerController animated:YES completion:nil];
+    //self.imagePickerController = ipc;
+    //[self presentViewController:self.imagePickerController animated:YES completion:nil];
+    
+    [self presentViewController:ipc animated:YES completion:nil];
     
     //[self.navigationController presentViewController:ipc animated:YES completion:nil];
 }
 
 - (void)onClickButtonCamReverse
 {
-    
+    NSLog(@"MainViewController.onClickButtonCamReverse");
 }
 
 - (void)didReceiveMemoryWarning
@@ -163,6 +163,11 @@
             NSLog(@"사진 앨범에 저장할수 없는 경우의 처리!");
         }
     }
+}
+
+- (void)takePicture
+{
+    NSLog(@"MainViewController.takePicture");
 }
 
 -(void)image:(UIImage *)image finishedSaving:(NSError *)error contextInfo:(void *)contextInfo
