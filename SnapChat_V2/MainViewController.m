@@ -200,6 +200,10 @@
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
         [alert show];
+        
+    } else {
+        // 다시 카메라 모드
+        [self presentViewController:ipc animated:YES completion:nil];
     }
 }
 
