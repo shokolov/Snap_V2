@@ -59,14 +59,8 @@
             ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         }
     }
-
-    
-    //self.imagePickerController = ipc;
-    //[self presentViewController:self.imagePickerController animated:YES completion:nil];
     
     [self presentViewController:ipc animated:YES completion:nil];
-    
-    //[self.navigationController presentViewController:ipc animated:YES completion:nil];
 }
 
 - (void)viewDidUnload {
@@ -85,7 +79,6 @@
 {
     [super didReceiveMemoryWarning];
     NSLog(@"MainViewController.didReceiveMemoryWarning");
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark UIImagePickerControllerDelegate
