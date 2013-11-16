@@ -181,7 +181,6 @@ Privacy Policy</string>
                     <connections>
                         <outlet property="account" destination="y68-Jq-Dc8" id="Us6-Lt-Ta2"/>
                         <outlet property="password" destination="geh-Ax-kSB" id="78e-JM-WaY"/>
-                        <segue destination="g9w-DM-LV3" kind="modal" identifier="cameraSegue" id="0nU-yH-Fg2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zy-ts-vBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -191,7 +190,7 @@ Privacy Policy</string>
         <!--Main View Controller-->
         <scene sceneID="g49-3Y-D2a">
             <objects>
-                <viewController id="g9w-DM-LV3" customClass="MainViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainView" id="g9w-DM-LV3" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zyz-a8-mor"/>
                         <viewControllerLayoutGuide type="bottom" id="b8f-pO-gRX"/>
@@ -199,12 +198,21 @@ Privacy Policy</string>
                     <view key="view" contentMode="scaleToFill" id="lhx-SH-vNM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXD-34-S8d">
+                                <rect key="frame" x="137" y="269" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openCamera:" destination="g9w-DM-LV3" eventType="touchUpInside" id="2vo-TU-bOH"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="xgF-L1-LZA"/>
-                    <connections>
-                        <segue destination="EfQ-51-4jX" kind="modal" identifier="UploadSegue" id="ZRa-me-zU2"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F4Z-7Q-7wX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -213,12 +221,12 @@ Privacy Policy</string>
         <!--Camera View Controller-->
         <scene sceneID="zCn-gB-3qH">
             <objects>
-                <viewController storyboardIdentifier="OverLayView" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="9k7-Lf-2Iz" customClass="CameraViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CameraViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="9k7-Lf-2Iz" customClass="CameraViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qb6-fh-ehI"/>
                         <viewControllerLayoutGuide type="bottom" id="R2L-oi-k2G"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" restorationIdentifier="OverLayView" id="lKL-6s-uJj">
+                    <view key="view" contentMode="scaleToFill" id="lKL-6s-uJj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -232,7 +240,7 @@ Privacy Policy</string>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="historyButtonAction:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="Zk7-SC-1tF"/>
+                                    <action selector="historyButton:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="GNc-f9-qkO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqz-Qr-9Uz">
@@ -244,6 +252,9 @@ Privacy Policy</string>
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="friendButton:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="xjA-pq-dkO"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6oL-BF-nrT">
                                 <rect key="frame" x="127" y="518" width="66" height="30"/>
@@ -255,7 +266,33 @@ Privacy Policy</string>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="captureButtonAction:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="fUC-hh-bd7"/>
+                                    <action selector="takePicture:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="lFX-5M-dIl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMs-If-Qod">
+                                <rect key="frame" x="9" y="20" width="66" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Flash">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="configureFlash:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="Ede-oG-zbE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zv0-5g-gy9">
+                                <rect key="frame" x="244" y="20" width="66" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Front">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="configureCameraDevice:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="eKY-ja-fXO"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -263,19 +300,15 @@ Privacy Policy</string>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="captureButton" destination="6oL-BF-nrT" id="ckn-ow-Ypo"/>
-                        <outlet property="historyButton" destination="x86-ZW-0aS" id="nXy-3f-ufn"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i01-xB-xpu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1557" y="-1004"/>
+            <point key="canvasLocation" x="1615" y="-1156"/>
         </scene>
-        <!--View Controller-->
+        <!--Upload View Controller-->
         <scene sceneID="Qil-jh-4c4">
             <objects>
-                <viewController storyboardIdentifier="UploadView" id="EfQ-51-4jX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UploadViewController" id="EfQ-51-4jX" customClass="UploadViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eR6-vC-3wa"/>
                         <viewControllerLayoutGuide type="bottom" id="G66-vB-Af8"/>
@@ -297,6 +330,9 @@ Privacy Policy</string>
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="timeAction:" destination="EfQ-51-4jX" eventType="touchUpInside" id="ypP-Ss-cQz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ngd-kX-qi3">
                                 <rect key="frame" x="127" y="518" width="66" height="30"/>
@@ -307,6 +343,9 @@ Privacy Policy</string>
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveAction:" destination="EfQ-51-4jX" eventType="touchUpInside" id="hoT-HO-IEn"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVo-fm-Nm6">
                                 <rect key="frame" x="244" y="518" width="66" height="30"/>
@@ -317,15 +356,34 @@ Privacy Policy</string>
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendAction:" destination="EfQ-51-4jX" eventType="touchUpInside" id="cq9-4E-ZLp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tt5-vF-wHN">
+                                <rect key="frame" x="9" y="20" width="66" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="retakePicture:" destination="EfQ-51-4jX" eventType="touchUpInside" id="ami-Ub-vCf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZVh-LR-pUE"/>
+                    <connections>
+                        <outlet property="imagePicture" destination="uqf-0H-lwc" id="iHx-Wr-rtz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIk-qw-lNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1959" y="-618"/>
+            <point key="canvasLocation" x="1615" y="-458"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="u6s-Z6-iIg">

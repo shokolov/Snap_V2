@@ -9,5 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @interface UploadViewController : UIViewController
+{
+    UIImage *imageSource;
+}
+
+@property (nonatomic, retain) IBOutlet UIImageView *imagePicture;
+@property (nonatomic, retain) UIImage *imageSource;
+
+-(IBAction)saveAction:(id)sender;
+-(IBAction)retakePicture:(id)sender;
+- (IBAction)timeAction:(id)sender;
+- (IBAction)sendAction:(id)sender;
 
 @end

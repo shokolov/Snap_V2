@@ -14,13 +14,8 @@
 @end
 
 @implementation CameraViewController
-{
-    UIStoryboard *sb;
-    UIViewController *vc;
-}
 
-@synthesize historyButton;
-@synthesize captureButton;
+@synthesize imagePickerController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,39 +29,57 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-    sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    vc = [sb instantiateViewControllerWithIdentifier:@"OverLayView"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
--(IBAction)historyButtonAction:(id)sender
+- (IBAction)takePicture:(id)sender
 {
-    NSLog(@"MainViewController.historyButtonAction");
+    [imagePickerController takePicture];
 }
 
--(IBAction)captureButtonAction:(id)sender
+- (IBAction)configureFlash:(id)sender
 {
-    NSLog(@"MainViewController.captureButtonAction");
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"gggggggggg";
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Flash"
+                                                    message:@"Configure your own flash type (Auto/Off/On)!"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Ok"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+- (IBAction)historyButton:(id)sender {
+}
+
+- (IBAction)friendButton:(id)sender {
+}
+
+- (IBAction)configureCameraDevice:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Camera device"
+                                                    message:@"Configure your own camera device (Rear/Front)"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Ok"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    historyButton.tintColor = [UIColor whiteColor];
-    historyButton.titleLabel.text = @"1111";
+    NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:image, @"uiimage", nil];
     
-    // 노티피케이션 호출(트리거)
-    NSDictionary *notiDic = [[NSDictionary alloc] initWithObjectsAndKeys:nil, @"action", nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"takePicture" object:nil userInfo:notiDic];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOW_PREVIEW_PICTURE" object:nil userInfo:infoToObject];
     
-    //TODO: 安
-    // 사진찍기버튼이 눌리면(captureButtonAction) MainViewController로 가서 takePicture가 실행되게 할 것
-    // 그리고 historyButton이 초설정 버튼으로 바뀌어야 함
 }
 
 @end

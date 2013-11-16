@@ -7,25 +7,28 @@
 //
 
 #import "MainViewController.h"
+#import "CameraViewController.h"
+#import "UploadViewController.h"
 
 @interface MainViewController ()
-
-//@property (nonatomic) UIImagePickerController *imagePickerController;
 
 @end
 
 @implementation MainViewController
 {
-    UIViewController *vc;
-    UIImagePickerController *ipc;
+    UIStoryboard *storyboard;
+    UIImagePickerController *imagePickerController;
+    UIImage *savedImage;
 }
+
+@synthesize cameraViewController, uploadViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
+    NSLog(@"MainViewController.initWithNibName");
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-        NSLog(@"MainViewController.initWithNibName");
+        
     }
     return self;
 }
@@ -34,50 +37,27 @@
 {
     [super viewDidLoad];
     NSLog(@"MainViewController.viewDidLoad");
-}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    NSLog(@"MainViewController.viewDidAppear");
+    imagePickerController = [[UIImagePickerController alloc]init];
     
-    ipc = [[UIImagePickerController alloc] init];
-    ipc.allowsEditing = NO;
-    ipc.delegate = self;
+    storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
-        
-        ipc.showsCameraControls = NO;
-        ipc.navigationBarHidden = YES;
-        ipc.toolbarHidden = YES;
-        
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        vc = [sb instantiateViewControllerWithIdentifier:@"OverLayView"];
-        ipc.cameraOverlayView = vc.view;
-        
-        // 노티피케이션 등록
-        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-        [notificationCenter addObserver:self selector:@selector(takePictureNotification:) name:@"takePicture" object:nil];
-        
-    } else {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-            ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        }
+    if(nil == cameraViewController){
+        cameraViewController = (CameraViewController*)[storyboard instantiateViewControllerWithIdentifier:@"CameraViewController"];
+    }
+    if(nil == uploadViewController){
+        uploadViewController = (UploadViewController*)[storyboard instantiateViewControllerWithIdentifier:@"UploadViewController"];
     }
     
-    [self presentViewController:ipc animated:YES completion:nil];
-}
-
-- (void)viewDidUnload {
-    NSLog(@"viewDidUnload");
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showPreviewPictureViewController:)
+                                                 name:@"SHOW_PREVIEW_PICTURE"
+                                               object:nil];
     
-    // 노티피케이션 삭제
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"setContent" object:nil];
-}
-
-- (void)onClickButtonCamReverse
-{
-    NSLog(@"MainViewController.onClickButtonCamReverse");
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(retakePicture:)
+                                                 name:@"RETAKE_PICTURE"
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,129 +66,77 @@
     NSLog(@"MainViewController.didReceiveMemoryWarning");
 }
 
-#pragma mark UIImagePickerControllerDelegate
+- (IBAction)openCamera:(id)sender
+{
+    [self cameraDidLoad];
+}
 
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    NSLog(@"MainViewController.imagePickerController");
-    
-    NSString *mediaType = info[UIImagePickerControllerMediaType];
-    
-    // 사진,앨범선택창 닫기
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
-        UIImage *image = info[UIImagePickerControllerOriginalImage];
-        UIImageWriteToSavedPhotosAlbum(image,
-                                       self,
-                                       @selector(image:finishedSaving:contextInfo:),
-                                       nil);
-        
-        
-        // 서버설정
-        //NSString *urlString = @"http://211.239.124.234:13405/test";
-        NSString *urlString = @"http://192.168.1.10:3000/test";
-        
-        NSString *boundary = @"SpecificString";
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:urlString]];
-        [request setCachePolicy:NSURLRequestUseProtocolCachePolicy];
-        [request setHTTPMethod:@"POST"];
-        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-        [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-        NSMutableData *body = [NSMutableData data];
-        
-        // 이미지크기 조절
-        UIImage *image_ = image;
-        float resizeWidth = 150;
-        float resizeHeight = image_.size.width/(image_.size.height/150);
-        
-        CGSize newSize=CGSizeMake(resizeWidth, resizeHeight);
-        UIGraphicsBeginImageContext(newSize);
-        [image_ drawInRect:CGRectMake(0,0,resizeWidth,resizeHeight)];
-        
-        UIImage* scaledImage2 = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        
-        // 파일:uploadedfile, 파일명:filename
-        
-        // 해상도 조절, 파일이름을 만들기 : 서버에 보내기위한 준비작업
-        NSData *imageData2 =UIImageJPEGRepresentation(scaledImage2, 0.7);
-        NSString *tFileName=@"img";
-        NSString *imageFileName= [NSString stringWithFormat:@"%@.jpg",tFileName];
-        
-        // http해더
-        [body appendData:[[NSString stringWithFormat:
-                           @"\r\n--%@\r\n",
-                           boundary]
-                          dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:
-                           @"Content-Disposition: form-data; name=\"uploadedfile\"; filename=\"%@\"\r\n",
-                           imageFileName]
-                          dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n"
-                          dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[NSData dataWithData:imageData2]];
-        [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",
-                           boundary]
-                          dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        // 전송
-        [request setHTTPBody:body];
-        
-        // 보낸결과
-        NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        NSLog(@"aaaaaaaaaaaa:%@", returnString);
-        
-    } else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie]) {
-        NSURL *mediaURL=[info objectForKey:UIImagePickerControllerMediaURL];
-        NSString *mediaPath=[mediaURL path];
-        if(UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(mediaPath)) {
-            //비디오를 사진 앨범에 저장한다.
-            UISaveVideoAtPathToSavedPhotosAlbum(mediaPath,
-                                                self,
-                                                nil,
-                                                nil);
-        } else {
-            NSLog(@"사진 앨범에 저장할수 없는 경우의 처리!");
-        }
+- (void)showPreviewPictureViewController:(NSNotification*)notification
+{
+    if(notification)
+    {
+        NSDictionary* infoToObject = [notification userInfo];
+        UIImage *image = (UIImage *)[infoToObject valueForKey:@"uiimage"];
+
+        [uploadViewController setImageSource:image];
+        [uploadViewController.imagePicture setImage:image];
+
+        [self previewPictureDidLoad];
     }
-}
-
--(void)takePictureNotification:(NSNotification *)notification
-{
-    NSLog(@"MainViewController.takePictureNotification");
-    
-    [ipc takePicture];
     
 }
-
--(void)image:(UIImage *)image finishedSaving:(NSError *)error contextInfo:(void *)contextInfo
+- (void)retakePicture:(NSNotification*)notification
 {
-    NSLog(@"MainViewController.finishedSaving");
-    if (error) {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Save failed"
-                              message: @"Failed to save image"
-                              delegate: nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
+    
+    if(notification)
+    {
+        [uploadViewController setImageSource:nil];
+        [uploadViewController.imagePicture setImage:nil];
         
-    } else {
-        
-        [self performSegueWithIdentifier:@"UploadSegue" sender:self];
-        
-        // 다시 카메라 모드
-        //[self presentViewController:ipc animated:YES completion:nil];
+        [uploadViewController dismissViewControllerAnimated:NO completion:^(void){
+            [self presentViewController:cameraViewController.imagePickerController animated:YES completion:nil];
+        }];
     }
+    
 }
 
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+- (void)previewPictureDidLoad
 {
-    NSLog(@"MainViewController.imagePickerControllerDidCancel");
-    [self dismissViewControllerAnimated:YES completion:nil];
+    // Hide Camera View after show next view
+    [cameraViewController.imagePickerController dismissViewControllerAnimated:NO completion:^(void){
+        // Show PreviewPictureController
+        [self presentViewController:uploadViewController animated:YES completion:nil];
+    }];
 }
+
+- (void)cameraDidLoad
+{
+    
+    [cameraViewController setImagePickerController: imagePickerController];
+    [cameraViewController.imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
+    [cameraViewController.imagePickerController setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+    [cameraViewController.imagePickerController setCameraFlashMode:UIImagePickerControllerCameraFlashModeAuto];
+    [cameraViewController.imagePickerController setDelegate:cameraViewController.self];
+    [cameraViewController.imagePickerController setAllowsEditing:NO];
+    [cameraViewController.imagePickerController setShowsCameraControls:NO];
+    
+    [cameraViewController.view setBackgroundColor:[UIColor clearColor]];
+
+    [cameraViewController.imagePickerController setCameraOverlayView: cameraViewController.view];
+    
+    [self presentViewController:cameraViewController.imagePickerController animated:YES completion:^(void){
+    }];
+}
+
+- (void)previewPictureDidUnLoad
+{
+    [uploadViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)cameraDidUnload
+{
+    [cameraViewController.imagePickerController dismissViewControllerAnimated:YES completion:NO];
+}
+
 
 @end

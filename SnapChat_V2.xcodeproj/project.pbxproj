@@ -26,6 +26,7 @@
 		683B541118136E5100228FBA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683B541018136E5100228FBA /* MainViewController.m */; };
 		685F5A24180BDCE900A900DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685F5A23180BDCE900A900DF /* AVFoundation.framework */; };
 		68A090A818379B0D001F5AAC /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A090A718379B0D001F5AAC /* UploadViewController.m */; };
+		68A090AA1837D7CF001F5AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A090A91837D7CF001F5AAC /* CoreData.framework */; };
 		68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A29C4A1827E72700D8E6D2 /* CameraViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		685F5A23180BDCE900A900DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		68A090A618379B0D001F5AAC /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		68A090A718379B0D001F5AAC /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
+		68A090A91837D7CF001F5AAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		68A29C491827E72700D8E6D2 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		68A29C4A1827E72700D8E6D2 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68A090AA1837D7CF001F5AAC /* CoreData.framework in Frameworks */,
 				685F5A24180BDCE900A900DF /* AVFoundation.framework in Frameworks */,
 				06A76843180129C90090CBF5 /* CoreGraphics.framework in Frameworks */,
 				06A76845180129C90090CBF5 /* UIKit.framework in Frameworks */,
@@ -119,6 +122,7 @@
 		06A7683F180129C90090CBF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68A090A91837D7CF001F5AAC /* CoreData.framework */,
 				685F5A23180BDCE900A900DF /* AVFoundation.framework */,
 				06A76840180129C90090CBF5 /* Foundation.framework */,
 				06A76842180129C90090CBF5 /* CoreGraphics.framework */,
@@ -229,6 +233,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = KimByungyoon;
 				TargetAttributes = {
+					06A7683C180129C90090CBF5 = {
+						DevelopmentTeam = T666FJR89K;
+					};
 					06A7685D180129C90090CBF5 = {
 						TestTargetID = 06A7683C180129C90090CBF5;
 					};
@@ -405,6 +412,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SnapChat_V2/SnapChat_V2-Prefix.pch";
 				INFOPLIST_FILE = "SnapChat_V2/SnapChat_V2-Info.plist";
@@ -418,6 +426,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SnapChat_V2/SnapChat_V2-Prefix.pch";
 				INFOPLIST_FILE = "SnapChat_V2/SnapChat_V2-Info.plist";

@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MobileCoreServices/MobileCoreServices.h>
 
-@interface MainViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@class CameraViewController, UploadViewController;
+
+@interface MainViewController : UIViewController
+
+@property (nonatomic, strong) CameraViewController *cameraViewController;
+@property (nonatomic, strong) UploadViewController *uploadViewController;
+
+- (IBAction)openCamera:(id)sender;
 
 @end

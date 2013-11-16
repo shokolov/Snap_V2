@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CameraViewController : UIViewController
+@interface CameraViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+{
+    UIImagePickerController *imagePickerController;
+}
 
-- (IBAction)historyButtonAction:(id)sender;
-- (IBAction)captureButtonAction:(id)sender;
+@property (nonatomic, retain) IBOutlet UIImagePickerController *imagePickerController;
 
-@property (weak, nonatomic) IBOutlet UIButton *historyButton;
-@property (weak, nonatomic) IBOutlet UIButton *captureButton;
+- (IBAction)takePicture:(id)sender;
+- (IBAction)configureFlash:(id)sender;
+- (IBAction)configureCameraDevice:(id)sender;
+
+- (IBAction)historyButton:(id)sender;
+- (IBAction)friendButton:(id)sender;
 
 @end

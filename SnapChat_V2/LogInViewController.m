@@ -44,7 +44,11 @@
     NSLog(@"account:%@", account.text);
     NSLog(@"password:%@", password.text);
     
-    [self performSegueWithIdentifier:@"cameraSegue" sender:self];
+    //[self performSegueWithIdentifier:@"cameraSegue" sender:self];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *vc_ = [sb instantiateViewControllerWithIdentifier:@"MainView"];
+    [self presentViewController:vc_ animated:YES completion:nil];
 }
 
 
