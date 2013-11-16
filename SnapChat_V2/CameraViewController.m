@@ -7,6 +7,7 @@
 //
 
 #import "CameraViewController.h"
+#import "MainViewController.h"
 
 @interface CameraViewController ()
 
@@ -58,6 +59,10 @@
     
     historyButton.tintColor = [UIColor whiteColor];
     historyButton.titleLabel.text = @"1111";
+    
+    // 노티피케이션 호출(트리거)
+    NSDictionary *notiDic = [[NSDictionary alloc] initWithObjectsAndKeys:nil, @"action", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"takePicture" object:nil userInfo:notiDic];
     
     //TODO: 安
     // 사진찍기버튼이 눌리면(captureButtonAction) MainViewController로 가서 takePicture가 실행되게 할 것

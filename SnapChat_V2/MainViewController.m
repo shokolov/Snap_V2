@@ -18,6 +18,7 @@
 {
     CGRect screenRect;
     UIViewController *vc;
+    UIImagePickerController *ipc;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,7 +38,7 @@
     
     screenRect = [[UIScreen mainScreen] bounds];
     
-    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc = [[UIImagePickerController alloc] init];
     ipc.allowsEditing = NO;
     ipc.delegate = self;
     
@@ -51,6 +52,10 @@
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         vc = [sb instantiateViewControllerWithIdentifier:@"OverLayView"];
         ipc.cameraOverlayView = vc.view;
+        
+        // 노티피케이션 등록
+        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+        [notificationCenter addObserver:self selector:@selector(takePictureNotification:) name:@"takePicture" object:nil];
 
     } else {
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
@@ -65,6 +70,13 @@
     [self presentViewController:ipc animated:YES completion:nil];
     
     //[self.navigationController presentViewController:ipc animated:YES completion:nil];
+}
+
+- (void)viewDidUnload {
+    NSLog(@"viewDidUnload");
+    
+    // 노티피케이션 삭제
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"setContent" object:nil];
 }
 
 - (void)onClickButtonCamReverse
@@ -83,6 +95,7 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSLog(@"MainViewController.imagePickerController");
+    
     NSString *mediaType = info[UIImagePickerControllerMediaType];
     
     // 사진,앨범선택창 닫기
@@ -94,6 +107,7 @@
                                        self,
                                        @selector(image:finishedSaving:contextInfo:),
                                        nil);
+        
         
         // 서버설정
         NSString *urlString = @"http://211.239.124.234:13405/test";
@@ -165,9 +179,12 @@
     }
 }
 
-- (void)takePicture
+-(void)takePictureNotification:(NSNotification *)notification
 {
-    NSLog(@"MainViewController.takePicture");
+    NSLog(@"MainViewController.takePictureNotification");
+    
+    [ipc takePicture];
+    
 }
 
 -(void)image:(UIImage *)image finishedSaving:(NSError *)error contextInfo:(void *)contextInfo
