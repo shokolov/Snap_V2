@@ -110,7 +110,9 @@
         
         
         // 서버설정
-        NSString *urlString = @"http://211.239.124.234:13405/test";
+        //NSString *urlString = @"http://211.239.124.234:13405/test";
+        NSString *urlString = @"http://192.168.1.10:3000/test";
+        
         NSString *boundary = @"SpecificString";
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         [request setURL:[NSURL URLWithString:urlString]];
