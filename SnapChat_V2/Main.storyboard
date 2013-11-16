@@ -181,7 +181,7 @@ Privacy Policy</string>
                     <connections>
                         <outlet property="account" destination="y68-Jq-Dc8" id="Us6-Lt-Ta2"/>
                         <outlet property="password" destination="geh-Ax-kSB" id="78e-JM-WaY"/>
-                        <segue destination="g9w-DM-LV3" kind="push" identifier="cameraSegue" id="0nU-yH-Fg2"/>
+                        <segue destination="g9w-DM-LV3" kind="modal" identifier="cameraSegue" id="0nU-yH-Fg2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zy-ts-vBX" userLabel="First Responder" sceneMemberID="firstResponder"/>

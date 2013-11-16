@@ -34,6 +34,11 @@
 {
     [super viewDidLoad];
     NSLog(@"MainViewController.viewDidLoad");
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSLog(@"MainViewController.viewDidAppear");
     
     ipc = [[UIImagePickerController alloc] init];
     ipc.allowsEditing = NO;
@@ -41,7 +46,7 @@
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
-
+        
         ipc.showsCameraControls = NO;
         ipc.navigationBarHidden = YES;
         ipc.toolbarHidden = YES;
@@ -53,7 +58,7 @@
         // 노티피케이션 등록
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [notificationCenter addObserver:self selector:@selector(takePictureNotification:) name:@"takePicture" object:nil];
-
+        
     } else {
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
             ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
