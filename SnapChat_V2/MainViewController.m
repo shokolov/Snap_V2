@@ -192,8 +192,11 @@
         [alert show];
         
     } else {
+        
+        [self performSegueWithIdentifier:@"UploadSegue" sender:self];
+        
         // 다시 카메라 모드
-        [self presentViewController:ipc animated:YES completion:nil];
+        //[self presentViewController:ipc animated:YES completion:nil];
     }
 }
 

@@ -25,6 +25,7 @@
 		06A7688018013E080090CBF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06A7687F18013E070090CBF5 /* Main.storyboard */; };
 		683B541118136E5100228FBA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683B541018136E5100228FBA /* MainViewController.m */; };
 		685F5A24180BDCE900A900DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685F5A23180BDCE900A900DF /* AVFoundation.framework */; };
+		68A090A818379B0D001F5AAC /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A090A718379B0D001F5AAC /* UploadViewController.m */; };
 		68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A29C4A1827E72700D8E6D2 /* CameraViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,8 @@
 		683B540F18136E5100228FBA /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		683B541018136E5100228FBA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		685F5A23180BDCE900A900DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		68A090A618379B0D001F5AAC /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
+		68A090A718379B0D001F5AAC /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		68A29C491827E72700D8E6D2 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		68A29C4A1827E72700D8E6D2 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +146,8 @@
 				683B541018136E5100228FBA /* MainViewController.m */,
 				68A29C491827E72700D8E6D2 /* CameraViewController.h */,
 				68A29C4A1827E72700D8E6D2 /* CameraViewController.m */,
+				68A090A618379B0D001F5AAC /* UploadViewController.h */,
+				68A090A718379B0D001F5AAC /* UploadViewController.m */,
 			);
 			path = SnapChat_V2;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				06A7687718012AA70090CBF5 /* LogInViewController.m in Sources */,
 				06A76857180129C90090CBF5 /* AppStoreExViewController.m in Sources */,
 				06A7684D180129C90090CBF5 /* main.m in Sources */,
+				68A090A818379B0D001F5AAC /* UploadViewController.m in Sources */,
 				68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */,
 				06A76851180129C90090CBF5 /* AppStoreExAppDelegate.m in Sources */,
 			);
