@@ -15,11 +15,14 @@
 
 @property (nonatomic, retain) IBOutlet UIImagePickerController *imagePickerController;
 
-- (IBAction)takePicture:(id)sender;
-- (IBAction)configureFlash:(id)sender;
-- (IBAction)configureCameraDevice:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *flashButton;
 
-- (IBAction)historyButton:(id)sender;
-- (IBAction)friendButton:(id)sender;
+- (IBAction)captureAction:(id)sender;
+
+- (IBAction)flashAction:(id)sender;
+- (IBAction)frontAction:(id)sender;
+
+- (IBAction)historyAction:(id)sender;
+- (IBAction)friendAction:(id)sender;
 
 @end

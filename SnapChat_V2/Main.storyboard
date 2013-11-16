@@ -240,7 +240,7 @@ Privacy Policy</string>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="historyButton:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="GNc-f9-qkO"/>
+                                    <action selector="historyAction:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="JQw-T4-AX4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqz-Qr-9Uz">
@@ -253,7 +253,7 @@ Privacy Policy</string>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="friendButton:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="xjA-pq-dkO"/>
+                                    <action selector="friendAction:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="0BD-7f-WSf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6oL-BF-nrT">
@@ -266,7 +266,7 @@ Privacy Policy</string>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="takePicture:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="lFX-5M-dIl"/>
+                                    <action selector="captureAction:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="LUk-h0-TwH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMs-If-Qod">
@@ -274,12 +274,12 @@ Privacy Policy</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Flash">
+                                <state key="normal" title="Auto">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="configureFlash:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="Ede-oG-zbE"/>
+                                    <action selector="flashAction:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="hDS-0C-JEa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zv0-5g-gy9">
@@ -292,7 +292,7 @@ Privacy Policy</string>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="configureCameraDevice:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="eKY-ja-fXO"/>
+                                    <action selector="frontAction:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="0CN-P4-p9b"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -300,6 +300,9 @@ Privacy Policy</string>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="flashButton" destination="CMs-If-Qod" id="edj-dN-AL2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i01-xB-xpu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

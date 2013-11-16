@@ -16,6 +16,7 @@
 @implementation CameraViewController
 
 @synthesize imagePickerController;
+@synthesize flashButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,35 +42,38 @@
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)takePicture:(id)sender
+- (IBAction)captureAction:(id)sender
 {
     [imagePickerController takePicture];
 }
 
-- (IBAction)configureFlash:(id)sender
+- (IBAction)flashAction:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Flash"
-                                                    message:@"Configure your own flash type (Auto/Off/On)!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Ok"
-                                          otherButtonTitles:nil];
-    [alert show];
+    if (imagePickerController.cameraFlashMode == UIImagePickerControllerCameraFlashModeAuto) {
+        [imagePickerController setCameraFlashMode:UIImagePickerControllerCameraFlashModeOn];
+        [flashButton setTitle:@"On" forState:UIControlStateNormal];
+    } else if (imagePickerController.cameraFlashMode == UIImagePickerControllerCameraFlashModeOn) {
+        [imagePickerController setCameraFlashMode:UIImagePickerControllerCameraFlashModeOff];
+        [flashButton setTitle:@"Off" forState:UIControlStateNormal];
+    } else {
+        [imagePickerController setCameraFlashMode:UIImagePickerControllerCameraFlashModeAuto];
+        [flashButton setTitle:@"Auto" forState:UIControlStateNormal];
+    }
 }
 
-- (IBAction)historyButton:(id)sender {
+- (IBAction)historyAction:(id)sender {
 }
 
-- (IBAction)friendButton:(id)sender {
+- (IBAction)friendAction:(id)sender {
 }
 
-- (IBAction)configureCameraDevice:(id)sender
+- (IBAction)frontAction:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Camera device"
-                                                    message:@"Configure your own camera device (Rear/Front)"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Ok"
-                                          otherButtonTitles:nil];
-    [alert show];
+    if (imagePickerController.cameraDevice == UIImagePickerControllerCameraDeviceFront) {
+        [imagePickerController setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+    } else {
+        [imagePickerController setCameraDevice:UIImagePickerControllerCameraDeviceFront];
+    }
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
