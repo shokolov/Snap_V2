@@ -11,7 +11,7 @@
 
 @class CameraViewController;
 
-@interface LogInViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface LogInViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITextField *account;
 @property (strong, nonatomic) IBOutlet UITextField *password;

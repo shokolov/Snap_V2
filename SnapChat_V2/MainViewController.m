@@ -16,7 +16,6 @@
 
 @implementation MainViewController
 {
-    CGRect screenRect;
     UIViewController *vc;
     UIImagePickerController *ipc;
 }
@@ -35,8 +34,6 @@
 {
     [super viewDidLoad];
     NSLog(@"MainViewController.viewDidLoad");
-    
-    screenRect = [[UIScreen mainScreen] bounds];
     
     ipc = [[UIImagePickerController alloc] init];
     ipc.allowsEditing = NO;
