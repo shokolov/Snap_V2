@@ -65,8 +65,8 @@
 }
 
 - (IBAction)friendAction:(id)sender {
-    [self performSegueWithIdentifier:@"addressSegue" sender:self];
-
+    //[self performSegueWithIdentifier:@"addressSegue" sender:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOW_FRIEND_LIST" object:nil userInfo:nil];
 }
 
 - (IBAction)frontAction:(id)sender
@@ -85,7 +85,6 @@
     NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:image, @"uiimage", nil];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOW_PREVIEW_PICTURE" object:nil userInfo:infoToObject];
-    
 }
 
 @end

@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class CameraViewController, UploadViewController;
+@class CameraViewController, UploadViewController, FriendViewController;
 
 @interface MainViewController : UIViewController
 
 @property (nonatomic, strong) CameraViewController *cameraViewController;
 @property (nonatomic, strong) UploadViewController *uploadViewController;
+@property (nonatomic, strong) FriendViewController *friendViewController;
 
 - (IBAction)openCamera:(id)sender;
 
