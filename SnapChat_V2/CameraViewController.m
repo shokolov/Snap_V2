@@ -65,6 +65,8 @@
 }
 
 - (IBAction)friendAction:(id)sender {
+    [self performSegueWithIdentifier:@"addressSegue" sender:self];
+
 }
 
 - (IBAction)frontAction:(id)sender
