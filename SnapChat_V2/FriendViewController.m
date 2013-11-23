@@ -153,4 +153,7 @@
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = theCheckMark;
 }
 
+- (IBAction)backAction:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOW_CAMERA" object:nil userInfo:nil];
+}
 @end

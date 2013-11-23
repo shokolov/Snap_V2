@@ -68,6 +68,10 @@
                                              selector:@selector(showFriendList:)
                                                  name:@"SHOW_FRIEND_LIST"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showCamera:)
+                                                 name:@"SHOW_CAMERA"
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -117,6 +121,13 @@
         }];
     }
     
+}
+
+- (void)showCamera:(NSNotification*)notification
+{
+    [friendViewController dismissViewControllerAnimated:NO completion:^(void){
+        [self presentViewController:cameraViewController.imagePickerController animated:YES completion:nil];
+    }];
 }
 
 - (void)previewPictureDidLoad
