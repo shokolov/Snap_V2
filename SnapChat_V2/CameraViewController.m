@@ -81,7 +81,7 @@
         [uploadViewController.imagePicture setImage:takenImage];
         
         [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
-            [self presentViewController:uploadViewController animated:YES completion:nil];
+            [self presentViewController:uploadViewController animated:NO completion:nil];
         }];
     }
 }
@@ -117,7 +117,7 @@
     imagePickerController.cameraViewTransform = CGAffineTransformMakeTranslation(0.0, 70.0);
     
     //[self presentViewController:imagePickerController animated:YES completion:^(void){ }];
-    [self presentViewController:imagePickerController animated:YES completion:nil];
+    [self presentViewController:imagePickerController animated:NO completion:nil];
 }
 
 - (IBAction)captureAction:(id)sender
@@ -146,7 +146,7 @@
     NSLog(@"desc2: %@", [[self navigationController] childViewControllers]);
     [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
         [[self navigationController] setNavigationBarHidden:NO];
-        [self performSegueWithIdentifier:@"friendSegue" sender:self];
+        //[self performSegueWithIdentifier:@"friendSegue" sender:self];
         NSLog(@"desc2.1: %@", [[self navigationController] childViewControllers]);
     }];
 }

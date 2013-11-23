@@ -283,7 +283,6 @@ Privacy Policy</string>
         <!--Table View Controller-->
         <scene sceneID="ymo-PZ-35d">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oR1-zx-idN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="0KP-Pt-WII" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="NaU-GI-5MG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -305,6 +304,7 @@ Privacy Policy</string>
                         </connections>
                     </tableView>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oR1-zx-idN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2033" y="-1855"/>
         </scene>
