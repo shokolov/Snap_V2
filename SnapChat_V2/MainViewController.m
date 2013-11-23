@@ -150,14 +150,9 @@
     [cameraViewController.view setBackgroundColor:[UIColor clearColor]];
     
     [cameraViewController.imagePickerController setCameraOverlayView: cameraViewController.view];
-    
-    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-    float cameraAspectRatio = 4.0 / 3.0;
-    float imageWidth = floorf(screenSize.width * cameraAspectRatio);
-    float scale = ceilf((screenSize.height / imageWidth) * 10.0) / 10.0;
-    
-    cameraViewController.imagePickerController.cameraViewTransform = CGAffineTransformMakeScale(scale, scale);
-    
+ 
+    imagePickerController.cameraViewTransform = CGAffineTransformMakeTranslation(0.0, 70.0);
+
     [self presentViewController:cameraViewController.imagePickerController animated:YES completion:^(void){
     }];
 }

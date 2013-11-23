@@ -28,12 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-    float cameraAspectRatio = 4.0 / 3.0;
-    float imageWidth = floorf(screenSize.width * cameraAspectRatio);
-    float scale = ceilf((screenSize.height / imageWidth) * 10.0) / 10.0;
-    
+
     [imagePicture setImage:imageSource];
 }
 
