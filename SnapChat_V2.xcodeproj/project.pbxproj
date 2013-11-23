@@ -23,7 +23,6 @@
 		06A7687718012AA70090CBF5 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7687618012AA70090CBF5 /* LogInViewController.m */; };
 		06A7687C1801314F0090CBF5 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7687B1801314F0090CBF5 /* SignInViewController.m */; };
 		06A7688018013E080090CBF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06A7687F18013E070090CBF5 /* Main.storyboard */; };
-		683B541118136E5100228FBA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683B541018136E5100228FBA /* MainViewController.m */; };
 		685F5A24180BDCE900A900DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685F5A23180BDCE900A900DF /* AVFoundation.framework */; };
 		68A090A818379B0D001F5AAC /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A090A718379B0D001F5AAC /* UploadViewController.m */; };
 		68A090AA1837D7CF001F5AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A090A91837D7CF001F5AAC /* CoreData.framework */; };
@@ -66,8 +65,6 @@
 		06A7687A1801314F0090CBF5 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		06A7687B1801314F0090CBF5 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		06A7687F18013E070090CBF5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		683B540F18136E5100228FBA /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		683B541018136E5100228FBA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		685F5A23180BDCE900A900DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		68A090A618379B0D001F5AAC /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		68A090A718379B0D001F5AAC /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
@@ -152,8 +149,6 @@
 				06A76856180129C90090CBF5 /* AppStoreExViewController.m */,
 				06A76858180129C90090CBF5 /* Images.xcassets */,
 				06A76847180129C90090CBF5 /* Supporting Files */,
-				683B540F18136E5100228FBA /* MainViewController.h */,
-				683B541018136E5100228FBA /* MainViewController.m */,
 				68A29C491827E72700D8E6D2 /* CameraViewController.h */,
 				68A29C4A1827E72700D8E6D2 /* CameraViewController.m */,
 				68A090A618379B0D001F5AAC /* UploadViewController.h */,
@@ -298,7 +293,6 @@
 			files = (
 				06A7687C1801314F0090CBF5 /* SignInViewController.m in Sources */,
 				68A090B018383FB9001F5AAC /* Friend.m in Sources */,
-				683B541118136E5100228FBA /* MainViewController.m in Sources */,
 				06A7687718012AA70090CBF5 /* LogInViewController.m in Sources */,
 				06A76857180129C90090CBF5 /* AppStoreExViewController.m in Sources */,
 				68A090AD18383F5A001F5AAC /* FriendViewController.m in Sources */,

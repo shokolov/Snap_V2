@@ -7,9 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MobileCoreServices/MobileCoreServices.h>
-
-@class CameraViewController;
 
 @interface LogInViewController : UIViewController
 

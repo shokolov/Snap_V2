@@ -72,6 +72,11 @@
 }
 
 - (IBAction)sendAction:(id)sender {
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"SELECT_FRIEND" object:nil userInfo:nil];
+    //[self performSegueWithIdentifier:@"selectSegue" sender:self];
+}
+
+- (void)upload {
     // 서버설정
     //NSString *urlString = @"http://211.239.124.234:13405/test";
     NSString *urlString = @"http://192.168.1.10:3000/test";

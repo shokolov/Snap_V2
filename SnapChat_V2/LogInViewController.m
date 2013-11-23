@@ -10,8 +10,6 @@
 
 @interface LogInViewController ()
 
-//@property (nonatomic) CameraViewController *cameraViewController;
-
 @end
 
 @implementation LogInViewController
@@ -44,11 +42,15 @@
     NSLog(@"account:%@", account.text);
     NSLog(@"password:%@", password.text);
     
-    //[self performSegueWithIdentifier:@"cameraSegue" sender:self];
+    NSLog(@"desc0: %@", [[self navigationController] childViewControllers]);
     
+    [self performSegueWithIdentifier:@"cameraSegue" sender:self];
+    
+    /**
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *vc_ = [sb instantiateViewControllerWithIdentifier:@"MainView"];
     [self presentViewController:vc_ animated:YES completion:nil];
+     */
 }
 
 

@@ -7,15 +7,20 @@
 //
 
 #import "CameraViewController.h"
-#import "MainViewController.h"
+#import "UploadViewController.h"
 
 @interface CameraViewController ()
 
 @end
 
-@implementation CameraViewController
+@implementation CameraViewController {
+    UIStoryboard *storyboard;
+    UIImagePickerController *imagePickerController;
+    UIImage *takenImage;
+}
 
-@synthesize imagePickerController;
+@synthesize uploadViewController;
+
 @synthesize flashButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,16 +35,89 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    NSLog(@"desc1: %@", [[self navigationController] childViewControllers]);
+    
+    imagePickerController = [[UIImagePickerController alloc]init];
+    
+    storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    if(nil == uploadViewController){
+        uploadViewController = (UploadViewController*)[storyboard instantiateViewControllerWithIdentifier:@"UploadViewController"];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showPreviewPictureViewController:)
+                                                 name:@"SHOW_PREVIEW_PICTURE"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(retakePicture:)
+                                                 name:@"RETAKE_PICTURE"
+                                               object:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [self cameraDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[self navigationController] setNavigationBarHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)showPreviewPictureViewController:(NSNotification*)notification
+{
+    if(notification)
+    {
+        NSDictionary* infoToObject = [notification userInfo];
+        takenImage = (UIImage *)[infoToObject valueForKey:@"uiimage"];
+        
+        [uploadViewController setImageSource:takenImage];
+        [uploadViewController.imagePicture setImage:takenImage];
+        
+        [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
+            [self presentViewController:uploadViewController animated:YES completion:nil];
+        }];
+    }
+}
+
+- (void)retakePicture:(NSNotification*)notification
+{
+    
+    if(notification)
+    {
+        [uploadViewController setImageSource:nil];
+        [uploadViewController.imagePicture setImage:nil];
+        
+        [uploadViewController dismissViewControllerAnimated:NO completion:^(void){
+            [self presentViewController:imagePickerController animated:YES completion:nil];
+        }];
+    }
+    
+}
+
+- (void)cameraDidLoad
+{
+    [imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
+    [imagePickerController setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+    [imagePickerController setCameraFlashMode:UIImagePickerControllerCameraFlashModeAuto];
+    [imagePickerController setDelegate:self];
+    [imagePickerController setAllowsEditing:NO];
+    [imagePickerController setShowsCameraControls:NO];
+    
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    
+    [imagePickerController setCameraOverlayView: self.view];
+    
+    imagePickerController.cameraViewTransform = CGAffineTransformMakeTranslation(0.0, 70.0);
+    
+    //[self presentViewController:imagePickerController animated:YES completion:^(void){ }];
+    [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
 - (IBAction)captureAction:(id)sender
@@ -65,8 +143,12 @@
 }
 
 - (IBAction)friendAction:(id)sender {
-    //[self performSegueWithIdentifier:@"addressSegue" sender:self];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOW_FRIEND_LIST" object:nil userInfo:nil];
+    NSLog(@"desc2: %@", [[self navigationController] childViewControllers]);
+    [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
+        [[self navigationController] setNavigationBarHidden:NO];
+        [self performSegueWithIdentifier:@"friendSegue" sender:self];
+        NSLog(@"desc2.1: %@", [[self navigationController] childViewControllers]);
+    }];
 }
 
 - (IBAction)frontAction:(id)sender

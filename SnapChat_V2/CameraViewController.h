@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CameraViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-{
-    UIImagePickerController *imagePickerController;
-}
+@class UploadViewController, FriendViewController;
 
-@property (nonatomic, retain) IBOutlet UIImagePickerController *imagePickerController;
+@interface CameraViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (nonatomic, strong) UploadViewController *uploadViewController;
 
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
 
