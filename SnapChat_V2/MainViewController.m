@@ -94,17 +94,20 @@
 
         [uploadViewController setImageSource:image];
         [uploadViewController.imagePicture setImage:image];
-
-        [self previewPictureDidLoad];
+        
+        [cameraViewController.imagePickerController dismissViewControllerAnimated:NO completion:^(void){
+            [self presentViewController:uploadViewController animated:YES completion:nil];
+        }];
     }
-    
 }
 
 - (void)showFriendList:(NSNotification*)notification
 {
     if(notification)
     {
-        [self friendListDifLoad];
+        [cameraViewController.imagePickerController dismissViewControllerAnimated:NO completion:^(void){
+            [self presentViewController:friendViewController animated:YES completion:nil];
+        }];
     }
 }
 
@@ -130,24 +133,6 @@
     }];
 }
 
-- (void)previewPictureDidLoad
-{
-    // Hide Camera View after show next view
-    [cameraViewController.imagePickerController dismissViewControllerAnimated:NO completion:^(void){
-        // Show PreviewPictureController
-        [self presentViewController:uploadViewController animated:YES completion:nil];
-    }];
-}
-
-- (void)friendListDifLoad
-{
-    // Hide Camera View after show next view
-    [cameraViewController.imagePickerController dismissViewControllerAnimated:NO completion:^(void){
-        // Show PreviewPictureController
-        [self presentViewController:friendViewController animated:YES completion:nil];
-    }];
-}
-
 - (void)cameraDidLoad
 {
     [cameraViewController setImagePickerController: imagePickerController];
@@ -167,16 +152,5 @@
     [self presentViewController:cameraViewController.imagePickerController animated:YES completion:^(void){
     }];
 }
-
-- (void)previewPictureDidUnLoad
-{
-    [uploadViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)cameraDidUnload
-{
-    [cameraViewController.imagePickerController dismissViewControllerAnimated:YES completion:NO];
-}
-
 
 @end
