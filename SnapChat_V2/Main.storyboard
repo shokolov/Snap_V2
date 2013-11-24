@@ -125,6 +125,35 @@ Privacy Policy</string>
             </objects>
             <point key="canvasLocation" x="1140" y="176"/>
         </scene>
+        <!--History View Controller-->
+        <scene sceneID="mGS-eb-WRd">
+            <objects>
+                <tableViewController id="qnG-Gb-Uh0" customClass="HistoryViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5xd-xT-Whj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HistoryCell" id="l7m-gj-N2f">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l7m-gj-N2f" id="Nlr-bC-ARk">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qnG-Gb-Uh0" id="g52-TD-EaM"/>
+                            <outlet property="delegate" destination="qnG-Gb-Uh0" id="Rw3-ih-Ugx"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="feA-Xe-Vbp"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="itF-Y7-3YV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2129" y="512"/>
+        </scene>
         <!--View Controller - Privacy Policy-->
         <scene sceneID="kVu-7J-Mmo">
             <objects>
@@ -211,6 +240,7 @@ Privacy Policy</string>
                                 </state>
                                 <connections>
                                     <action selector="historyAction:" destination="9k7-Lf-2Iz" eventType="touchUpInside" id="JQw-T4-AX4"/>
+                                    <segue destination="qnG-Gb-Uh0" kind="push" id="syf-rh-Yl6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqz-Qr-9Uz">
@@ -336,7 +366,7 @@ Privacy Policy</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A10-Ni-9LS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2129" y="-618"/>
+            <point key="canvasLocation" x="2129" y="-922"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="eYp-rv-CPT">
@@ -355,7 +385,7 @@ Privacy Policy</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVi-Sb-q6F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2595" y="-618"/>
+            <point key="canvasLocation" x="2595" y="-922"/>
         </scene>
         <!--Upload View Controller-->
         <scene sceneID="Qil-jh-4c4">
@@ -443,7 +473,7 @@ Privacy Policy</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIk-qw-lNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2595" y="176"/>
+            <point key="canvasLocation" x="2595" y="-204"/>
         </scene>
         <!--Select View Controller-->
         <scene sceneID="rqo-1N-VHL">
@@ -478,7 +508,7 @@ Privacy Policy</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSw-b5-a6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3059" y="176"/>
+            <point key="canvasLocation" x="3060" y="-204"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="u6s-Z6-iIg">
@@ -532,7 +562,7 @@ Privacy Policy</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq3-4u-KKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2137" y="176"/>
+            <point key="canvasLocation" x="2129" y="-204"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

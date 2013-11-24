@@ -108,6 +108,9 @@
 }
 
 - (IBAction)historyAction:(id)sender {
+    [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
+        [[self navigationController] setNavigationBarHidden:NO];
+    }];
 }
 
 - (IBAction)friendAction:(id)sender {

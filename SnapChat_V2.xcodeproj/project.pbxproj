@@ -30,6 +30,8 @@
 		68A090B018383FB9001F5AAC /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A090AF18383FB9001F5AAC /* Friend.m */; };
 		68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A29C4A1827E72700D8E6D2 /* CameraViewController.m */; };
 		68DE914D1841BBE6001635AD /* SelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE914C1841BBE6001635AD /* SelectViewController.m */; };
+		68DE919118425A88001635AD /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE919018425A88001635AD /* HistoryViewController.m */; };
+		68DE919418425B22001635AD /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE919318425B22001635AD /* History.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,10 @@
 		68A29C4A1827E72700D8E6D2 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		68DE914B1841BBE6001635AD /* SelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectViewController.h; sourceTree = "<group>"; };
 		68DE914C1841BBE6001635AD /* SelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectViewController.m; sourceTree = "<group>"; };
+		68DE918F18425A88001635AD /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		68DE919018425A88001635AD /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		68DE919218425B22001635AD /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
+		68DE919318425B22001635AD /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +168,10 @@
 				68A090AF18383FB9001F5AAC /* Friend.m */,
 				68DE914B1841BBE6001635AD /* SelectViewController.h */,
 				68DE914C1841BBE6001635AD /* SelectViewController.m */,
+				68DE918F18425A88001635AD /* HistoryViewController.h */,
+				68DE919018425A88001635AD /* HistoryViewController.m */,
+				68DE919218425B22001635AD /* History.h */,
+				68DE919318425B22001635AD /* History.m */,
 			);
 			path = SnapChat_V2;
 			sourceTree = "<group>";
@@ -300,11 +310,13 @@
 				68A090B018383FB9001F5AAC /* Friend.m in Sources */,
 				06A7687718012AA70090CBF5 /* LogInViewController.m in Sources */,
 				06A76857180129C90090CBF5 /* AppStoreExViewController.m in Sources */,
+				68DE919118425A88001635AD /* HistoryViewController.m in Sources */,
 				68A090AD18383F5A001F5AAC /* FriendViewController.m in Sources */,
 				06A7684D180129C90090CBF5 /* main.m in Sources */,
 				68A090A818379B0D001F5AAC /* UploadViewController.m in Sources */,
 				68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */,
 				68DE914D1841BBE6001635AD /* SelectViewController.m in Sources */,
+				68DE919418425B22001635AD /* History.m in Sources */,
 				06A76851180129C90090CBF5 /* AppStoreExAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
