@@ -378,7 +378,7 @@ Privacy Policy</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Time">
+                                <state key="normal" title="3 Sec">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -445,10 +445,10 @@ Privacy Policy</string>
             </objects>
             <point key="canvasLocation" x="2595" y="176"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Select View Controller-->
         <scene sceneID="rqo-1N-VHL">
             <objects>
-                <tableViewController id="1Hy-uU-bAl" sceneMemberID="viewController">
+                <tableViewController id="1Hy-uU-bAl" customClass="SelectViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="i13-mX-X3W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -468,6 +468,13 @@ Privacy Policy</string>
                             <outlet property="delegate" destination="1Hy-uU-bAl" id="3fZ-hO-1DZ"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="moG-iw-cEk">
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="pOj-7c-9ua">
+                            <connections>
+                                <action selector="sendButtonAction:" destination="1Hy-uU-bAl" id="Uzz-7r-Zpq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSw-b5-a6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

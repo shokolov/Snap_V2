@@ -114,4 +114,15 @@
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = theCheckMark;
 }
 
+- (IBAction)sendButtonAction:(id)sender {
+    [self dismissViewControllerAnimated:NO completion:^(void){
+        
+        NSLog(@"desc6: %@", [[self navigationController] childViewControllers]);
+        
+        NSArray *friendArray = [[NSArray alloc] initWithObjects:@"aaa", @"bbb", nil];
+        NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:friendArray, @"uploadInfo", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UPLOAD_PICTURE" object:nil userInfo:infoToObject];
+    }];
+}
+     
 @end

@@ -49,6 +49,11 @@
                                              selector:@selector(retakePicture:)
                                                  name:@"RETAKE_PICTURE"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(uploadPicture:)
+                                                 name:@"UPLOAD_PICTURE"
+                                               object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -62,43 +67,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-}
-
-- (void)showPreviewPictureViewController:(NSNotification*)notification
-{
-    if(notification)
-    {
-        /*
-        NSDictionary* infoToObject = [notification userInfo];
-        takenImage = (UIImage *)[infoToObject valueForKey:@"uiimage"];
-        
-        [uploadViewController setImageSource:takenImage];
-        [uploadViewController.imagePicture setImage:takenImage];
-        
-        [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
-            [self presentViewController:uploadViewController animated:NO completion:nil];
-        }];
-         */
-    }
-}
-
-- (void)retakePicture:(NSNotification*)notification
-{
-    
-    if(notification)
-    {
-        /*
-        [uploadViewController setImageSource:nil];
-        [uploadViewController.imagePicture setImage:nil];
-        
-        [uploadViewController dismissViewControllerAnimated:NO completion:^(void){
-            [self presentViewController:imagePickerController animated:YES completion:nil];
-        }];
-         */
-        
-        [self presentViewController:imagePickerController animated:YES completion:nil];
-    }
-    
 }
 
 - (void)cameraDidLoad
@@ -196,6 +164,120 @@
         [uploadViewController_ setImageSource:takenImage];
         [uploadViewController_.imagePicture setImage:takenImage];
     }
+}
+
+#pragma mark - NSNotificationCenter
+
+- (void)showPreviewPictureViewController:(NSNotification*)notification
+{
+    if(notification)
+    {
+        /*
+         NSDictionary* infoToObject = [notification userInfo];
+         takenImage = (UIImage *)[infoToObject valueForKey:@"uiimage"];
+         
+         [uploadViewController setImageSource:takenImage];
+         [uploadViewController.imagePicture setImage:takenImage];
+         
+         [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
+         [self presentViewController:uploadViewController animated:NO completion:nil];
+         }];
+         */
+    }
+}
+
+- (void)retakePicture:(NSNotification*)notification
+{
+    
+    if(notification)
+    {
+        /*
+         [uploadViewController setImageSource:nil];
+         [uploadViewController.imagePicture setImage:nil];
+         
+         [uploadViewController dismissViewControllerAnimated:NO completion:^(void){
+         [self presentViewController:imagePickerController animated:YES completion:nil];
+         }];
+         */
+        
+        [self presentViewController:imagePickerController animated:YES completion:nil];
+    }
+    
+}
+
+- (void)uploadPicture:(NSNotification*)notification
+{
+    
+    if(notification)
+    {
+        NSLog(@"aaaaaaaaaaaaa1");
+        NSLog(@"desc5: %@", [[self navigationController] childViewControllers]);
+        [self presentViewController:imagePickerController animated:YES completion:nil];
+    }
+    
+}
+
+#pragma mark - private
+
+- (void)upload {
+    // 서버설정
+    //NSString *urlString = @"http://211.239.124.234:13405/test";
+    NSString *urlString = @"http://192.168.1.10:3000/test";
+    
+    NSString *boundary = @"SpecificString";
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setCachePolicy:NSURLRequestUseProtocolCachePolicy];
+    [request setHTTPMethod:@"POST"];
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    NSMutableData *body = [NSMutableData data];
+    
+    // 이미지크기 조절
+    UIImage *image_ = takenImage;
+    float resizeWidth = 150;
+    float resizeHeight = image_.size.width/(image_.size.height/150);
+    
+    CGSize newSize=CGSizeMake(resizeWidth, resizeHeight);
+    UIGraphicsBeginImageContext(newSize);
+    [image_ drawInRect:CGRectMake(0,0,resizeWidth,resizeHeight)];
+    
+    UIImage* scaledImage2 = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    
+    // 파일:uploadedfile, 파일명:filename
+    
+    // 해상도 조절, 파일이름을 만들기 : 서버에 보내기위한 준비작업
+    NSData *imageData2 =UIImageJPEGRepresentation(scaledImage2, 0.7);
+    NSString *tFileName=@"img";
+    NSString *imageFileName= [NSString stringWithFormat:@"%@.jpg",tFileName];
+    
+    // http해더
+    [body appendData:[[NSString stringWithFormat:
+                       @"\r\n--%@\r\n",
+                       boundary]
+                      dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:
+                       @"Content-Disposition: form-data; name=\"uploadedfile\"; filename=\"%@\"\r\n",
+                       imageFileName]
+                      dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n"
+                      dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[NSData dataWithData:imageData2]];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",
+                       boundary]
+                      dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // 전송
+    [request setHTTPBody:body];
+    
+    // 보낸결과
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    NSLog(@"server upload done. %@", returnString);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"RETAKE_PICTURE" object:nil userInfo:nil];
 }
 
 @end

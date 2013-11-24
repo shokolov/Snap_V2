@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSMutableArray *friends;
 
+- (IBAction)sendButtonAction:(id)sender;
+
 @end
