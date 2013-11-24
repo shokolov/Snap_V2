@@ -47,6 +47,10 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [[self navigationController] setNavigationBarHidden:YES];
+}
+
 -(IBAction)saveAction:(id)sender
 {
     UIImage *image = imageSource;
@@ -73,7 +77,11 @@
 
 - (IBAction)sendAction:(id)sender {
     //[[NSNotificationCenter defaultCenter] postNotificationName:@"SELECT_FRIEND" object:nil userInfo:nil];
-    //[self performSegueWithIdentifier:@"selectSegue" sender:self];
+    
+    NSLog(@"desc4: %@", [[self navigationController] description]);
+    
+    [[self navigationController] setNavigationBarHidden:NO];
+    [self performSegueWithIdentifier:@"selectSegue" sender:self];
 }
 
 - (void)upload {

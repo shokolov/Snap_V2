@@ -19,8 +19,6 @@
     UIImage *takenImage;
 }
 
-@synthesize uploadViewController;
-
 @synthesize flashButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,10 +39,6 @@
     imagePickerController = [[UIImagePickerController alloc]init];
     
     storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    
-    if(nil == uploadViewController){
-        uploadViewController = (UploadViewController*)[storyboard instantiateViewControllerWithIdentifier:@"UploadViewController"];
-    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(showPreviewPictureViewController:)
@@ -74,6 +68,7 @@
 {
     if(notification)
     {
+        /*
         NSDictionary* infoToObject = [notification userInfo];
         takenImage = (UIImage *)[infoToObject valueForKey:@"uiimage"];
         
@@ -83,6 +78,7 @@
         [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
             [self presentViewController:uploadViewController animated:NO completion:nil];
         }];
+         */
     }
 }
 
@@ -91,12 +87,16 @@
     
     if(notification)
     {
+        /*
         [uploadViewController setImageSource:nil];
         [uploadViewController.imagePicture setImage:nil];
         
         [uploadViewController dismissViewControllerAnimated:NO completion:^(void){
             [self presentViewController:imagePickerController animated:YES completion:nil];
         }];
+         */
+        
+        [self presentViewController:imagePickerController animated:YES completion:nil];
     }
     
 }
@@ -146,7 +146,7 @@
     NSLog(@"desc2: %@", [[self navigationController] childViewControllers]);
     [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
         [[self navigationController] setNavigationBarHidden:NO];
-        //[self performSegueWithIdentifier:@"friendSegue" sender:self];
+        //[self performSegueWithIdentifier:@"friendSegue" sender:self]; // push일때는 필요없음
         NSLog(@"desc2.1: %@", [[self navigationController] childViewControllers]);
     }];
 }
@@ -162,11 +162,38 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    /*
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
     NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:image, @"uiimage", nil];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOW_PREVIEW_PICTURE" object:nil userInfo:infoToObject];
+     */
+    
+    takenImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
+        [[self navigationController] setNavigationBarHidden:NO];
+        [self performSegueWithIdentifier:@"updateSegue" sender:self];
+    }];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    /*
+     // 잘못된 예
+    UploadViewController *uploadViewController = [segue destinationViewController];
+    
+    [uploadViewController setImageSource:takenImage];
+    [uploadViewController.imagePicture setImage:takenImage];
+     */
+    
+    if ([[segue identifier] isEqualToString:@"updateSegue"]) {
+        UINavigationController *navigationController = (UINavigationController*)[segue destinationViewController];
+        UploadViewController *uploadViewController_ = (UploadViewController*)[navigationController topViewController];
+        
+        [uploadViewController_ setImageSource:takenImage];
+        [uploadViewController_.imagePicture setImage:takenImage];
+    }
 }
 
 @end

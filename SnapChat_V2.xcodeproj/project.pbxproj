@@ -29,6 +29,7 @@
 		68A090AD18383F5A001F5AAC /* FriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A090AC18383F5A001F5AAC /* FriendViewController.m */; };
 		68A090B018383FB9001F5AAC /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A090AF18383FB9001F5AAC /* Friend.m */; };
 		68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A29C4A1827E72700D8E6D2 /* CameraViewController.m */; };
+		68DE914D1841BBE6001635AD /* SelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE914C1841BBE6001635AD /* SelectViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		68A090AF18383FB9001F5AAC /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		68A29C491827E72700D8E6D2 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		68A29C4A1827E72700D8E6D2 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		68DE914B1841BBE6001635AD /* SelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectViewController.h; sourceTree = "<group>"; };
+		68DE914C1841BBE6001635AD /* SelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,8 @@
 				68A090AC18383F5A001F5AAC /* FriendViewController.m */,
 				68A090AE18383FB9001F5AAC /* Friend.h */,
 				68A090AF18383FB9001F5AAC /* Friend.m */,
+				68DE914B1841BBE6001635AD /* SelectViewController.h */,
+				68DE914C1841BBE6001635AD /* SelectViewController.m */,
 			);
 			path = SnapChat_V2;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				06A7684D180129C90090CBF5 /* main.m in Sources */,
 				68A090A818379B0D001F5AAC /* UploadViewController.m in Sources */,
 				68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */,
+				68DE914D1841BBE6001635AD /* SelectViewController.m in Sources */,
 				06A76851180129C90090CBF5 /* AppStoreExAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

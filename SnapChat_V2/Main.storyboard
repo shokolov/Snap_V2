@@ -274,6 +274,7 @@ Privacy Policy</string>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="flashButton" destination="CMs-If-Qod" id="edj-dN-AL2"/>
+                        <segue destination="Xw8-q1-23n" kind="modal" identifier="updateSegue" id="ml7-37-VNs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i01-xB-xpu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -317,13 +318,16 @@ Privacy Policy</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" id="G4i-CK-NbN">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FriendCell" id="G4i-CK-NbN">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G4i-CK-NbN" id="zrB-ls-llf">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="V9a-Uk-3Ba" kind="push" id="zoK-M6-Tum"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
@@ -331,7 +335,26 @@ Privacy Policy</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A10-Ni-9LS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2017" y="-618"/>
+            <point key="canvasLocation" x="2129" y="-618"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eYp-rv-CPT">
+            <objects>
+                <viewController id="V9a-Uk-3Ba" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="I9Z-DD-TJt"/>
+                        <viewControllerLayoutGuide type="bottom" id="srS-88-Y7E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jaB-lU-uiu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2d7-52-s0h"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DVi-Sb-q6F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2595" y="-618"/>
         </scene>
         <!--Upload View Controller-->
         <scene sceneID="Qil-jh-4c4">
@@ -346,7 +369,7 @@ Privacy Policy</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uqf-0H-lwc">
-                                <rect key="frame" x="0.0" y="70" width="320" height="427"/>
+                                <rect key="frame" x="0.0" y="70" width="320" height="428"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhc-e2-QCO">
@@ -386,10 +409,9 @@ Privacy Policy</string>
                                 </state>
                                 <connections>
                                     <action selector="sendAction:" destination="EfQ-51-4jX" eventType="touchUpInside" id="cq9-4E-ZLp"/>
-                                    <segue destination="PAN-Wk-m2o" kind="push" identifier="selectSegue" id="hzl-Ws-oQb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tt5-vF-wHN">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tt5-vF-wHN">
                                 <rect key="frame" x="9" y="20" width="66" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -408,45 +430,40 @@ Privacy Policy</string>
                     <navigationItem key="navigationItem" id="ZVh-LR-pUE"/>
                     <connections>
                         <outlet property="imagePicture" destination="uqf-0H-lwc" id="iHx-Wr-rtz"/>
+                        <segue destination="1Hy-uU-bAl" kind="push" identifier="selectSegue" id="dJH-u3-cYx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIk-qw-lNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1623" y="114"/>
+            <point key="canvasLocation" x="2595" y="176"/>
         </scene>
         <!--Table View Controller-->
-        <scene sceneID="YJw-aH-WW0">
+        <scene sceneID="rqo-1N-VHL">
             <objects>
-                <tableViewController id="PAN-Wk-m2o" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="IN0-1E-Jx2">
+                <tableViewController id="1Hy-uU-bAl" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="i13-mX-X3W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="Tfm-Lx-Drx">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="dKW-6g-h1X">
-                                <rect key="frame" x="0.0" y="98" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" id="A4F-zy-CaY">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dKW-6g-h1X" id="OBe-WV-XCb">
-                                    <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A4F-zy-CaY" id="nuc-bN-oZs">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="PAN-Wk-m2o" id="Pz6-tX-FOy"/>
-                            <outlet property="delegate" destination="PAN-Wk-m2o" id="CfP-6D-Nx4"/>
+                            <outlet property="dataSource" destination="1Hy-uU-bAl" id="jg2-hO-uRe"/>
+                            <outlet property="delegate" destination="1Hy-uU-bAl" id="3fZ-hO-1DZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="cWx-gi-ape"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pHx-Vf-Mg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dSw-b5-a6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2063" y="114"/>
+            <point key="canvasLocation" x="3059" y="176"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="u6s-Z6-iIg">
@@ -483,6 +500,24 @@ Privacy Policy</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDj-N0-mxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1185" y="-618"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hwq-up-Fjc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Xw8-q1-23n" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qXa-aA-5x7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EfQ-51-4jX" kind="relationship" relationship="rootViewController" id="vGD-lO-znf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eq3-4u-KKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2137" y="176"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

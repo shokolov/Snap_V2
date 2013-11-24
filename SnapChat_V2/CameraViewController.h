@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class UploadViewController, FriendViewController;
+@class UploadViewController;
 
 @interface CameraViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (nonatomic, strong) UploadViewController *uploadViewController;
+//@property (nonatomic, strong) UploadViewController *uploadViewController;
 
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
 
