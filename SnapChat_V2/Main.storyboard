@@ -274,6 +274,7 @@ Privacy Policy</string>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="flashButton" destination="CMs-If-Qod" id="edj-dN-AL2"/>
+                        <outlet property="frontButton" destination="Zv0-5g-gy9" id="CTI-Zf-E52"/>
                         <segue destination="Xw8-q1-23n" kind="modal" identifier="updateSegue" id="ml7-37-VNs"/>
                     </connections>
                 </viewController>

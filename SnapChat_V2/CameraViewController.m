@@ -19,7 +19,7 @@
     UIImage *takenImage;
 }
 
-@synthesize flashButton;
+@synthesize flashButton, frontButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -155,8 +155,10 @@
 {
     if (imagePickerController.cameraDevice == UIImagePickerControllerCameraDeviceFront) {
         [imagePickerController setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+        [frontButton setTitle:@"Front" forState:UIControlStateNormal];
     } else {
         [imagePickerController setCameraDevice:UIImagePickerControllerCameraDeviceFront];
+            [frontButton setTitle:@"Rear" forState:UIControlStateNormal];
     }
 }
 

@@ -15,6 +15,7 @@
 //@property (nonatomic, strong) UploadViewController *uploadViewController;
 
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
+@property (weak, nonatomic) IBOutlet UIButton *frontButton;
 
 - (IBAction)captureAction:(id)sender;
 
