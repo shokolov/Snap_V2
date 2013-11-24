@@ -69,6 +69,9 @@
 
 -(IBAction)retakePicture:(id)sender
 {
+    //[self.navigationController popToRootViewControllerAnimated:YES];  // 이건 push일 경우, 여기선 modal이라 해당 안 됨
+    [self dismissViewControllerAnimated:NO completion:nil];
+        
     [[NSNotificationCenter defaultCenter] postNotificationName:@"RETAKE_PICTURE" object:nil userInfo:nil];
 }
 
