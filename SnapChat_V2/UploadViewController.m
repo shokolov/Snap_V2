@@ -14,7 +14,7 @@
 
 @implementation UploadViewController
 
-@synthesize imageSource, imagePicture;
+@synthesize imageSource, imagePicture, secPicker, timeButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +29,7 @@
 {
     [super viewDidLoad];
 
+    secArray = [[NSArray alloc] initWithObjects:@"3秒", @"5秒", @"10秒", @"30秒", @"60秒", nil];
     [imagePicture setImage:imageSource];
 }
 
@@ -76,6 +77,10 @@
 }
 
 - (IBAction)timeAction:(id)sender {
+    [secPicker setDelegate:self];
+    [secPicker setDataSource:self];
+    
+    [secPicker setHidden:NO];
 }
 
 - (IBAction)sendAction:(id)sender {
@@ -151,6 +156,26 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CLOSE_CAMERA_AND_PREVIEW" object:nil userInfo:nil];
+}
+
+#pragma mark - UIPickerView
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return [secArray count];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    [secPicker setHidden:YES];
+    [timeButton setTitle:[secArray objectAtIndex:row] forState:0];
+    
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [secArray objectAtIndex:row];
 }
 
 @end
