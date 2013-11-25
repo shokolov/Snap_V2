@@ -1,9 +1,9 @@
 //
 //  SelectViewController.h
-//  SnapChat_V2
+//  PamilChat
 //
-//  Created by A12325 on 2013/11/24.
-//  Copyright (c) 2013年 KimByungyoon. All rights reserved.
+//  Created by Pamin IOS Team on 2013/12/15.
+//  Copyright (c) 2013年 Pamil. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

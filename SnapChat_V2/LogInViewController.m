@@ -2,8 +2,8 @@
 //  LogInViewController.m
 //  SnapChat
 //
-//  Created by KimByungyoon on 2013/09/08.
-//  Copyright (c) 2013年 KimByungyoon. All rights reserved.
+//  Created by Pamin IOS Team on 2013/12/15.
+//  Copyright (c) 2013年 Pamil. All rights reserved.
 //
 
 #import "LogInViewController.h"

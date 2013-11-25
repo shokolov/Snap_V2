@@ -1,18 +1,18 @@
 //
-//  SnapChat_V2Tests.m
-//  SnapChat_V2Tests
+//  PamilChatTests.m
+//  PamilChatTests
 //
-//  Created by KimByungyoon on 2013/10/06.
-//  Copyright (c) 2013年 KimByungyoon. All rights reserved.
+//  Created by Pamin IOS Team on 2013/12/15.
+//  Copyright (c) 2013年 Pamil. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface SnapChat_V2Tests : XCTestCase
+@interface PamilChatTests : XCTestCase
 
 @end
 
-@implementation SnapChat_V2Tests
+@implementation PamilChatTests
 
 - (void)setUp
 {

@@ -1,9 +1,9 @@
 //
 //  SignInViewController.m
-//  SnapChat_V2
+//  PamilChat
 //
-//  Created by KimByungyoon on 2013/10/06.
-//  Copyright (c) 2013年 KimByungyoon. All rights reserved.
+//  Created by Pamin IOS Team on 2013/12/15.
+//  Copyright (c) 2013年 Pamil. All rights reserved.
 //
 
 #import "SignInViewController.h"
