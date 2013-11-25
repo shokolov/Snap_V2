@@ -30,19 +30,19 @@
     
     NSLog(@"desc7: %@", [[self navigationController] childViewControllers]);
     
-    NSMutableArray *_historyList = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray *historyList_ = [NSMutableArray arrayWithCapacity:20];
     
     History *history = [[History alloc] init];
     history.code = @"000001";
     history.name = @"あなたがBに配信";
-    [_historyList addObject:history];
+    [historyList_ addObject:history];
     
     history = [[History alloc] init];
     history.code = @"000002";
     history.name = @"Bから３秒受信";
-    [_historyList addObject:history];
+    [historyList_ addObject:history];
     
-    self.historyList = _historyList;
+    self.historyList = historyList_;
     
     NSLog(@"HistoryViewController.viewDidLoad");
 }

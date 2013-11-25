@@ -213,7 +213,6 @@
     
     if(notification)
     {
-        NSLog(@"aaaaaaaaaaaaa1");
         NSLog(@"desc5: %@", [[self navigationController] childViewControllers]);
         [self presentViewController:imagePickerController animated:YES completion:nil];
     }

@@ -30,19 +30,19 @@
     
     NSLog(@"desc3: %@", [[self navigationController] childViewControllers]);
     
-    NSMutableArray *_friends = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray *friends_ = [NSMutableArray arrayWithCapacity:20];
     
     Friend *friend = [[Friend alloc] init];
     friend.code = @"000001";
     friend.name = @"ggammo";
-    [_friends addObject:friend];
+    [friends_ addObject:friend];
     
     friend = [[Friend alloc] init];
     friend.code = @"000002";
     friend.name = @"hhammo";
-    [_friends addObject:friend];
+    [friends_ addObject:friend];
     
-    self.friends = _friends;
+    self.friends = friends_;
     
     NSLog(@"FriendViewController.viewDidLoad");
     
