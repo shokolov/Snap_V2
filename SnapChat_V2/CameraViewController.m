@@ -8,6 +8,7 @@
 
 #import "CameraViewController.h"
 #import "UploadViewController.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface CameraViewController ()
 
@@ -228,6 +229,14 @@
 #pragma mark - private
 
 - (void)upload:(NSArray*)friendList secInfo:(NSInteger)secInfo  {
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://example.com/resources.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
     // 서버설정
     //NSString *urlString = @"http://211.239.124.234:13405/test";
     NSString *urlString = @"http://192.168.1.10:3000/test";
