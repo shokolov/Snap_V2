@@ -210,18 +210,24 @@
 
 - (void)uploadPicture:(NSNotification*)notification
 {
-    
     if(notification)
     {
         NSLog(@"desc5: %@", [[self navigationController] childViewControllers]);
+        
+        NSDictionary* infoToObject = [notification userInfo];
+        NSArray *friendList = (NSArray *)[infoToObject valueForKey:@"selectedFriends"];
+        NSInteger secInfo = [[infoToObject valueForKey:@"selectedSec"] intValue];
+        
         [self presentViewController:imagePickerController animated:YES completion:nil];
+        
+        //[self upload:friendList secInfo:secInfo];
     }
     
 }
 
 #pragma mark - private
 
-- (void)upload {
+- (void)upload:(NSArray*)friendList secInfo:(NSInteger)secInfo  {
     // 서버설정
     //NSString *urlString = @"http://211.239.124.234:13405/test";
     NSString *urlString = @"http://192.168.1.10:3000/test";

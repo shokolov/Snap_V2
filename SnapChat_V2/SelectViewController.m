@@ -15,7 +15,7 @@
 
 @implementation SelectViewController
 
-@synthesize sendButton;
+@synthesize sendButton, secInfo;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -107,14 +107,14 @@
 {
     [self dismissViewControllerAnimated:NO completion:^(void){
         
-        NSMutableArray *selectedFriends = [NSMutableArray arrayWithCapacity: self.friends.count];
         NSArray *selectedIndexPaths = [self.tableView indexPathsForSelectedRows];
+        NSMutableArray *selectedFriends = [NSMutableArray arrayWithCapacity: selectedIndexPaths.count];
         for (NSIndexPath *indexPath in selectedIndexPaths)
         {
             [selectedFriends addObject: [self.friends objectAtIndex:indexPath.row]];
         }
         
-        NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:selectedFriends, @"selectedFriends", nil];
+        NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:selectedFriends, @"selectedFriends", secInfo, @"selectedSec", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UPLOAD_PICTURE" object:nil userInfo:infoToObject];
     }];
 }

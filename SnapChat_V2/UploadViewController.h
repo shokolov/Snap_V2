@@ -10,7 +10,6 @@
 
 @interface UploadViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 {
-    UIImage *imageSource;
     NSArray *secArray;
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "UploadViewController.h"
+#import "SelectViewController.h"
 
 @interface UploadViewController ()
 
@@ -29,7 +30,7 @@
 {
     [super viewDidLoad];
 
-    secArray = [[NSArray alloc] initWithObjects:@"3秒", @"5秒", @"10秒", @"30秒", @"60秒", nil];
+    secArray = [[NSArray alloc] initWithObjects:@"3", @"5", @"10", @"30", @"60", nil];
     
     [imagePicture setImage:imageSource];
 }
@@ -61,8 +62,8 @@
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     }
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Image"
-                                                    message:@"Image was saved!"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save"
+                                                    message:@"Complete"
                                                    delegate:self
                                           cancelButtonTitle:@"Ok"
                                           otherButtonTitles:nil];
@@ -84,13 +85,26 @@
     [secPicker setHidden:NO];
 }
 
-- (IBAction)sendAction:(id)sender {
+- (IBAction)sendAction:(id)sender
+{
     //[[NSNotificationCenter defaultCenter] postNotificationName:@"SELECT_FRIEND" object:nil userInfo:nil];
     
     NSLog(@"desc4: %@", [[self navigationController] description]);
     
     [[self navigationController] setNavigationBarHidden:NO];
     [self performSegueWithIdentifier:@"selectSegue" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // 설정한 초값 전달
+    if ([[segue identifier] isEqualToString:@"selectSegue"])
+    {
+        SelectViewController *selectViewController = [segue destinationViewController];
+        
+        NSInteger secRow = [secPicker selectedRowInComponent:0];
+        [selectViewController setSecInfo: [secArray objectAtIndex:secRow]];
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -100,22 +114,28 @@
 
 #pragma mark - UIPickerView
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
     return [secArray count];
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
     [secPicker setHidden:YES];
-    [timeButton setTitle:[secArray objectAtIndex:row] forState:0];
+    
+    NSString *buttonTitle = [[secArray objectAtIndex:row] stringByAppendingString:@" Sec"];
+    [timeButton setTitle:buttonTitle forState:UIControlStateNormal];
     
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [secArray objectAtIndex:row];
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [[secArray objectAtIndex:row] stringByAppendingString:@" Sec"];
 }
 
 @end
