@@ -15,6 +15,8 @@
 
 @implementation SelectViewController
 
+@synthesize sendButton;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -41,6 +43,11 @@
     friend.name = @"hhammo";
     [friends_ addObject:friend];
     
+    friend = [[Friend alloc] init];
+    friend.code = @"000003";
+    friend.name = @"jjammo";
+    [friends_ addObject:friend];
+    
     self.friends = friends_;
     
     NSLog(@"SelectViewController.viewDidLoad");
@@ -65,7 +72,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"FriendCell";
+    static NSString *CellIdentifier = @"SelectCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     Friend *friend = (self.friends)[indexPath.row];
@@ -79,27 +86,35 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"SelectViewController.didSelectRowAtIndexPath,%@", indexPath);
+    [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
     
-    UITableViewCellAccessoryType theCheckMark;
+    // sevd 버튼 활성화
+    [sendButton setEnabled:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
     
-    theCheckMark = [tableView cellForRowAtIndexPath:indexPath].accessoryType;
-    if( theCheckMark == UITableViewCellAccessoryNone )
-        theCheckMark = UITableViewCellAccessoryCheckmark;
-    else
-        theCheckMark = UITableViewCellAccessoryNone;
-    
-    [tableView cellForRowAtIndexPath:indexPath].accessoryType = theCheckMark;
+    // sevd 버튼 비활성화
+    NSArray *selectedIndexPaths = [self.tableView indexPathsForSelectedRows];
+    if (selectedIndexPaths.count < 1) {
+        [sendButton setEnabled:NO];
+    }
 }
 
 - (IBAction)sendButtonAction:(id)sender
 {
     [self dismissViewControllerAnimated:NO completion:^(void){
         
-        NSLog(@"desc6: %@", [[self navigationController] childViewControllers]);
+        NSMutableArray *selectedFriends = [NSMutableArray arrayWithCapacity: self.friends.count];
+        NSArray *selectedIndexPaths = [self.tableView indexPathsForSelectedRows];
+        for (NSIndexPath *indexPath in selectedIndexPaths)
+        {
+            [selectedFriends addObject: [self.friends objectAtIndex:indexPath.row]];
+        }
         
-        NSArray *friendArray = [[NSArray alloc] initWithObjects:@"aaa", @"bbb", nil];
-        NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:friendArray, @"uploadInfo", nil];
+        NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:selectedFriends, @"selectedFriends", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UPLOAD_PICTURE" object:nil userInfo:infoToObject];
     }];
 }

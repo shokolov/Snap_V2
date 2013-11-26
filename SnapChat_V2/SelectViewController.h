@@ -11,6 +11,7 @@
 @interface SelectViewController : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *friends;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sendButton;
 
 - (IBAction)sendButtonAction:(id)sender;
 
