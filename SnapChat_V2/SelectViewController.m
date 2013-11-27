@@ -111,7 +111,8 @@
         NSMutableArray *selectedFriends = [NSMutableArray arrayWithCapacity: selectedIndexPaths.count];
         for (NSIndexPath *indexPath in selectedIndexPaths)
         {
-            [selectedFriends addObject: [self.friends objectAtIndex:indexPath.row]];
+            Friend *friend = (Friend*)[self.friends objectAtIndex:indexPath.row];
+            [selectedFriends addObject: friend.code];
         }
         
         NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:selectedFriends, @"selectedFriends", secInfo, @"selectedSec", nil];
