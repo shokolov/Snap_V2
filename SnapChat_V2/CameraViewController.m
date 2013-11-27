@@ -58,9 +58,10 @@
                                                  name:@"UPLOAD_PICTURE"
                                                object:nil];
     
-    historyBadge = [[MKNumberBadgeView alloc] initWithFrame:CGRectMake(60, 00, 30,20)];
+    historyBadge = [[MKNumberBadgeView alloc] initWithFrame:CGRectMake(50, 00, 30,20)];
     historyBadge.font = [UIFont boldSystemFontOfSize:10];
-    historyBadge.value = 10;
+    historyBadge.value = 0;
+    [self updateBadge];
     
     [historyButton addSubview:historyBadge];
 }
@@ -240,7 +241,7 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString *secString = [NSString stringWithFormat:@"%d", secInfo];
-    NSDictionary *parameters = @{@"friendList": friendList, @"secInfo":secString };
+    NSDictionary *parameters = @{ @"userCode": @"userCode", @"friendList": friendList, @"secInfo":secString };
     
     NSData *imageData = UIImageJPEGRepresentation(takenImage, 0.5);
     [manager    POST:@"http://211.239.124.234:13405/test"
@@ -253,11 +254,32 @@
                 } success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     NSLog(@"Success: %@", responseObject);
                     historyBadge.value++;
+                    
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"Error: %@", error);
                 }];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"RETAKE_PICTURE" object:nil userInfo:nil];
+}
+
+- (void)updateBadge
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSDictionary *parameters = @{@"userCode": @"userCode"};
+    [manager    GET:@"http://211.239.124.234:13405/history"
+                parameters:parameters
+                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                    NSLog(@"JSON1: %@", string);
+                    //NSLog(@"JSON2: %@", responseObject);
+                    
+                    //TODO JSON파싱해서 카운트 표시
+                    historyBadge.value = 3;
+                
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"Error: %@", error);
+                }];
 }
 
 @end
