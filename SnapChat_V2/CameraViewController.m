@@ -9,6 +9,7 @@
 #import "CameraViewController.h"
 #import "UploadViewController.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "MKNumberBadgeView.h"
 
 @interface CameraViewController ()
 
@@ -20,7 +21,7 @@
     UIImage *takenImage;
 }
 
-@synthesize flashButton, frontButton;
+@synthesize flashButton, frontButton, historyButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,6 +56,12 @@
                                              selector:@selector(uploadPicture:)
                                                  name:@"UPLOAD_PICTURE"
                                                object:nil];
+    
+    MKNumberBadgeView *historyBadge = [[MKNumberBadgeView alloc] initWithFrame:CGRectMake(60, 00, 30,20)];
+    historyBadge.font = [UIFont boldSystemFontOfSize:10];
+    historyBadge.value = 10;
+    
+    [historyButton addSubview:historyBadge];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -231,58 +238,22 @@
 - (void)upload:(NSArray*)friendList secInfo:(NSInteger)secInfo  {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"friendList": friendList, @"secInfo":@"secInfo"};
-    
-    // 이미지크기 조절
-    /*
-     UIImage *image_ = takenImage;
-     float resizeWidth = 150;
-     float resizeHeight = image_.size.width/(image_.size.height/150);
-     
-     CGSize newSize=CGSizeMake(resizeWidth, resizeHeight);
-     UIGraphicsBeginImageContext(newSize);
-     [image_ drawInRect:CGRectMake(0,0,resizeWidth,resizeHeight)];
-     
-     UIImage* scaledImage2 = UIGraphicsGetImageFromCurrentImageContext();
-     UIGraphicsEndImageContext();
-     */
+    NSString *secString = [NSString stringWithFormat:@"%d", secInfo];
+    NSDictionary *parameters = @{@"friendList": friendList, @"secInfo":secString };
     
     NSData *imageData = UIImageJPEGRepresentation(takenImage, 0.5);
-    NSURL *filePath = [NSURL fileURLWithPath:@"file:/tmp/aa.jpg"];
-    [manager POST:@"http://211.239.124.234:13405/test" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:imageData name:@"name11" fileName:@"fineName22" mimeType:@"mimeType"];
-        
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Success: %@", responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-    
-    // 서버에는 이런식으로 전달됨
-    /*
-     body: { friendList: [ [Object] ], secInfo: 'secInfo' },
-     files:
-        { name11:
-            { originalFilename: 'fineName22',
-                path: '/tmp/1859-1yf6uco',
-                headers: [Object],
-                ws: [Object],
-                size: 506540,
-                name: 'fineName22' 
-            } 
-        },
-     _body: true,
-     
-     [an_nodejs@youngmo server]$ ll /tmp
-     合計 1076
-     -rw-rw-r-- 1 an_nodejs an_nodejs   4726 11月 27 00:20 2013 1859-1kfmfya.jpg
-     -rw-rw-r-- 1 an_nodejs an_nodejs   1872 11月 27 00:23 2013 1859-1veqd49.jpg
-     -rw-rw-r-- 1 an_nodejs an_nodejs 506540 11月 27 01:13 2013 1859-1yf6uco
-     -rw-rw-r-- 1 an_nodejs an_nodejs   3608 11月 27 00:21 2013 1859-abph5p.jpg
-     -rw-rw-r-- 1 an_nodejs an_nodejs 486181 11月 27 01:11 2013 1859-mv0cu5
-     -rw-rw-r-- 1 an_nodejs an_nodejs   6365 11月 27 00:19 2013 1859-ztcbmt.jpg
-     */
+    [manager    POST:@"http://211.239.124.234:13405/test"
+                parameters:parameters
+                constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                    [formData appendPartWithFileData:imageData
+                                                name:@"image"
+                                            fileName:@"image.jpg"
+                                            mimeType:@"image/jpeg"];
+                } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSLog(@"Success: %@", responseObject);
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"Error: %@", error);
+                }];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"RETAKE_PICTURE" object:nil userInfo:nil];
 }

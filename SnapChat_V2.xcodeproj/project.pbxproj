@@ -1,1456 +1,586 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>archiveVersion</key>
-	<string>1</string>
-	<key>classes</key>
-	<dict/>
-	<key>objectVersion</key>
-	<string>46</string>
-	<key>objects</key>
-	<dict>
-		<key>02241FBCA408473184570509</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Check Pods Manifest.lock</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
-if [[ $? != 0 ]] ; then
-    cat &lt;&lt; EOM
-error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
-EOM
-    exit 1
-fi
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>06A76834180129C90090CBF5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>06A76846180129C90090CBF5</string>
-				<string>06A76865180129C90090CBF5</string>
-				<string>06A7683F180129C90090CBF5</string>
-				<string>06A7683E180129C90090CBF5</string>
-				<string>1F99B063392F4379B5996717</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76835180129C90090CBF5</key>
-		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>CLASSPREFIX</key>
-				<string>AppStoreEx</string>
-				<key>LastUpgradeCheck</key>
-				<string>0500</string>
-				<key>ORGANIZATIONNAME</key>
-				<string>KimByungyoon</string>
-				<key>TargetAttributes</key>
-				<dict>
-					<key>06A7683C180129C90090CBF5</key>
-					<dict>
-						<key>DevelopmentTeam</key>
-						<string>T666FJR89K</string>
-					</dict>
-					<key>06A7685D180129C90090CBF5</key>
-					<dict>
-						<key>TestTargetID</key>
-						<string>06A7683C180129C90090CBF5</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>06A76838180129C90090CBF5</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-				<string>Base</string>
-			</array>
-			<key>mainGroup</key>
-			<string>06A76834180129C90090CBF5</string>
-			<key>productRefGroup</key>
-			<string>06A7683E180129C90090CBF5</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array/>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array>
-				<string>06A7683C180129C90090CBF5</string>
-				<string>06A7685D180129C90090CBF5</string>
-			</array>
-		</dict>
-		<key>06A76838180129C90090CBF5</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>06A7686D180129C90090CBF5</string>
-				<string>06A7686E180129C90090CBF5</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>06A76839180129C90090CBF5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>06A7687C1801314F0090CBF5</string>
-				<string>68A090B018383FB9001F5AAC</string>
-				<string>06A7687718012AA70090CBF5</string>
-				<string>06A76857180129C90090CBF5</string>
-				<string>68DE919118425A88001635AD</string>
-				<string>68A090AD18383F5A001F5AAC</string>
-				<string>06A7684D180129C90090CBF5</string>
-				<string>68A090A818379B0D001F5AAC</string>
-				<string>68A29C4B1827E72700D8E6D2</string>
-				<string>68DE914D1841BBE6001635AD</string>
-				<string>68DE919418425B22001635AD</string>
-				<string>06A76851180129C90090CBF5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>06A7683A180129C90090CBF5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>68A090AA1837D7CF001F5AAC</string>
-				<string>685F5A24180BDCE900A900DF</string>
-				<string>06A76843180129C90090CBF5</string>
-				<string>06A76845180129C90090CBF5</string>
-				<string>06A76841180129C90090CBF5</string>
-				<string>4F2DB940E3504AA19825692D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>06A7683B180129C90090CBF5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>06A7688018013E080090CBF5</string>
-				<string>06A76859180129C90090CBF5</string>
-				<string>06A7684B180129C90090CBF5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>06A7683C180129C90090CBF5</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>06A7686F180129C90090CBF5</string>
-			<key>buildPhases</key>
-			<array>
-				<string>02241FBCA408473184570509</string>
-				<string>06A76839180129C90090CBF5</string>
-				<string>06A7683A180129C90090CBF5</string>
-				<string>06A7683B180129C90090CBF5</string>
-				<string>1A7645E979D648D0932E1270</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>SnapChat_V2</string>
-			<key>productName</key>
-			<string>SnapChat_V2</string>
-			<key>productReference</key>
-			<string>06A7683D180129C90090CBF5</string>
-			<key>productType</key>
-			<string>com.apple.product-type.application</string>
-		</dict>
-		<key>06A7683D180129C90090CBF5</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.application</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>SnapChat_V2.app</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>06A7683E180129C90090CBF5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>06A7683D180129C90090CBF5</string>
-				<string>06A7685E180129C90090CBF5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A7683F180129C90090CBF5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>68A090A91837D7CF001F5AAC</string>
-				<string>685F5A23180BDCE900A900DF</string>
-				<string>06A76840180129C90090CBF5</string>
-				<string>06A76842180129C90090CBF5</string>
-				<string>06A76844180129C90090CBF5</string>
-				<string>06A7685F180129C90090CBF5</string>
-				<string>A2227F3D6A884D75A1185C5C</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76840180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Foundation.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/Foundation.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>06A76841180129C90090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A76840180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A76842180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>CoreGraphics.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/CoreGraphics.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>06A76843180129C90090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A76842180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A76844180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>UIKit.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/UIKit.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>06A76845180129C90090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A76844180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A76846180129C90090CBF5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>06A7687A1801314F0090CBF5</string>
-				<string>06A7687B1801314F0090CBF5</string>
-				<string>06A7687518012AA70090CBF5</string>
-				<string>06A7687618012AA70090CBF5</string>
-				<string>06A7687F18013E070090CBF5</string>
-				<string>06A7684F180129C90090CBF5</string>
-				<string>06A76850180129C90090CBF5</string>
-				<string>06A76855180129C90090CBF5</string>
-				<string>06A76856180129C90090CBF5</string>
-				<string>06A76858180129C90090CBF5</string>
-				<string>06A76847180129C90090CBF5</string>
-				<string>68A29C491827E72700D8E6D2</string>
-				<string>68A29C4A1827E72700D8E6D2</string>
-				<string>68A090A618379B0D001F5AAC</string>
-				<string>68A090A718379B0D001F5AAC</string>
-				<string>68A090AB18383F5A001F5AAC</string>
-				<string>68A090AC18383F5A001F5AAC</string>
-				<string>68A090AE18383FB9001F5AAC</string>
-				<string>68A090AF18383FB9001F5AAC</string>
-				<string>68DE914B1841BBE6001635AD</string>
-				<string>68DE914C1841BBE6001635AD</string>
-				<string>68DE918F18425A88001635AD</string>
-				<string>68DE919018425A88001635AD</string>
-				<string>68DE919218425B22001635AD</string>
-				<string>68DE919318425B22001635AD</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>SnapChat_V2</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76847180129C90090CBF5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>06A76848180129C90090CBF5</string>
-				<string>06A76849180129C90090CBF5</string>
-				<string>06A7684C180129C90090CBF5</string>
-				<string>06A7684E180129C90090CBF5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76848180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>SnapChat_V2-Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76849180129C90090CBF5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>06A7684A180129C90090CBF5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A7684A180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.strings</string>
-			<key>name</key>
-			<string>en</string>
-			<key>path</key>
-			<string>en.lproj/InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A7684B180129C90090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A76849180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A7684C180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>main.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A7684D180129C90090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A7684C180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A7684E180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SnapChat_V2-Prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A7684F180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>AppStoreExAppDelegate.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76850180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>AppStoreExAppDelegate.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76851180129C90090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A76850180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A76855180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>AppStoreExViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76856180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>AppStoreExViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76857180129C90090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A76856180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A76858180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>folder.assetcatalog</string>
-			<key>path</key>
-			<string>Images.xcassets</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76859180129C90090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A76858180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A7685A180129C90090CBF5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>06A7686C180129C90090CBF5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>06A7685B180129C90090CBF5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>06A76860180129C90090CBF5</string>
-				<string>06A76862180129C90090CBF5</string>
-				<string>06A76861180129C90090CBF5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>06A7685C180129C90090CBF5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>06A7686A180129C90090CBF5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>06A7685D180129C90090CBF5</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>06A76872180129C90090CBF5</string>
-			<key>buildPhases</key>
-			<array>
-				<string>06A7685A180129C90090CBF5</string>
-				<string>06A7685B180129C90090CBF5</string>
-				<string>06A7685C180129C90090CBF5</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>06A76864180129C90090CBF5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>SnapChat_V2Tests</string>
-			<key>productName</key>
-			<string>SnapChat_V2Tests</string>
-			<key>productReference</key>
-			<string>06A7685E180129C90090CBF5</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle.unit-test</string>
-		</dict>
-		<key>06A7685E180129C90090CBF5</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>SnapChat_V2Tests.xctest</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>06A7685F180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>XCTest.framework</string>
-			<key>path</key>
-			<string>Library/Frameworks/XCTest.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>06A76860180129C90090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A7685F180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A76861180129C90090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A76840180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A76862180129C90090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A76844180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A76863180129C90090CBF5</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>06A76835180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>06A7683C180129C90090CBF5</string>
-			<key>remoteInfo</key>
-			<string>SnapChat_V2</string>
-		</dict>
-		<key>06A76864180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>06A7683C180129C90090CBF5</string>
-			<key>targetProxy</key>
-			<string>06A76863180129C90090CBF5</string>
-		</dict>
-		<key>06A76865180129C90090CBF5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>06A7686B180129C90090CBF5</string>
-				<string>06A76866180129C90090CBF5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>SnapChat_V2Tests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76866180129C90090CBF5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>06A76867180129C90090CBF5</string>
-				<string>06A76868180129C90090CBF5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76867180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>SnapChat_V2Tests-Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76868180129C90090CBF5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>06A76869180129C90090CBF5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A76869180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.strings</string>
-			<key>name</key>
-			<string>en</string>
-			<key>path</key>
-			<string>en.lproj/InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A7686A180129C90090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A76868180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A7686B180129C90090CBF5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SnapChat_V2Tests.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A7686C180129C90090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A7686B180129C90090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A7686D180129C90090CBF5</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_DYNAMIC_NO_PIC</key>
-				<string>NO</string>
-				<key>GCC_OPTIMIZATION_LEVEL</key>
-				<string>0</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
-				<string>NO</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>7.0</string>
-				<key>ONLY_ACTIVE_ARCH</key>
-				<string>YES</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>06A7686E180129C90090CBF5</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>YES</string>
-				<key>ENABLE_NS_ASSERTIONS</key>
-				<string>NO</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>7.0</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>VALIDATE_PRODUCT</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>06A7686F180129C90090CBF5</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>06A76870180129C90090CBF5</string>
-				<string>06A76871180129C90090CBF5</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>06A76870180129C90090CBF5</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>1F99B063392F4379B5996717</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon</string>
-				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
-				<string>LaunchImage</string>
-				<key>CODE_SIGN_IDENTITY</key>
-				<string>iPhone Developer</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>SnapChat_V2/SnapChat_V2-Prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>SnapChat_V2/SnapChat_V2-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>app</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>06A76871180129C90090CBF5</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>1F99B063392F4379B5996717</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon</string>
-				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
-				<string>LaunchImage</string>
-				<key>CODE_SIGN_IDENTITY</key>
-				<string>iPhone Developer</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>SnapChat_V2/SnapChat_V2-Prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>SnapChat_V2/SnapChat_V2-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>app</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>06A76872180129C90090CBF5</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>06A76873180129C90090CBF5</string>
-				<string>06A76874180129C90090CBF5</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>06A76873180129C90090CBF5</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>BUNDLE_LOADER</key>
-				<string>$(BUILT_PRODUCTS_DIR)/SnapChat_V2.app/SnapChat_V2</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
-					<string>$(inherited)</string>
-					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
-				</array>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>SnapChat_V2/SnapChat_V2-Prefix.pch</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>INFOPLIST_FILE</key>
-				<string>SnapChat_V2Tests/SnapChat_V2Tests-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_HOST</key>
-				<string>$(BUNDLE_LOADER)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>xctest</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>06A76874180129C90090CBF5</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>BUNDLE_LOADER</key>
-				<string>$(BUILT_PRODUCTS_DIR)/SnapChat_V2.app/SnapChat_V2</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
-					<string>$(inherited)</string>
-					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
-				</array>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>SnapChat_V2/SnapChat_V2-Prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>SnapChat_V2Tests/SnapChat_V2Tests-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_HOST</key>
-				<string>$(BUNDLE_LOADER)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>xctest</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>06A7687518012AA70090CBF5</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>LogInViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A7687618012AA70090CBF5</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>LogInViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A7687718012AA70090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A7687618012AA70090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A7687A1801314F0090CBF5</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SignInViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A7687B1801314F0090CBF5</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SignInViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A7687C1801314F0090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A7687B1801314F0090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>06A7687F18013E070090CBF5</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.storyboard</string>
-			<key>path</key>
-			<string>Main.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>06A7688018013E080090CBF5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06A7687F18013E070090CBF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>1A7645E979D648D0932E1270</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Copy Pods Resources</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Pods-resources.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>1F99B063392F4379B5996717</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Pods.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4F2DB940E3504AA19825692D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>A2227F3D6A884D75A1185C5C</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>685F5A23180BDCE900A900DF</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>AVFoundation.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/AVFoundation.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>685F5A24180BDCE900A900DF</key>
-		<dict>
-			<key>fileRef</key>
-			<string>685F5A23180BDCE900A900DF</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>68A090A618379B0D001F5AAC</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>UploadViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68A090A718379B0D001F5AAC</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>UploadViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68A090A818379B0D001F5AAC</key>
-		<dict>
-			<key>fileRef</key>
-			<string>68A090A718379B0D001F5AAC</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>68A090A91837D7CF001F5AAC</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>CoreData.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/CoreData.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>68A090AA1837D7CF001F5AAC</key>
-		<dict>
-			<key>fileRef</key>
-			<string>68A090A91837D7CF001F5AAC</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>68A090AB18383F5A001F5AAC</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>FriendViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68A090AC18383F5A001F5AAC</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>FriendViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68A090AD18383F5A001F5AAC</key>
-		<dict>
-			<key>fileRef</key>
-			<string>68A090AC18383F5A001F5AAC</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>68A090AE18383FB9001F5AAC</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>Friend.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68A090AF18383FB9001F5AAC</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>Friend.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68A090B018383FB9001F5AAC</key>
-		<dict>
-			<key>fileRef</key>
-			<string>68A090AF18383FB9001F5AAC</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>68A29C491827E72700D8E6D2</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>CameraViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68A29C4A1827E72700D8E6D2</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>CameraViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68A29C4B1827E72700D8E6D2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>68A29C4A1827E72700D8E6D2</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>68DE914B1841BBE6001635AD</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SelectViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68DE914C1841BBE6001635AD</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SelectViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68DE914D1841BBE6001635AD</key>
-		<dict>
-			<key>fileRef</key>
-			<string>68DE914C1841BBE6001635AD</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>68DE918F18425A88001635AD</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>HistoryViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68DE919018425A88001635AD</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>HistoryViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68DE919118425A88001635AD</key>
-		<dict>
-			<key>fileRef</key>
-			<string>68DE919018425A88001635AD</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>68DE919218425B22001635AD</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>History.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68DE919318425B22001635AD</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>History.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>68DE919418425B22001635AD</key>
-		<dict>
-			<key>fileRef</key>
-			<string>68DE919318425B22001635AD</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>A2227F3D6A884D75A1185C5C</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>libPods.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-	</dict>
-	<key>rootObject</key>
-	<string>06A76835180129C90090CBF5</string>
-</dict>
-</plist>
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		06A76841180129C90090CBF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A76840180129C90090CBF5 /* Foundation.framework */; };
+		06A76843180129C90090CBF5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A76842180129C90090CBF5 /* CoreGraphics.framework */; };
+		06A76845180129C90090CBF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A76844180129C90090CBF5 /* UIKit.framework */; };
+		06A7684B180129C90090CBF5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06A76849180129C90090CBF5 /* InfoPlist.strings */; };
+		06A7684D180129C90090CBF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7684C180129C90090CBF5 /* main.m */; };
+		06A76851180129C90090CBF5 /* AppStoreExAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A76850180129C90090CBF5 /* AppStoreExAppDelegate.m */; };
+		06A76857180129C90090CBF5 /* AppStoreExViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A76856180129C90090CBF5 /* AppStoreExViewController.m */; };
+		06A76859180129C90090CBF5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A76858180129C90090CBF5 /* Images.xcassets */; };
+		06A76860180129C90090CBF5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A7685F180129C90090CBF5 /* XCTest.framework */; };
+		06A76861180129C90090CBF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A76840180129C90090CBF5 /* Foundation.framework */; };
+		06A76862180129C90090CBF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A76844180129C90090CBF5 /* UIKit.framework */; };
+		06A7686A180129C90090CBF5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06A76868180129C90090CBF5 /* InfoPlist.strings */; };
+		06A7686C180129C90090CBF5 /* SnapChat_V2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7686B180129C90090CBF5 /* SnapChat_V2Tests.m */; };
+		06A7687718012AA70090CBF5 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7687618012AA70090CBF5 /* LogInViewController.m */; };
+		06A7687C1801314F0090CBF5 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7687B1801314F0090CBF5 /* SignInViewController.m */; };
+		06A7688018013E080090CBF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06A7687F18013E070090CBF5 /* Main.storyboard */; };
+		4F2DB940E3504AA19825692D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2227F3D6A884D75A1185C5C /* libPods.a */; };
+		685F5A24180BDCE900A900DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685F5A23180BDCE900A900DF /* AVFoundation.framework */; };
+		68961D69184638070069337E /* MKNumberBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68961D68184638070069337E /* MKNumberBadgeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		68A090A818379B0D001F5AAC /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A090A718379B0D001F5AAC /* UploadViewController.m */; };
+		68A090AA1837D7CF001F5AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A090A91837D7CF001F5AAC /* CoreData.framework */; };
+		68A090AD18383F5A001F5AAC /* FriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A090AC18383F5A001F5AAC /* FriendViewController.m */; };
+		68A090B018383FB9001F5AAC /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A090AF18383FB9001F5AAC /* Friend.m */; };
+		68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A29C4A1827E72700D8E6D2 /* CameraViewController.m */; };
+		68DE914D1841BBE6001635AD /* SelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE914C1841BBE6001635AD /* SelectViewController.m */; };
+		68DE919118425A88001635AD /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE919018425A88001635AD /* HistoryViewController.m */; };
+		68DE919418425B22001635AD /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE919318425B22001635AD /* History.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		06A76863180129C90090CBF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06A76835180129C90090CBF5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06A7683C180129C90090CBF5;
+			remoteInfo = SnapChat_V2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		06A7683D180129C90090CBF5 /* SnapChat_V2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapChat_V2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		06A76840180129C90090CBF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		06A76842180129C90090CBF5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		06A76844180129C90090CBF5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		06A76848180129C90090CBF5 /* SnapChat_V2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SnapChat_V2-Info.plist"; sourceTree = "<group>"; };
+		06A7684A180129C90090CBF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		06A7684C180129C90090CBF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		06A7684E180129C90090CBF5 /* SnapChat_V2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SnapChat_V2-Prefix.pch"; sourceTree = "<group>"; };
+		06A7684F180129C90090CBF5 /* AppStoreExAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppStoreExAppDelegate.h; sourceTree = "<group>"; };
+		06A76850180129C90090CBF5 /* AppStoreExAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStoreExAppDelegate.m; sourceTree = "<group>"; };
+		06A76855180129C90090CBF5 /* AppStoreExViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppStoreExViewController.h; sourceTree = "<group>"; };
+		06A76856180129C90090CBF5 /* AppStoreExViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStoreExViewController.m; sourceTree = "<group>"; };
+		06A76858180129C90090CBF5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		06A7685E180129C90090CBF5 /* SnapChat_V2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnapChat_V2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		06A7685F180129C90090CBF5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		06A76867180129C90090CBF5 /* SnapChat_V2Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SnapChat_V2Tests-Info.plist"; sourceTree = "<group>"; };
+		06A76869180129C90090CBF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		06A7686B180129C90090CBF5 /* SnapChat_V2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnapChat_V2Tests.m; sourceTree = "<group>"; };
+		06A7687518012AA70090CBF5 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
+		06A7687618012AA70090CBF5 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
+		06A7687A1801314F0090CBF5 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		06A7687B1801314F0090CBF5 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		06A7687F18013E070090CBF5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1F99B063392F4379B5996717 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		685F5A23180BDCE900A900DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		68961D67184638070069337E /* MKNumberBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNumberBadgeView.h; sourceTree = "<group>"; };
+		68961D68184638070069337E /* MKNumberBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNumberBadgeView.m; sourceTree = "<group>"; };
+		68A090A618379B0D001F5AAC /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
+		68A090A718379B0D001F5AAC /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
+		68A090A91837D7CF001F5AAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		68A090AB18383F5A001F5AAC /* FriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendViewController.h; sourceTree = "<group>"; };
+		68A090AC18383F5A001F5AAC /* FriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendViewController.m; sourceTree = "<group>"; };
+		68A090AE18383FB9001F5AAC /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		68A090AF18383FB9001F5AAC /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		68A29C491827E72700D8E6D2 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		68A29C4A1827E72700D8E6D2 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		68DE914B1841BBE6001635AD /* SelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectViewController.h; sourceTree = "<group>"; };
+		68DE914C1841BBE6001635AD /* SelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectViewController.m; sourceTree = "<group>"; };
+		68DE918F18425A88001635AD /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		68DE919018425A88001635AD /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		68DE919218425B22001635AD /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
+		68DE919318425B22001635AD /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
+		A2227F3D6A884D75A1185C5C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		06A7683A180129C90090CBF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68A090AA1837D7CF001F5AAC /* CoreData.framework in Frameworks */,
+				685F5A24180BDCE900A900DF /* AVFoundation.framework in Frameworks */,
+				06A76843180129C90090CBF5 /* CoreGraphics.framework in Frameworks */,
+				06A76845180129C90090CBF5 /* UIKit.framework in Frameworks */,
+				06A76841180129C90090CBF5 /* Foundation.framework in Frameworks */,
+				4F2DB940E3504AA19825692D /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06A7685B180129C90090CBF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06A76860180129C90090CBF5 /* XCTest.framework in Frameworks */,
+				06A76862180129C90090CBF5 /* UIKit.framework in Frameworks */,
+				06A76861180129C90090CBF5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06A76834180129C90090CBF5 = {
+			isa = PBXGroup;
+			children = (
+				06A76846180129C90090CBF5 /* SnapChat_V2 */,
+				06A76865180129C90090CBF5 /* SnapChat_V2Tests */,
+				06A7683F180129C90090CBF5 /* Frameworks */,
+				06A7683E180129C90090CBF5 /* Products */,
+				1F99B063392F4379B5996717 /* Pods.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		06A7683E180129C90090CBF5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				06A7683D180129C90090CBF5 /* SnapChat_V2.app */,
+				06A7685E180129C90090CBF5 /* SnapChat_V2Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		06A7683F180129C90090CBF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68A090A91837D7CF001F5AAC /* CoreData.framework */,
+				685F5A23180BDCE900A900DF /* AVFoundation.framework */,
+				06A76840180129C90090CBF5 /* Foundation.framework */,
+				06A76842180129C90090CBF5 /* CoreGraphics.framework */,
+				06A76844180129C90090CBF5 /* UIKit.framework */,
+				06A7685F180129C90090CBF5 /* XCTest.framework */,
+				A2227F3D6A884D75A1185C5C /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		06A76846180129C90090CBF5 /* SnapChat_V2 */ = {
+			isa = PBXGroup;
+			children = (
+				68961D67184638070069337E /* MKNumberBadgeView.h */,
+				68961D68184638070069337E /* MKNumberBadgeView.m */,
+				06A7687A1801314F0090CBF5 /* SignInViewController.h */,
+				06A7687B1801314F0090CBF5 /* SignInViewController.m */,
+				06A7687518012AA70090CBF5 /* LogInViewController.h */,
+				06A7687618012AA70090CBF5 /* LogInViewController.m */,
+				06A7687F18013E070090CBF5 /* Main.storyboard */,
+				06A7684F180129C90090CBF5 /* AppStoreExAppDelegate.h */,
+				06A76850180129C90090CBF5 /* AppStoreExAppDelegate.m */,
+				06A76855180129C90090CBF5 /* AppStoreExViewController.h */,
+				06A76856180129C90090CBF5 /* AppStoreExViewController.m */,
+				06A76858180129C90090CBF5 /* Images.xcassets */,
+				06A76847180129C90090CBF5 /* Supporting Files */,
+				68A29C491827E72700D8E6D2 /* CameraViewController.h */,
+				68A29C4A1827E72700D8E6D2 /* CameraViewController.m */,
+				68A090A618379B0D001F5AAC /* UploadViewController.h */,
+				68A090A718379B0D001F5AAC /* UploadViewController.m */,
+				68A090AB18383F5A001F5AAC /* FriendViewController.h */,
+				68A090AC18383F5A001F5AAC /* FriendViewController.m */,
+				68A090AE18383FB9001F5AAC /* Friend.h */,
+				68A090AF18383FB9001F5AAC /* Friend.m */,
+				68DE914B1841BBE6001635AD /* SelectViewController.h */,
+				68DE914C1841BBE6001635AD /* SelectViewController.m */,
+				68DE918F18425A88001635AD /* HistoryViewController.h */,
+				68DE919018425A88001635AD /* HistoryViewController.m */,
+				68DE919218425B22001635AD /* History.h */,
+				68DE919318425B22001635AD /* History.m */,
+			);
+			path = SnapChat_V2;
+			sourceTree = "<group>";
+		};
+		06A76847180129C90090CBF5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				06A76848180129C90090CBF5 /* SnapChat_V2-Info.plist */,
+				06A76849180129C90090CBF5 /* InfoPlist.strings */,
+				06A7684C180129C90090CBF5 /* main.m */,
+				06A7684E180129C90090CBF5 /* SnapChat_V2-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		06A76865180129C90090CBF5 /* SnapChat_V2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				06A7686B180129C90090CBF5 /* SnapChat_V2Tests.m */,
+				06A76866180129C90090CBF5 /* Supporting Files */,
+			);
+			path = SnapChat_V2Tests;
+			sourceTree = "<group>";
+		};
+		06A76866180129C90090CBF5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				06A76867180129C90090CBF5 /* SnapChat_V2Tests-Info.plist */,
+				06A76868180129C90090CBF5 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		06A7683C180129C90090CBF5 /* SnapChat_V2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06A7686F180129C90090CBF5 /* Build configuration list for PBXNativeTarget "SnapChat_V2" */;
+			buildPhases = (
+				02241FBCA408473184570509 /* Check Pods Manifest.lock */,
+				06A76839180129C90090CBF5 /* Sources */,
+				06A7683A180129C90090CBF5 /* Frameworks */,
+				06A7683B180129C90090CBF5 /* Resources */,
+				1A7645E979D648D0932E1270 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SnapChat_V2;
+			productName = SnapChat_V2;
+			productReference = 06A7683D180129C90090CBF5 /* SnapChat_V2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		06A7685D180129C90090CBF5 /* SnapChat_V2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06A76872180129C90090CBF5 /* Build configuration list for PBXNativeTarget "SnapChat_V2Tests" */;
+			buildPhases = (
+				06A7685A180129C90090CBF5 /* Sources */,
+				06A7685B180129C90090CBF5 /* Frameworks */,
+				06A7685C180129C90090CBF5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				06A76864180129C90090CBF5 /* PBXTargetDependency */,
+			);
+			name = SnapChat_V2Tests;
+			productName = SnapChat_V2Tests;
+			productReference = 06A7685E180129C90090CBF5 /* SnapChat_V2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		06A76835180129C90090CBF5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AppStoreEx;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = KimByungyoon;
+				TargetAttributes = {
+					06A7683C180129C90090CBF5 = {
+						DevelopmentTeam = T666FJR89K;
+					};
+					06A7685D180129C90090CBF5 = {
+						TestTargetID = 06A7683C180129C90090CBF5;
+					};
+				};
+			};
+			buildConfigurationList = 06A76838180129C90090CBF5 /* Build configuration list for PBXProject "SnapChat_V2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 06A76834180129C90090CBF5;
+			productRefGroup = 06A7683E180129C90090CBF5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				06A7683C180129C90090CBF5 /* SnapChat_V2 */,
+				06A7685D180129C90090CBF5 /* SnapChat_V2Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		06A7683B180129C90090CBF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06A7688018013E080090CBF5 /* Main.storyboard in Resources */,
+				06A76859180129C90090CBF5 /* Images.xcassets in Resources */,
+				06A7684B180129C90090CBF5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06A7685C180129C90090CBF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06A7686A180129C90090CBF5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		02241FBCA408473184570509 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1A7645E979D648D0932E1270 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		06A76839180129C90090CBF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06A7687C1801314F0090CBF5 /* SignInViewController.m in Sources */,
+				68A090B018383FB9001F5AAC /* Friend.m in Sources */,
+				06A7687718012AA70090CBF5 /* LogInViewController.m in Sources */,
+				06A76857180129C90090CBF5 /* AppStoreExViewController.m in Sources */,
+				68DE919118425A88001635AD /* HistoryViewController.m in Sources */,
+				68A090AD18383F5A001F5AAC /* FriendViewController.m in Sources */,
+				06A7684D180129C90090CBF5 /* main.m in Sources */,
+				68A090A818379B0D001F5AAC /* UploadViewController.m in Sources */,
+				68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */,
+				68DE914D1841BBE6001635AD /* SelectViewController.m in Sources */,
+				68DE919418425B22001635AD /* History.m in Sources */,
+				68961D69184638070069337E /* MKNumberBadgeView.m in Sources */,
+				06A76851180129C90090CBF5 /* AppStoreExAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06A7685A180129C90090CBF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06A7686C180129C90090CBF5 /* SnapChat_V2Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		06A76864180129C90090CBF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06A7683C180129C90090CBF5 /* SnapChat_V2 */;
+			targetProxy = 06A76863180129C90090CBF5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		06A76849180129C90090CBF5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				06A7684A180129C90090CBF5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		06A76868180129C90090CBF5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				06A76869180129C90090CBF5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		06A7686D180129C90090CBF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		06A7686E180129C90090CBF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		06A76870180129C90090CBF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F99B063392F4379B5996717 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SnapChat_V2/SnapChat_V2-Prefix.pch";
+				INFOPLIST_FILE = "SnapChat_V2/SnapChat_V2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		06A76871180129C90090CBF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F99B063392F4379B5996717 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SnapChat_V2/SnapChat_V2-Prefix.pch";
+				INFOPLIST_FILE = "SnapChat_V2/SnapChat_V2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		06A76873180129C90090CBF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SnapChat_V2.app/SnapChat_V2";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SnapChat_V2/SnapChat_V2-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SnapChat_V2Tests/SnapChat_V2Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		06A76874180129C90090CBF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SnapChat_V2.app/SnapChat_V2";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SnapChat_V2/SnapChat_V2-Prefix.pch";
+				INFOPLIST_FILE = "SnapChat_V2Tests/SnapChat_V2Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		06A76838180129C90090CBF5 /* Build configuration list for PBXProject "SnapChat_V2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06A7686D180129C90090CBF5 /* Debug */,
+				06A7686E180129C90090CBF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06A7686F180129C90090CBF5 /* Build configuration list for PBXNativeTarget "SnapChat_V2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06A76870180129C90090CBF5 /* Debug */,
+				06A76871180129C90090CBF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06A76872180129C90090CBF5 /* Build configuration list for PBXNativeTarget "SnapChat_V2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06A76873180129C90090CBF5 /* Debug */,
+				06A76874180129C90090CBF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 06A76835180129C90090CBF5 /* Project object */;
+}
