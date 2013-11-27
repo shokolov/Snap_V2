@@ -19,6 +19,7 @@
     UIStoryboard *storyboard;
     UIImagePickerController *imagePickerController;
     UIImage *takenImage;
+    MKNumberBadgeView *historyBadge;
 }
 
 @synthesize flashButton, frontButton, historyButton;
@@ -57,7 +58,7 @@
                                                  name:@"UPLOAD_PICTURE"
                                                object:nil];
     
-    MKNumberBadgeView *historyBadge = [[MKNumberBadgeView alloc] initWithFrame:CGRectMake(60, 00, 30,20)];
+    historyBadge = [[MKNumberBadgeView alloc] initWithFrame:CGRectMake(60, 00, 30,20)];
     historyBadge.font = [UIFont boldSystemFontOfSize:10];
     historyBadge.value = 10;
     
@@ -251,6 +252,7 @@
                                             mimeType:@"image/jpeg"];
                 } success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     NSLog(@"Success: %@", responseObject);
+                    historyBadge.value++;
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"Error: %@", error);
                 }];
