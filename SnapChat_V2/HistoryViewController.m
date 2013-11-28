@@ -15,6 +15,8 @@
 
 @implementation HistoryViewController
 
+@synthesize historyList;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -29,21 +31,6 @@
     [super viewDidLoad];
     
     NSLog(@"desc7: %@", [[self navigationController] childViewControllers]);
-    
-    NSMutableArray *historyList_ = [NSMutableArray arrayWithCapacity:20];
-    
-    History *history = [[History alloc] init];
-    history.code = @"000001";
-    history.name = @"あなたがBに配信";
-    [historyList_ addObject:history];
-    
-    history = [[History alloc] init];
-    history.code = @"000002";
-    history.name = @"Bから３秒受信";
-    [historyList_ addObject:history];
-    
-    self.historyList = historyList_;
-    
     NSLog(@"HistoryViewController.viewDidLoad");
 }
 
@@ -68,10 +55,16 @@
 {
     static NSString *CellIdentifier = @"HistoryCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    History *history = (self.historyList)[indexPath.row];
-    cell.textLabel.text = history.name;
-    cell.detailTextLabel.text = history.code;
+
+    NSDictionary *history = (self.historyList)[indexPath.row];
+    NSString *type = @"";
+    if ([[history valueForKey:@"type"] intValue] < 1) {
+        type = @"RECE: ";
+    } else {
+        type = @"SEND: ";
+    }
+    cell.textLabel.text = [type stringByAppendingString:[history valueForKey:@"code"]];
+    cell.detailTextLabel.text = [history valueForKey:@"time"];
     
     return cell;
 }

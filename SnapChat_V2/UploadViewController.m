@@ -29,9 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    secArray = [[NSArray alloc] initWithObjects:@"3", @"5", @"10", @"30", @"60", nil];
     
+    secArray = [[NSArray alloc] initWithObjects:@"3", @"5", @"10", @"30", @"60", nil];
     [imagePicture setImage:imageSource];
 }
 

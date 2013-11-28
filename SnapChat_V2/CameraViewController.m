@@ -8,6 +8,7 @@
 
 #import "CameraViewController.h"
 #import "UploadViewController.h"
+#import "HistoryViewController.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "MKNumberBadgeView.h"
 
@@ -20,6 +21,7 @@
     UIImagePickerController *imagePickerController;
     UIImage *takenImage;
     MKNumberBadgeView *historyBadge;
+    NSMutableArray *historyArray;
 }
 
 @synthesize flashButton, frontButton, historyButton;
@@ -128,7 +130,6 @@
     [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
         [[self navigationController] setNavigationBarHidden:NO];
         //[self performSegueWithIdentifier:@"friendSegue" sender:self]; // push일때는 필요없음
-        NSLog(@"desc2.1: %@", [[self navigationController] childViewControllers]);
     }];
 }
 
@@ -176,6 +177,9 @@
         
         [uploadViewController_ setImageSource:takenImage];
         [uploadViewController_.imagePicture setImage:takenImage];
+    } else if ([[segue identifier] isEqualToString: @"historySegue"]) {
+        HistoryViewController *historyViewController = (HistoryViewController *)[segue destinationViewController];
+        [historyViewController setHistoryList:historyArray];
     }
 }
 
@@ -240,7 +244,7 @@
 - (void)upload:(NSArray*)friendList secInfo:(NSInteger)secInfo  {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSString *secString = [NSString stringWithFormat:@"%d", secInfo];
+    NSString *secString = [@(secInfo) stringValue];
     NSDictionary *parameters = @{ @"userCode": @"userCode", @"friendList": friendList, @"secInfo":secString };
     
     NSData *imageData = UIImageJPEGRepresentation(takenImage, 0.5);
@@ -273,9 +277,18 @@
                     NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                     NSLog(@"JSON1: %@", string);
                     //NSLog(@"JSON2: %@", responseObject);
-                    
-                    //TODO JSON파싱해서 카운트 표시
-                    historyBadge.value = 3;
+ 
+                    NSError *error;
+                    historyArray = [NSJSONSerialization
+                                                JSONObjectWithData:responseObject
+                                                options:NSJSONReadingMutableContainers
+                                                error:&error];
+                    if(error) {
+                        NSLog(@"%@", [error localizedDescription]);
+                        
+                    } else {
+                        historyBadge.value = historyArray.count;
+                    }
                 
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"Error: %@", error);
