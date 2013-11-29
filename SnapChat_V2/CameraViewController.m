@@ -287,7 +287,19 @@
                         NSLog(@"%@", [error localizedDescription]);
                         
                     } else {
-                        historyBadge.value = historyArray.count;
+                        
+                        // 미확인 메시지 건수를 취득해서, 히스토리 버튼의 뱃지 카운트를 갱신한다.
+                        int newChatCount = 0;
+                        for (int i = 0; i < historyArray.count; i++) {
+                            NSString *chatType = [[historyArray objectAtIndex:i] valueForKey:@"type"];
+                            if ([chatType isEqualToString:@"0"]) {
+                                newChatCount++;
+                            }
+                        }
+                        historyBadge.value = newChatCount;
+                        
+                        // 데이터를 가져온 후, 버튼을 활성화 시킨다.
+                        historyButton.enabled = YES;
                     }
                 
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
