@@ -130,11 +130,15 @@
     urlString = [urlString stringByAppendingFormat:@"&pushsound=%@", pushSound];
     
     // Register the Device Data
+    
     NSURL *url = [[NSURL alloc] initWithScheme:@"http" host:host path:urlString];
+    /*
+     // TODO 안: 서버전송 수정할 것
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+     */
     NSLog(@"Register URL: %@", url);
-    NSLog(@"Return Data: %@", returnData);
+    //NSLog(@"Return Data: %@", returnData);
 
 }
 
