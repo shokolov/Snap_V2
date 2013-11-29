@@ -12,5 +12,6 @@
 
 @property (nonatomic, copy) NSString *code;
 @property (nonatomic, copy) NSString *name;
+@property (weak, nonatomic) IBOutlet UIButton *getChat;
 
 @end

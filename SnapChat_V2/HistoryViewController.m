@@ -8,6 +8,7 @@
 
 #import "HistoryViewController.h"
 #import "History.h"
+#import "HistoryCell.h"
 
 @interface HistoryViewController ()
 
@@ -54,17 +55,32 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"HistoryCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
-    NSDictionary *history = (self.historyList)[indexPath.row];
-    NSString *type = @"";
-    if ([[history valueForKey:@"type"] intValue] < 1) {
-        type = @"RECE: ";
-    } else {
-        type = @"SEND: ";
+    
+    HistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[HistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [type stringByAppendingString:[history valueForKey:@"code"]];
-    cell.detailTextLabel.text = [history valueForKey:@"time"];
+    
+    NSDictionary *history = (self.historyList)[indexPath.row];
+    
+    if ([[history valueForKey:@"type"] intValue] == 0) {
+        cell.typeLabel.text = @"⇒";
+        cell.getButton.hidden = NO;
+    } else if ([[history valueForKey:@"type"] intValue] == 1) {
+        cell.typeLabel.text = @"⇒";
+        cell.getButton.hidden = YES;
+    } else {
+        cell.typeLabel.text = @"←";
+        cell.getButton.hidden = YES;
+    }
+    
+    NSString *content = [history valueForKey:@"sec"];
+    content = [content stringByAppendingString:@"sec ID:"];
+    content = [content stringByAppendingString:[history valueForKey:@"code"]];
+    content = [content stringByAppendingString:@"("];
+    content = [content stringByAppendingString:[history valueForKey:@"time"]];
+    content = [content stringByAppendingString:@")"];
+    cell.contentLabel.text = content;
     
     return cell;
 }
