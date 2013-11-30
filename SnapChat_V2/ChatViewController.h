@@ -12,5 +12,6 @@
 
 @property (nonatomic, retain) IBOutlet UIImageView *imagePicture;
 @property (nonatomic, retain) UIImage *imageSource;
+@property int sec;
 
 @end

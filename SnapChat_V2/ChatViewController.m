@@ -14,7 +14,7 @@
 
 @implementation ChatViewController
 
-@synthesize imagePicture, imageSource;
+@synthesize imagePicture, imageSource, sec;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,4 +38,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self performSelector:@selector(hiddenChat)
+                         withObject:nil
+                         afterDelay:sec];
+}
+
+- (void) hiddenChat
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 @end

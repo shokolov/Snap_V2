@@ -64,6 +64,7 @@
     
     NSDictionary *history = (self.historyList)[indexPath.row];
     
+    // 수신, 송신 표시
     if ([[history valueForKey:@"type"] intValue] == 0) {
         cell.typeLabel.text = @"⇒";
         cell.getButton.hidden = NO;
@@ -75,6 +76,7 @@
         cell.getButton.hidden = YES;
     }
     
+    // 이미지 표시 시간, 아이디, 시간을 표시
     NSString *content = [history valueForKey:@"sec"];
     content = [content stringByAppendingString:@"sec ID:"];
     content = [content stringByAppendingString:[history valueForKey:@"code"]];
@@ -83,6 +85,8 @@
     content = [content stringByAppendingString:@")"];
     cell.contentLabel.text = content;
     
+    // 이미지 표시 시간을 저장
+    cell.sec = [[history valueForKey:@"sec"] integerValue];
     return cell;
 }
 
@@ -90,8 +94,8 @@
 {
     NSLog(@"desc6: %@", [[self navigationController] description]);
     
-    [[self navigationController] setNavigationBarHidden:NO];
-    [self performSegueWithIdentifier:@"chatSegue" sender:self];
+    //[[self navigationController] setNavigationBarHidden:NO];
+    //[self performSegueWithIdentifier:@"chatSegue" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -99,19 +103,22 @@
     // 설정이미지 표시 초값 전달
     ChatViewController *chatViewController = [segue destinationViewController];
     
-    UIImage *image = [UIImage imageNamed: @"download_001.png"];
-    //UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://farm4.static.flickr.com/3092/2915896504_a88b69c9de.jpg"]]];
+    // 서버 연결이 안될 경우를 대비해서 디폴트 이미지를 먼저 셋팅
+    //UIImage *image = [UIImage imageNamed: @"download_001.png"];
+    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://pixabay.com/static/uploads/photo/2013/03/29/13/39/download-97607_150.png"]]];
     
     [chatViewController setImageSource:image];
+    [chatViewController setSec:[(HistoryCell*)sender sec]];
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"sadfasdfsdaf");
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
+    HistoryCell *cell = (HistoryCell*)[tableView cellForRowAtIndexPath:indexPath];
+    if (cell.getButton.isHidden == NO) {
+        [self performSegueWithIdentifier:@"chatSegue" sender:cell];
+    }
 }
 
 @end
