@@ -53,7 +53,7 @@
     [[self navigationController] setNavigationBarHidden:YES];
 }
 
--(IBAction)saveAction:(id)sender
+- (IBAction)saveAction:(id)sender
 {
     UIImage *image = imageSource;
     if(nil != image )
@@ -69,12 +69,10 @@
     [alert show];
 }
 
--(IBAction)retakePicture:(id)sender
+- (IBAction)retakePicture:(id)sender
 {
-    //[self.navigationController popToRootViewControllerAnimated:YES];  // 이건 push일 경우, 여기선 modal이라 해당 안 됨
+    //[self.navigationController popToRootViewControllerAnimated:YES];  // MEMO 安: 이건 push일 경우, 여기선 modal이라 해당 안 됨
     [self dismissViewControllerAnimated:NO completion:nil];
-        
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"RETAKE_PICTURE" object:nil userInfo:nil];
 }
 
 - (IBAction)timeAction:(id)sender {
@@ -86,10 +84,6 @@
 
 - (IBAction)sendAction:(id)sender
 {
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"SELECT_FRIEND" object:nil userInfo:nil];
-    
-    NSLog(@"desc4: %@", [[self navigationController] description]);
-    
     [[self navigationController] setNavigationBarHidden:NO];
     [self performSegueWithIdentifier:@"selectSegue" sender:self];
 }

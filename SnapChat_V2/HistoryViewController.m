@@ -7,7 +7,6 @@
 //
 
 #import "HistoryViewController.h"
-#import "History.h"
 #import "HistoryCell.h"
 #import "ChatViewController.h"
 
@@ -31,9 +30,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSLog(@"desc7: %@", [[self navigationController] childViewControllers]);
-    NSLog(@"HistoryViewController.viewDidLoad");
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,17 +81,15 @@
     content = [content stringByAppendingString:@")"];
     cell.contentLabel.text = content;
     
-    // 이미지 표시 시간을 저장
-    cell.sec = [[history valueForKey:@"sec"] integerValue];
+    // 이미지 표시 시간, _id를 저장
+    cell.sec = [history valueForKey:@"sec"];
+    cell._id = [history valueForKey:@"_id"];
     return cell;
 }
 
 - (IBAction)chatAction:(id)sender
 {
     NSLog(@"desc6: %@", [[self navigationController] description]);
-    
-    //[[self navigationController] setNavigationBarHidden:NO];
-    //[self performSegueWithIdentifier:@"chatSegue" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -107,8 +101,9 @@
     //UIImage *image = [UIImage imageNamed: @"download_001.png"];
     UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://pixabay.com/static/uploads/photo/2013/03/29/13/39/download-97607_150.png"]]];
     
+    // 이미지, 테이블 셀을 전달
     [chatViewController setImageSource:image];
-    [chatViewController setSec:[(HistoryCell*)sender sec]];
+    [chatViewController setHistoryCell:sender];
 }
 
 #pragma mark - UITableViewDelegate

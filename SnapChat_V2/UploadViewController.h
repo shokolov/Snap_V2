@@ -18,8 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *timeButton;
 @property (weak, nonatomic) IBOutlet UIPickerView *secPicker;
 
--(IBAction)saveAction:(id)sender;
--(IBAction)retakePicture:(id)sender;
+- (IBAction)saveAction:(id)sender;
+- (IBAction)retakePicture:(id)sender;
 - (IBAction)timeAction:(id)sender;
 - (IBAction)sendAction:(id)sender;
 

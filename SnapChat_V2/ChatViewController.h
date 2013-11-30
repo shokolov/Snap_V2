@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HistoryCell.h"
 
 @interface ChatViewController : UIViewController
 
 @property (nonatomic, retain) IBOutlet UIImageView *imagePicture;
 @property (nonatomic, retain) UIImage *imageSource;
-@property int sec;
+@property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
+@property HistoryCell *historyCell;
 
 @end

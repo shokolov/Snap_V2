@@ -202,11 +202,19 @@ Privacy Policy</string>
                                 <rect key="frame" x="0.0" y="70" width="320" height="428"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MqS-GO-am9">
+                                <rect key="frame" x="139" y="506" width="42" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="xlD-bg-Mj4"/>
                     <connections>
+                        <outlet property="countdownLabel" destination="MqS-GO-am9" id="yei-dI-pyh"/>
                         <outlet property="imagePicture" destination="BJW-Ao-aio" id="xo5-9G-Qpb"/>
                     </connections>
                 </viewController>

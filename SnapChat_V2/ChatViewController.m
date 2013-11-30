@@ -12,9 +12,11 @@
 
 @end
 
-@implementation ChatViewController
+@implementation ChatViewController {
+    NSTimer *timer;
+}
 
-@synthesize imagePicture, imageSource, sec;
+@synthesize imagePicture, imageSource, countdownLabel, historyCell;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,23 +32,57 @@
     [super viewDidLoad];
 	
     [imagePicture setImage:imageSource];
+    [countdownLabel setText:historyCell.sec];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    // 뒤로가기 버튼으로 이동할 경우
+    if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
+        [self completeChat];
+    }
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self performSelector:@selector(hiddenChat)
+    // 설정된 시간이 지나면 자동 화면 전환
+    int secInt = [historyCell.sec integerValue];
+    [self performSelector:@selector(hiddenChatView)
                          withObject:nil
-                         afterDelay:sec];
+                         afterDelay:secInt];
+    
+    // 카운트다운
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                             target:self
+                                           selector:@selector(countdown)
+                                           userInfo:nil
+                                            repeats:YES];
 }
 
-- (void) hiddenChat
+- (void)hiddenChatView
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+    [self completeChat];
 }
+
+- (void)completeChat
+{
+    [timer invalidate];
+    [historyCell.getButton setHidden:YES];
+    NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:historyCell._id, @"_id", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"COMPLETE_CHAT" object:nil userInfo:infoToObject];
+}
+
+- (void)countdown
+{
+    int count = [countdownLabel.text integerValue];
+    count--;
+    countdownLabel.text = [@(count) stringValue];;
+}
+
 @end

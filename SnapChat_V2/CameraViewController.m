@@ -46,18 +46,13 @@
     storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(showPreviewPictureViewController:)
-                                                 name:@"SHOW_PREVIEW_PICTURE"
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(retakePicture:)
-                                                 name:@"RETAKE_PICTURE"
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(uploadPicture:)
                                                  name:@"UPLOAD_PICTURE"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(completeChat:)
+                                                 name:@"COMPLETE_CHAT"
                                                object:nil];
     
     historyBadge = [[MKNumberBadgeView alloc] initWithFrame:CGRectMake(50, 00, 30,20)];
@@ -96,7 +91,6 @@
     
     imagePickerController.cameraViewTransform = CGAffineTransformMakeTranslation(0.0, 70.0);
     
-    //[self presentViewController:imagePickerController animated:YES completion:^(void){ }];
     [self presentViewController:imagePickerController animated:NO completion:nil];
 }
 
@@ -129,7 +123,7 @@
     NSLog(@"desc2: %@", [[self navigationController] childViewControllers]);
     [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
         [[self navigationController] setNavigationBarHidden:NO];
-        //[self performSegueWithIdentifier:@"friendSegue" sender:self]; // push일때는 필요없음
+        //[self performSegueWithIdentifier:@"friendSegue" sender:self]; // MEMO 安: push일때는 필요없음
     }];
 }
 
@@ -144,16 +138,10 @@
     }
 }
 
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    /*
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
-    NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:image, @"uiimage", nil];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOW_PREVIEW_PICTURE" object:nil userInfo:infoToObject];
-     */
-    
     takenImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     
     [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
@@ -162,7 +150,8 @@
     }];
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     /*
      // 잘못된 예
     UploadViewController *uploadViewController = [segue destinationViewController];
@@ -186,49 +175,25 @@
 
 #pragma mark - NSNotificationCenter
 
-- (void)showPreviewPictureViewController:(NSNotification*)notification
+// TODO 安: HistoryView, CameraView 두개로 나눠야 할 듯
+- (void)completeChat:(NSNotification*)notification
 {
-    if(notification)
-    {
-        /*
-         NSDictionary* infoToObject = [notification userInfo];
-         takenImage = (UIImage *)[infoToObject valueForKey:@"uiimage"];
-         
-         [uploadViewController setImageSource:takenImage];
-         [uploadViewController.imagePicture setImage:takenImage];
-         
-         [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
-         [self presentViewController:uploadViewController animated:NO completion:nil];
-         }];
-         */
-    }
-}
-
-- (void)retakePicture:(NSNotification*)notification
-{
-    
-    if(notification)
-    {
-        /*
-         [uploadViewController setImageSource:nil];
-         [uploadViewController.imagePicture setImage:nil];
-         
-         [uploadViewController dismissViewControllerAnimated:NO completion:^(void){
-         [self presentViewController:imagePickerController animated:YES completion:nil];
-         }];
-         */
-        
-        //[self presentViewController:imagePickerController animated:YES completion:nil];
+    NSDictionary* infoToObject = [notification userInfo];
+    NSString *_id = [infoToObject valueForKey:@"_id"];
+    if (historyBadge.value == 0) {
+        [historyBadge setHidden:YES];   // TODO 安: 테이블을 다시 묘사해야 할 듯
+    } else {
+        historyBadge.value--;
+        // TODO 安: 어플 아이콘 카운트도 -1 할 것
     }
     
+    // TODO 安: 확인한 챗은 _id를 서버로 전송할 것
+    NSLog(@"%@", _id);
 }
 
 - (void)uploadPicture:(NSNotification*)notification
 {
-    if(notification)
-    {
-        NSLog(@"desc5: %@", [[self navigationController] childViewControllers]);
-        
+    if(notification) {
         NSDictionary* infoToObject = [notification userInfo];
         NSArray *friendList = (NSArray *)[infoToObject valueForKey:@"selectedFriends"];
         NSInteger secInfo = [[infoToObject valueForKey:@"selectedSec"] intValue];
@@ -242,28 +207,30 @@
 
 #pragma mark - private
 
-- (void)upload:(NSArray*)friendList secInfo:(NSInteger)secInfo  {
+- (void)upload:(NSArray*)friendList secInfo:(NSInteger)secInfo
+{
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString *secString = [@(secInfo) stringValue];
     NSDictionary *parameters = @{ @"userCode": @"userCode", @"friendList": friendList, @"secInfo":secString };
     
     NSData *imageData = UIImageJPEGRepresentation(takenImage, 0.5);
-    [manager    POST:@"http://211.239.124.234:13405/test"
-                parameters:parameters
-                constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                    [formData appendPartWithFileData:imageData
-                                                name:@"image"
-                                            fileName:@"image.jpg"
-                                            mimeType:@"image/jpeg"];
-                } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    NSLog(@"Success: %@", responseObject);
-                    historyBadge.value++;
-                    
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    NSLog(@"Error: %@", error);
-                }];
-    
+    [manager POST:@"http://211.239.124.234:13405/test"
+       parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+           
+           [formData appendPartWithFileData:imageData
+                                       name:@"image"
+                                   fileName:@"image.jpg"
+                                   mimeType:@"image/jpeg"];
+       
+       } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+           NSLog(@"Success: %@", responseObject);
+           historyBadge.value++;
+       
+       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+           NSLog(@"Error: %@", error);
+       }
+     ];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"RETAKE_PICTURE" object:nil userInfo:nil];
 }
 
@@ -272,40 +239,39 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSDictionary *parameters = @{@"userCode": @"userCode"};
-    [manager    GET:@"http://211.239.124.234:13405/history"
-                parameters:parameters
-                success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                    NSLog(@"JSON1: %@", string);
-                    //NSLog(@"JSON2: %@", responseObject);
+    [manager GET:@"http://211.239.124.234:13405/history"
+      parameters:parameters
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             
+             NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+             NSLog(@"JSON1: %@", string);
+             //NSLog(@"JSON2: %@", responseObject);
  
-                    NSError *error;
-                    historyArray = [NSJSONSerialization
-                                                JSONObjectWithData:responseObject
-                                                options:NSJSONReadingMutableContainers
-                                                error:&error];
-                    if(error) {
-                        NSLog(@"%@", [error localizedDescription]);
-                        
-                    } else {
-                        
-                        // 미확인 메시지 건수를 취득해서, 히스토리 버튼의 뱃지 카운트를 갱신한다.
-                        int newChatCount = 0;
-                        for (int i = 0; i < historyArray.count; i++) {
-                            NSString *chatType = [[historyArray objectAtIndex:i] valueForKey:@"type"];
-                            if ([chatType isEqualToString:@"0"]) {
-                                newChatCount++;
-                            }
-                        }
-                        historyBadge.value = newChatCount;
-                        
-                        // 데이터를 가져온 후, 버튼을 활성화 시킨다.
-                        historyButton.enabled = YES;
-                    }
-                
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    NSLog(@"Error: %@", error);
-                }];
+             NSError *error;
+             historyArray = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&error];
+             if(error) {
+                 NSLog(@"%@", [error localizedDescription]);
+             
+             } else {
+                 // 미확인 메시지 건수를 취득해서, 히스토리 버튼의 뱃지 카운트를 갱신한다.
+                 int newChatCount = 0;
+                 for (int i = 0; i < historyArray.count; i++) {
+                     NSString *chatType = [[historyArray objectAtIndex:i] valueForKey:@"type"];
+                     if ([chatType isEqualToString:@"0"]) {
+                         newChatCount++;
+                     }
+                 }
+                 historyBadge.value = newChatCount;
+                 
+                 // 데이터를 가져온 후, 버튼을 활성화 시킨다.
+                 historyButton.enabled = YES;
+             }
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+         }
+     ];
 }
 
 @end

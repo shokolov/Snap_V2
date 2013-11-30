@@ -36,7 +36,6 @@
 		68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A29C4A1827E72700D8E6D2 /* CameraViewController.m */; };
 		68DE914D1841BBE6001635AD /* SelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE914C1841BBE6001635AD /* SelectViewController.m */; };
 		68DE919118425A88001635AD /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE919018425A88001635AD /* HistoryViewController.m */; };
-		68DE919418425B22001635AD /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE919318425B22001635AD /* History.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,8 +94,6 @@
 		68DE914C1841BBE6001635AD /* SelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectViewController.m; sourceTree = "<group>"; };
 		68DE918F18425A88001635AD /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		68DE919018425A88001635AD /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
-		68DE919218425B22001635AD /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
-		68DE919318425B22001635AD /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
 		A2227F3D6A884D75A1185C5C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -190,8 +187,6 @@
 				68DE914C1841BBE6001635AD /* SelectViewController.m */,
 				68DE918F18425A88001635AD /* HistoryViewController.h */,
 				68DE919018425A88001635AD /* HistoryViewController.m */,
-				68DE919218425B22001635AD /* History.h */,
-				68DE919318425B22001635AD /* History.m */,
 				6873C66C1848FCE100E7FC19 /* HistoryCell.h */,
 				6873C66D1848FCE100E7FC19 /* HistoryCell.m */,
 				6873C66F184984A700E7FC19 /* ChatViewController.h */,
@@ -386,7 +381,6 @@
 				6873C66E1848FCE100E7FC19 /* HistoryCell.m in Sources */,
 				68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */,
 				68DE914D1841BBE6001635AD /* SelectViewController.m in Sources */,
-				68DE919418425B22001635AD /* History.m in Sources */,
 				68961D69184638070069337E /* MKNumberBadgeView.m in Sources */,
 				06A76851180129C90090CBF5 /* AppStoreExAppDelegate.m in Sources */,
 			);
