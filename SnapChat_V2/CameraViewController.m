@@ -55,6 +55,11 @@
                                                  name:@"COMPLETE_CHAT"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateHistoryStatus:)
+                                                 name:@"UPDATE_HISTORY_STATUS"
+                                               object:nil];
+    
     historyBadge = [[MKNumberBadgeView alloc] initWithFrame:CGRectMake(50, 00, 30,20)];
     historyBadge.font = [UIFont boldSystemFontOfSize:10];
     historyBadge.value = 0;
@@ -175,16 +180,18 @@
 
 #pragma mark - NSNotificationCenter
 
-// TODO 安: HistoryView, CameraView 두개로 나눠야 할 듯
 - (void)completeChat:(NSNotification*)notification
 {
     NSDictionary* infoToObject = [notification userInfo];
     NSString *_id = [infoToObject valueForKey:@"_id"];
     if (historyBadge.value == 0) {
-        [historyBadge setHidden:YES];   // TODO 安: 테이블을 다시 묘사해야 할 듯
+        [historyBadge setHidden:YES];
     } else {
+        // 히스토리 버튼의 뱃지 카운트를 -1
         historyBadge.value--;
-        // TODO 安: 어플 아이콘 카운트도 -1 할 것
+        
+        // 어플 아이콘의 뱃지 카운트를 -1
+        [UIApplication sharedApplication].applicationIconBadgeNumber--;
     }
     
     // TODO 安: 확인한 챗은 _id를 서버로 전송할 것
@@ -203,6 +210,19 @@
         [self upload:friendList secInfo:secInfo];
     }
     
+}
+
+- (void)updateHistoryStatus:(NSNotification*)notification
+{
+    if(notification) {
+        NSDictionary* infoToObject = [notification userInfo];
+        NSString *newCount = (NSString*)[infoToObject valueForKey:@"newCount"];
+        
+        // 히스토리 버튼의 뱃지 카운트를 증가시켜준다.
+        historyBadge.value += [newCount intValue];
+        
+        // TODO 安: 히스토리 뷰에 새로도착한 챗의 리스트가 표시되도록, 테이블을 다시 그려줘야 할 듯
+    }
 }
 
 #pragma mark - private
