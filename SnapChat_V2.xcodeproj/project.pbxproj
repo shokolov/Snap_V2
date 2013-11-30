@@ -26,6 +26,8 @@
 		4F2DB940E3504AA19825692D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2227F3D6A884D75A1185C5C /* libPods.a */; };
 		685F5A24180BDCE900A900DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685F5A23180BDCE900A900DF /* AVFoundation.framework */; };
 		6873C66E1848FCE100E7FC19 /* HistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6873C66D1848FCE100E7FC19 /* HistoryCell.m */; };
+		6873C671184984A700E7FC19 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6873C670184984A700E7FC19 /* ChatViewController.m */; };
+		6873C67518498DE100E7FC19 /* download_001.png in Resources */ = {isa = PBXBuildFile; fileRef = 6873C67418498DE100E7FC19 /* download_001.png */; };
 		68961D69184638070069337E /* MKNumberBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68961D68184638070069337E /* MKNumberBadgeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		68A090A818379B0D001F5AAC /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A090A718379B0D001F5AAC /* UploadViewController.m */; };
 		68A090AA1837D7CF001F5AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A090A91837D7CF001F5AAC /* CoreData.framework */; };
@@ -75,6 +77,9 @@
 		685F5A23180BDCE900A900DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6873C66C1848FCE100E7FC19 /* HistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCell.h; sourceTree = "<group>"; };
 		6873C66D1848FCE100E7FC19 /* HistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCell.m; sourceTree = "<group>"; };
+		6873C66F184984A700E7FC19 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		6873C670184984A700E7FC19 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		6873C67418498DE100E7FC19 /* download_001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download_001.png; sourceTree = "<group>"; };
 		68961D67184638070069337E /* MKNumberBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNumberBadgeView.h; sourceTree = "<group>"; };
 		68961D68184638070069337E /* MKNumberBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNumberBadgeView.m; sourceTree = "<group>"; };
 		68A090A618379B0D001F5AAC /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
@@ -159,6 +164,7 @@
 		06A76846180129C90090CBF5 /* SnapChat_V2 */ = {
 			isa = PBXGroup;
 			children = (
+				6873C67318498DCC00E7FC19 /* Resources */,
 				68961D67184638070069337E /* MKNumberBadgeView.h */,
 				68961D68184638070069337E /* MKNumberBadgeView.m */,
 				06A7687A1801314F0090CBF5 /* SignInViewController.h */,
@@ -188,6 +194,8 @@
 				68DE919318425B22001635AD /* History.m */,
 				6873C66C1848FCE100E7FC19 /* HistoryCell.h */,
 				6873C66D1848FCE100E7FC19 /* HistoryCell.m */,
+				6873C66F184984A700E7FC19 /* ChatViewController.h */,
+				6873C670184984A700E7FC19 /* ChatViewController.m */,
 			);
 			path = SnapChat_V2;
 			sourceTree = "<group>";
@@ -219,6 +227,14 @@
 				06A76868180129C90090CBF5 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6873C67318498DCC00E7FC19 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6873C67418498DE100E7FC19 /* download_001.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,6 +322,7 @@
 				06A7688018013E080090CBF5 /* Main.storyboard in Resources */,
 				06A76859180129C90090CBF5 /* Images.xcassets in Resources */,
 				06A7684B180129C90090CBF5 /* InfoPlist.strings in Resources */,
+				6873C67518498DE100E7FC19 /* download_001.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +376,7 @@
 			files = (
 				06A7687C1801314F0090CBF5 /* SignInViewController.m in Sources */,
 				68A090B018383FB9001F5AAC /* Friend.m in Sources */,
+				6873C671184984A700E7FC19 /* ChatViewController.m in Sources */,
 				06A7687718012AA70090CBF5 /* LogInViewController.m in Sources */,
 				06A76857180129C90090CBF5 /* AppStoreExViewController.m in Sources */,
 				68DE919118425A88001635AD /* HistoryViewController.m in Sources */,

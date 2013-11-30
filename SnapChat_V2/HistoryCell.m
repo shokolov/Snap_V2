@@ -1,9 +1,9 @@
 //
-//  HistoryCell.m
-//  SnapChat_V2
+//  HistoryCell.h
+//  PamilChat
 //
-//  Created by A12325 on 2013/11/30.
-//  Copyright (c) 2013年 KimByungyoon. All rights reserved.
+//  Created by Pamin IOS Team on 2013/12/15.
+//  Copyright (c) 2013年 Pamil. All rights reserved.
 //
 
 #import "HistoryCell.h"

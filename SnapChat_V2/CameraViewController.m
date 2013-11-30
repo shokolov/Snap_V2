@@ -177,6 +177,7 @@
         
         [uploadViewController_ setImageSource:takenImage];
         [uploadViewController_.imagePicture setImage:takenImage];
+        
     } else if ([[segue identifier] isEqualToString: @"historySegue"]) {
         HistoryViewController *historyViewController = (HistoryViewController *)[segue destinationViewController];
         [historyViewController setHistoryList:historyArray];

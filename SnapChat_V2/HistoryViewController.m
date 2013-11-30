@@ -9,6 +9,7 @@
 #import "HistoryViewController.h"
 #import "History.h"
 #import "HistoryCell.h"
+#import "ChatViewController.h"
 
 @interface HistoryViewController ()
 
@@ -83,6 +84,34 @@
     cell.contentLabel.text = content;
     
     return cell;
+}
+
+- (IBAction)chatAction:(id)sender
+{
+    NSLog(@"desc6: %@", [[self navigationController] description]);
+    
+    [[self navigationController] setNavigationBarHidden:NO];
+    [self performSegueWithIdentifier:@"chatSegue" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // 설정이미지 표시 초값 전달
+    ChatViewController *chatViewController = [segue destinationViewController];
+    
+    UIImage *image = [UIImage imageNamed: @"download_001.png"];
+    //UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://farm4.static.flickr.com/3092/2915896504_a88b69c9de.jpg"]]];
+    
+    [chatViewController setImageSource:image];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"sadfasdfsdaf");
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
 }
 
 @end

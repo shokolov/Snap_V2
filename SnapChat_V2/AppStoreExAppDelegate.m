@@ -151,6 +151,8 @@
 {
     NSLog(@"didReceiveRemoteNotification");
     
+    // TODO 안: 나중에 도착한 사진 표시하는 메소드 쪽으로 옮길 것
+    // 어플 아이콘의 뱃지 카운터를 변경하고, 팝업창을 표시한다.
     [UIApplication sharedApplication].applicationIconBadgeNumber = 1;
     
     NSString *string = [NSString stringWithFormat:@"%@", userInfo];

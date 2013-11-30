@@ -153,6 +153,9 @@ Privacy Policy</string>
                                             <state key="normal" title="◎">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="chatAction:" destination="qnG-Gb-Uh0" eventType="touchUpInside" id="aie-6t-6Us"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Content" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCt-g9-V9f">
                                             <rect key="frame" x="44" y="12" width="233" height="20"/>
@@ -176,17 +179,17 @@ Privacy Policy</string>
                     </tableView>
                     <navigationItem key="navigationItem" id="feA-Xe-Vbp"/>
                     <connections>
-                        <segue destination="N6N-ZT-ytH" kind="push" id="m28-Fd-CiB"/>
+                        <segue destination="N6N-ZT-ytH" kind="push" identifier="chatSegue" id="m28-Fd-CiB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itF-Y7-3YV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2129" y="512"/>
         </scene>
-        <!--View Controller-->
+        <!--Chat View Controller-->
         <scene sceneID="KmI-4J-L0r">
             <objects>
-                <viewController id="N6N-ZT-ytH" sceneMemberID="viewController">
+                <viewController id="N6N-ZT-ytH" customClass="ChatViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RAG-ob-zPN"/>
                         <viewControllerLayoutGuide type="bottom" id="kxI-EG-x92"/>
@@ -194,9 +197,18 @@ Privacy Policy</string>
                     <view key="view" contentMode="scaleToFill" id="AIh-YI-HFY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BJW-Ao-aio">
+                                <rect key="frame" x="0.0" y="70" width="320" height="428"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="xlD-bg-Mj4"/>
+                    <connections>
+                        <outlet property="imagePicture" destination="BJW-Ao-aio" id="xo5-9G-Qpb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ip3-TY-Wd3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
