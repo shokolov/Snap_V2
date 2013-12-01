@@ -15,7 +15,7 @@
 
 @implementation UploadViewController
 
-@synthesize imageSource, imagePicture, secPicker, timeButton;
+@synthesize imageSource, imagePicture;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +32,12 @@
     
     secArray = [[NSArray alloc] initWithObjects:@"3", @"5", @"10", @"30", @"60", nil];
     [imagePicture setImage:imageSource];
+    
+    red = 0.0/255.0;
+    green = 0.0/255.0;
+    blue = 0.0/255.0;
+    brush = 10.0;
+    opacity = 0.0;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -55,9 +61,8 @@
 
 - (IBAction)saveAction:(id)sender
 {
-    UIImage *image = imageSource;
-    if(nil != image )
-    {
+    UIImage *image = imagePicture.image;
+    if(nil != image ) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     }
     
@@ -76,16 +81,24 @@
 }
 
 - (IBAction)timeAction:(id)sender {
-    [secPicker setDelegate:self];
-    [secPicker setDataSource:self];
+    [self.secPicker setDelegate:self];
+    [self.secPicker setDataSource:self];
     
-    [secPicker setHidden:NO];
+    [self.secPicker setHidden:NO];
 }
 
 - (IBAction)sendAction:(id)sender
 {
     [[self navigationController] setNavigationBarHidden:NO];
     [self performSegueWithIdentifier:@"selectSegue" sender:self];
+}
+
+- (IBAction)pancilAction:(id)sender {
+    opacity = 1.0;
+}
+
+- (IBAction)eraserAction:(id)sender {
+    self.imagePicture.image = imageSource;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -95,8 +108,9 @@
     {
         SelectViewController *selectViewController = [segue destinationViewController];
         
-        NSInteger secRow = [secPicker selectedRowInComponent:0];
+        NSInteger secRow = [self.secPicker selectedRowInComponent:0];
         [selectViewController setSecInfo: [secArray objectAtIndex:secRow]];
+        [selectViewController setSendImage:imagePicture.image];
     }
 }
 
@@ -119,16 +133,85 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    [secPicker setHidden:YES];
+    [self.secPicker setHidden:YES];
     
     NSString *buttonTitle = [[secArray objectAtIndex:row] stringByAppendingString:@" Sec"];
-    [timeButton setTitle:buttonTitle forState:UIControlStateNormal];
+    [self.timeButton setTitle:buttonTitle forState:UIControlStateNormal];
     
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     return [[secArray objectAtIndex:row] stringByAppendingString:@" Sec"];
+}
+
+#pragma mark - Paint
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    mouseSwiped = NO;
+    UITouch *touch = [touches anyObject];
+    lastPoint = [touch locationInView:self.view];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    mouseSwiped = YES;
+    UITouch *touch = [touches anyObject];
+    CGPoint currentPoint = [touch locationInView:self.view];
+    
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [self.imagePaint.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
+    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), brush );
+    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, 1.0);
+    CGContextSetBlendMode(UIGraphicsGetCurrentContext(),kCGBlendModeNormal);
+    
+    CGContextStrokePath(UIGraphicsGetCurrentContext());
+    self.imagePaint.image = UIGraphicsGetImageFromCurrentImageContext();
+    [self.imagePaint setAlpha:opacity];
+    UIGraphicsEndImageContext();
+    
+    lastPoint = currentPoint;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    if(!mouseSwiped) {
+        UIGraphicsBeginImageContext(self.view.frame.size);
+        [self.imagePaint.image drawInRect:CGRectMake(0,
+                                                     0,
+                                                     self.view.frame.size.width,
+                                                     self.view.frame.size.height)];
+        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), brush);
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, opacity);
+        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+        CGContextStrokePath(UIGraphicsGetCurrentContext());
+        CGContextFlush(UIGraphicsGetCurrentContext());
+        self.imagePaint.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+    
+    UIGraphicsBeginImageContext(self.imagePicture.frame.size);
+    [self.imagePicture.image drawInRect:CGRectMake(0,
+                                                   0,
+                                                   self.imagePicture.frame.size.width,
+                                                   self.imagePicture.frame.size.height)
+                              blendMode:kCGBlendModeNormal
+                                  alpha:1.0];
+    [self.imagePaint.image drawInRect:CGRectMake(0,
+                                                 0,
+                                                 self.imagePaint.frame.size.width,
+                                                 self.imagePaint.frame.size.height)
+                            blendMode:kCGBlendModeNormal
+                                alpha:opacity];
+    self.imagePicture.image = UIGraphicsGetImageFromCurrentImageContext();
+    self.imagePaint.image = nil;
+    UIGraphicsEndImageContext();
 }
 
 @end

@@ -15,7 +15,7 @@
 
 @implementation SelectViewController
 
-@synthesize sendButton, secInfo;
+@synthesize secInfo, sendImage;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -89,7 +89,7 @@
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
     
     // sevd 버튼 활성화
-    [sendButton setEnabled:YES];
+    [self.sendButton setEnabled:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,7 +99,7 @@
     // sevd 버튼 비활성화
     NSArray *selectedIndexPaths = [self.tableView indexPathsForSelectedRows];
     if (selectedIndexPaths.count < 1) {
-        [sendButton setEnabled:NO];
+        [self.sendButton setEnabled:NO];
     }
 }
 
@@ -115,7 +115,7 @@
             [selectedFriends addObject: friend.code];
         }
         
-        NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:selectedFriends, @"selectedFriends", secInfo, @"selectedSec", nil];
+        NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:selectedFriends, @"selectedFriends", secInfo, @"selectedSec", sendImage, @"sendImage", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UPLOAD_PICTURE" object:nil userInfo:infoToObject];
     }];
 }

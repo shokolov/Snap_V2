@@ -204,10 +204,11 @@
         NSDictionary* infoToObject = [notification userInfo];
         NSArray *friendList = (NSArray *)[infoToObject valueForKey:@"selectedFriends"];
         NSInteger secInfo = [[infoToObject valueForKey:@"selectedSec"] intValue];
+        UIImage *sendImage = (UIImage *)[infoToObject valueForKey:@"sendImage"];
         
         [self presentViewController:imagePickerController animated:YES completion:nil];
         
-        [self upload:friendList secInfo:secInfo];
+        [self upload:friendList secInfo:secInfo sendImage:sendImage];
     }
     
 }
@@ -227,14 +228,14 @@
 
 #pragma mark - private
 
-- (void)upload:(NSArray*)friendList secInfo:(NSInteger)secInfo
+- (void)upload:(NSArray*)friendList secInfo:(NSInteger)secInfo sendImage:(UIImage*)sendImage
 {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString *secString = [@(secInfo) stringValue];
     NSDictionary *parameters = @{ @"userCode": @"userCode", @"friendList": friendList, @"secInfo":secString };
     
-    NSData *imageData = UIImageJPEGRepresentation(takenImage, 0.5);
+    NSData *imageData = UIImageJPEGRepresentation(sendImage, 0.5);
     [manager POST:@"http://211.239.124.234:13405/test"
        parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
            
