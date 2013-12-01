@@ -42,13 +42,18 @@
     NSLog(@"account:%@", account.text);
     NSLog(@"password:%@", password.text);
     
-    [self performSegueWithIdentifier:@"cameraSegue" sender:self];
-    
-    /**
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *vc_ = [sb instantiateViewControllerWithIdentifier:@"MainView"];
-    [self presentViewController:vc_ animated:YES completion:nil];
-     */
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera]) {
+        [self performSegueWithIdentifier:@"cameraSegue" sender:self];
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                        message:@"Please use the camera phone."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 
