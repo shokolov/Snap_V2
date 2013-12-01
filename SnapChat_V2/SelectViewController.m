@@ -30,25 +30,6 @@
 {
     [super viewDidLoad];
     
-    NSMutableArray *friends_ = [NSMutableArray arrayWithCapacity:20];
-    
-    Friend *friend = [[Friend alloc] init];
-    friend.code = @"000001";
-    friend.name = @"ggammo";
-    [friends_ addObject:friend];
-    
-    friend = [[Friend alloc] init];
-    friend.code = @"000002";
-    friend.name = @"hhammo";
-    [friends_ addObject:friend];
-    
-    friend = [[Friend alloc] init];
-    friend.code = @"000003";
-    friend.name = @"jjammo";
-    [friends_ addObject:friend];
-    
-    self.friends = friends_;
-    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSDictionary *parameters = @{@"userCode": @"userCode"};
@@ -68,12 +49,16 @@
                  NSLog(@"%@", [error localizedDescription]);
                  
              } else {
+                 NSMutableArray *friends_ = [NSMutableArray arrayWithCapacity:friendArray.count];
+                 
                  for (int i = 0; i < friendArray.count; i++) {
                      Friend *friend = [[Friend alloc] init];
                      friend.code = [[friendArray objectAtIndex:i] valueForKey:@"code"];
                      friend.name = [[friendArray objectAtIndex:i] valueForKey:@"name"];
-                     [self.friends addObject:friend];
+                     [friends_ addObject:friend];
                  }
+                 self.friends = friends_;
+                 [self.tableView reloadData];
              }
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
@@ -105,7 +90,6 @@
     
     Friend *friend = (self.friends)[indexPath.row];
     cell.textLabel.text = friend.name;
-    cell.detailTextLabel.text = friend.code;
     
     return cell;
 }
