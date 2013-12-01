@@ -263,9 +263,9 @@
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              
-             NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+             NSString *string = [[NSString alloc] initWithData:responseObject
+                                                      encoding:NSUTF8StringEncoding];
              NSLog(@"JSON1: %@", string);
-             //NSLog(@"JSON2: %@", responseObject);
  
              NSError *error;
              historyArray = [NSJSONSerialization JSONObjectWithData:responseObject

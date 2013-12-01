@@ -51,7 +51,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     // 설정된 시간이 지나면 자동 화면 전환
-    int secInt = [historyCell.sec integerValue];
+    int secInt = [historyCell.sec intValue];
     [self performSelector:@selector(hiddenChatView)
                          withObject:nil
                          afterDelay:secInt];
@@ -81,7 +81,7 @@
 
 - (void)countdown
 {
-    int count = [countdownLabel.text integerValue];
+    int count = [countdownLabel.text intValue];
     count--;
     countdownLabel.text = [@(count) stringValue];;
 }

@@ -152,7 +152,7 @@
     NSLog(@"didReceiveRemoteNotification");
     
     // 히스토리 버튼의 뱃지 카운트를 증가시켜준다.
-    int newCount = [userInfo[@"aps"][@"badge"] integerValue];
+    int newCount = [userInfo[@"aps"][@"badge"] intValue];
     NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:[@(newCount) stringValue], @"newCount", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_HISTORY_STATUS" object:nil userInfo:infoToObject];
     

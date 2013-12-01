@@ -8,6 +8,7 @@
 
 #import "SelectViewController.h"
 #import "Friend.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface SelectViewController ()
 
@@ -48,7 +49,36 @@
     
     self.friends = friends_;
     
-    NSLog(@"SelectViewController.viewDidLoad");
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSDictionary *parameters = @{@"userCode": @"userCode"};
+    [manager GET:@"http://211.239.124.234:13405/friend"
+      parameters:parameters
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             
+             NSString *string = [[NSString alloc] initWithData:responseObject
+                                                      encoding:NSUTF8StringEncoding];
+             NSLog(@"JSON1: %@", string);
+             
+             NSError *error;
+             NSMutableArray *friendArray = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                          options:NSJSONReadingMutableContainers
+                                                                            error:&error];
+             if(error) {
+                 NSLog(@"%@", [error localizedDescription]);
+                 
+             } else {
+                 for (int i = 0; i < friendArray.count; i++) {
+                     Friend *friend = [[Friend alloc] init];
+                     friend.code = [[friendArray objectAtIndex:i] valueForKey:@"code"];
+                     friend.name = [[friendArray objectAtIndex:i] valueForKey:@"name"];
+                     [self.friends addObject:friend];
+                 }
+             }
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+         }
+     ];
 }
 
 - (void)didReceiveMemoryWarning
