@@ -39,7 +39,7 @@
 {
     [super viewDidLoad];
 
-    NSLog(@"desc1: %@", [[self navigationController] childViewControllers]);
+    NSLog(@"desc99: %@", [[self navigationController] childViewControllers]);
     
     imagePickerController = [[UIImagePickerController alloc]init];
     
@@ -125,7 +125,6 @@
 }
 
 - (IBAction)friendAction:(id)sender {
-    NSLog(@"desc2: %@", [[self navigationController] childViewControllers]);
     [imagePickerController dismissViewControllerAnimated:NO completion:^(void){
         [[self navigationController] setNavigationBarHidden:NO];
         //[self performSegueWithIdentifier:@"friendSegue" sender:self]; // MEMO 安: push일때는 필요없음

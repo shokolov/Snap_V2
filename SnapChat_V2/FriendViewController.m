@@ -28,8 +28,6 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"desc3: %@", [[self navigationController] childViewControllers]);
-    
     NSMutableArray *friends_ = [NSMutableArray arrayWithCapacity:20];
     
     Friend *friend = [[Friend alloc] init];

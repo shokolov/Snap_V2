@@ -89,7 +89,7 @@
 
 - (IBAction)chatAction:(id)sender
 {
-    NSLog(@"desc6: %@", [[self navigationController] description]);
+    NSLog(@"HistoryViewController.chatAction");
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

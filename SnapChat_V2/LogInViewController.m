@@ -42,8 +42,6 @@
     NSLog(@"account:%@", account.text);
     NSLog(@"password:%@", password.text);
     
-    NSLog(@"desc0: %@", [[self navigationController] childViewControllers]);
-    
     [self performSegueWithIdentifier:@"cameraSegue" sender:self];
     
     /**
