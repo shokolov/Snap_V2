@@ -72,12 +72,10 @@
         cell.getButton.hidden = YES;
     }
     
-    // 이미지 표시 시간, 아이디, 시간을 표시
-    NSString *content = [history valueForKey:@"sec"];
-    content = [content stringByAppendingString:@"sec ID:"];
-    content = [content stringByAppendingString:[history valueForKey:@"name"]];
+    // 아이디, 시간을 표시
+    NSString *content = [history valueForKey:@"code"];
     content = [content stringByAppendingString:@"("];
-    content = [content stringByAppendingString:[history valueForKey:@"time"]];
+    //content = [content stringByAppendingString:[history valueForKey:@"time"]];
     content = [content stringByAppendingString:@")"];
     cell.contentLabel.text = content;
     

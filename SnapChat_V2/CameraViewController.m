@@ -258,7 +258,12 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSDictionary *parameters = @{@"userCode": @"userCode"};
+    
+    // TODO 安
+    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
+    NSString *testLoginId = [token substringToIndex:10];
+    
+    NSDictionary *parameters = @{@"code": testLoginId};
     [manager GET:@"http://211.239.124.234:13405/history"
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {

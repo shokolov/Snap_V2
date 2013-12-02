@@ -62,7 +62,13 @@
     // UUID와 Token은 사용자의 동의를 얻은 후 외부로 보내져야만 하며 이를 어길시 리젝사유가 될 수 있음
     NSLog(@"Device Token:%@", deviceToken);
     
+    // 다른 뷰에 전달하기 위한 사전 작업
+    NSString *tokenString = [deviceToken description];
+    tokenString = [tokenString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    tokenString = [tokenString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    [[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:@"DEVICE_TOKEN"];
     
+    // 각종 정보 수집
     NSString *appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
     NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     
