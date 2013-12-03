@@ -61,23 +61,36 @@
     NSDictionary *history = (self.historyList)[indexPath.row];
     
     // 수신, 송신 표시
+    NSString *typeText = @"";
     if ([[history valueForKey:@"type"] intValue] == 0) {
         cell.typeLabel.text = @"⇒";
         cell.getButton.hidden = NO;
+        typeText = @"から受信";
     } else if ([[history valueForKey:@"type"] intValue] == 1) {
         cell.typeLabel.text = @"⇒";
         cell.getButton.hidden = YES;
+        typeText = @"から受信";
     } else {
         cell.typeLabel.text = @"←";
         cell.getButton.hidden = YES;
+        typeText = @"に送信";
     }
     
-    // 아이디, 시간을 표시
+    // 내용(송수신 아이디)
     NSString *content = [history valueForKey:@"code"];
-    content = [content stringByAppendingString:@"("];
-    //content = [content stringByAppendingString:[history valueForKey:@"time"]];
-    content = [content stringByAppendingString:@")"];
+    content = [content stringByAppendingString:typeText];
+    
+    // 시간
+    double unixTimeStamp =[[history valueForKey:@"time"] doubleValue];
+    NSTimeInterval timeInterval=unixTimeStamp/1000;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+    NSDateFormatter *dateformatter=[[NSDateFormatter alloc]init];
+    [dateformatter setLocale:[NSLocale currentLocale]];
+    [dateformatter setDateFormat:@"yyyy.MM.dd hh:mm:ss"];
+    NSString *dateString=[dateformatter stringFromDate:date];
+    
     cell.contentLabel.text = content;
+    cell.dateLabel.text = dateString;
     
     // 이미지 표시 시간, _id를 저장
     cell.sec = [history valueForKey:@"sec"];
