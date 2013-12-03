@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *getButton;
 @property NSString *sec;
 @property NSString *_id;
+@property NSString *url;
 
 @end

@@ -232,10 +232,16 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString *secString = [@(secInfo) stringValue];
-    NSDictionary *parameters = @{ @"userCode": @"userCode", @"friendList": friendList, @"secInfo":secString };
+    
+    // TODO 安
+    // 테스트용으로 유저 아이디를 입력(유저 아이디:알림 토큰의 10자리, 비밀번호는 무시)
+    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
+    NSString *testLoginId = [token substringToIndex:10];
+
+    NSDictionary *parameters = @{ @"code": testLoginId, @"friendList": friendList, @"secInfo":secString };
     
     NSData *imageData = UIImageJPEGRepresentation(sendImage, 0.5);
-    [manager POST:@"http://211.239.124.234:13405/test"
+    [manager POST:@"http://211.239.124.234:13405/send"
        parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
            
            [formData appendPartWithFileData:imageData

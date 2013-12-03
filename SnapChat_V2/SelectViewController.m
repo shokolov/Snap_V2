@@ -32,7 +32,14 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSDictionary *parameters = @{@"userCode": @"userCode"};
+    
+    // TODO 安
+    // 테스트용으로 유저 아이디를 입력(유저 아이디:알림 토큰의 10자리, 비밀번호는 무시)
+    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
+    NSString *testLoginId = [token substringToIndex:10];
+    
+    NSDictionary *parameters = @{@"code": testLoginId};
+    
     [manager GET:@"http://211.239.124.234:13405/friend"
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -54,7 +61,7 @@
                  for (int i = 0; i < friendArray.count; i++) {
                      Friend *friend = [[Friend alloc] init];
                      friend.code = [[friendArray objectAtIndex:i] valueForKey:@"code"];
-                     friend.name = [[friendArray objectAtIndex:i] valueForKey:@"name"];
+                     //friend.name = [[friendArray objectAtIndex:i] valueForKey:@"name"];
                      [friends_ addObject:friend];
                  }
                  self.friends = friends_;
@@ -89,7 +96,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     Friend *friend = (self.friends)[indexPath.row];
-    cell.textLabel.text = friend.name;
+    cell.textLabel.text = friend.code;
     
     return cell;
 }

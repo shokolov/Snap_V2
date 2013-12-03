@@ -92,9 +92,10 @@
     cell.contentLabel.text = content;
     cell.dateLabel.text = dateString;
     
-    // 이미지 표시 시간, _id를 저장
+    // 이미지 표시 시간, _id, url을 저장
     cell.sec = [history valueForKey:@"sec"];
     cell._id = [history valueForKey:@"_id"];
+    cell.url = [history valueForKey:@"url"];
     return cell;
 }
 
@@ -109,8 +110,12 @@
     ChatViewController *chatViewController = [segue destinationViewController];
     
     // 서버 연결이 안될 경우를 대비해서 디폴트 이미지를 먼저 셋팅
-    //UIImage *image = [UIImage imageNamed: @"download_001.png"];
-    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://pixabay.com/static/uploads/photo/2013/03/29/13/39/download-97607_150.png"]]];
+    UIImage *image = [UIImage imageNamed: @"download_001.png"];
+    
+    NSString *imageUrl = @"http://an.just4fun.co.kr:13405/image/";
+    imageUrl = [imageUrl stringByAppendingString:[(HistoryCell *)sender url]];
+
+    image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
     
     // 이미지, 테이블 셀을 전달
     [chatViewController setImageSource:image];
