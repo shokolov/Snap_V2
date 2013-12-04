@@ -502,11 +502,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: YOUNGMO AN (T666FJR89K)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SnapChat_V2/SnapChat_V2-Prefix.pch";
 				INFOPLIST_FILE = "SnapChat_V2/SnapChat_V2-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "52C8A093-A3F8-4F89-98C7-F1570DF3A933";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -517,11 +518,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: YOUNGMO AN (T666FJR89K)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SnapChat_V2/SnapChat_V2-Prefix.pch";
 				INFOPLIST_FILE = "SnapChat_V2/SnapChat_V2-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "52C8A093-A3F8-4F89-98C7-F1570DF3A933";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
