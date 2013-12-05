@@ -60,6 +60,11 @@
                                                  name:@"UPDATE_HISTORY_STATUS"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateBadge:)
+                                                 name:@"UPDATE_BADGE"
+                                               object:nil];
+    
     historyBadge = [[MKNumberBadgeView alloc] initWithFrame:CGRectMake(50, 00, 30,20)];
     historyBadge.font = [UIFont boldSystemFontOfSize:10];
     historyBadge.value = 0;
@@ -72,6 +77,7 @@
     [self cameraDidLoad];
 }
 
+// TODO 安: 이유는 모르겠지만, 여기가 두번 호출되고 있음
 - (void)viewWillAppear:(BOOL)animated {
     [[self navigationController] setNavigationBarHidden:YES];
 }
@@ -195,6 +201,15 @@
     
     // TODO 安: 확인한 챗은 _id를 서버로 전송할 것
     NSLog(@"%@", _id);
+    NSString *completeUrl = @"http://an.just4fun.co.kr:13405/complete/";
+    completeUrl = [completeUrl stringByAppendingString:_id];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:completeUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 - (void)uploadPicture:(NSNotification*)notification
@@ -223,6 +238,12 @@
         
         // TODO 安: 히스토리 뷰에 새로도착한 챗의 리스트가 표시되도록, 테이블을 다시 그려줘야 할 듯
     }
+}
+
+- (void)updateBadge:(NSNotification*)notification
+{
+    // 히스토리 정보를 갱신해 준다.
+    [self updateBadge];
 }
 
 #pragma mark - private

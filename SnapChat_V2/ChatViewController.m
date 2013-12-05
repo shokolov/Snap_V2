@@ -68,7 +68,7 @@
 {
     //[self.navigationController popToRootViewControllerAnimated:YES];  // 더이상 미확인 챗이 없을 땐 바로 카메라뷰로 이동해도 좋을 듯
     [self.navigationController popViewControllerAnimated:YES];
-    [self completeChat];
+    //[self completeChat];
 }
 
 - (void)completeChat
