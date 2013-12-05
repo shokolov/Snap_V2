@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
 @property (weak, nonatomic) IBOutlet UIButton *frontButton;
+@property (weak, nonatomic) IBOutlet UIButton *historyButton;
 
 - (IBAction)captureAction:(id)sender;
 

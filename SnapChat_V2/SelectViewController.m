@@ -8,6 +8,7 @@
 
 #import "SelectViewController.h"
 #import "Friend.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface SelectViewController ()
 
@@ -15,7 +16,7 @@
 
 @implementation SelectViewController
 
-@synthesize sendButton, secInfo;
+@synthesize secInfo, sendImage;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,28 +30,47 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"desc3: %@", [[self navigationController] childViewControllers]);
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSMutableArray *friends_ = [NSMutableArray arrayWithCapacity:20];
+    // TODO 安
+    // 테스트용으로 유저 아이디를 입력(유저 아이디:알림 토큰의 10자리, 비밀번호는 무시)
+    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
+    NSString *testLoginId = [token substringToIndex:10];
     
-    Friend *friend = [[Friend alloc] init];
-    friend.code = @"000001";
-    friend.name = @"ggammo";
-    [friends_ addObject:friend];
+    NSDictionary *parameters = @{@"code": testLoginId};
     
-    friend = [[Friend alloc] init];
-    friend.code = @"000002";
-    friend.name = @"hhammo";
-    [friends_ addObject:friend];
-    
-    friend = [[Friend alloc] init];
-    friend.code = @"000003";
-    friend.name = @"jjammo";
-    [friends_ addObject:friend];
-    
-    self.friends = friends_;
-    
-    NSLog(@"SelectViewController.viewDidLoad");
+    [manager GET:@"http://211.239.124.234:13405/friend"
+      parameters:parameters
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             
+             NSString *string = [[NSString alloc] initWithData:responseObject
+                                                      encoding:NSUTF8StringEncoding];
+             NSLog(@"JSON1: %@", string);
+             
+             NSError *error;
+             NSMutableArray *friendArray = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                          options:NSJSONReadingMutableContainers
+                                                                            error:&error];
+             if(error) {
+                 NSLog(@"%@", [error localizedDescription]);
+                 
+             } else {
+                 NSMutableArray *friends_ = [NSMutableArray arrayWithCapacity:friendArray.count];
+                 
+                 for (int i = 0; i < friendArray.count; i++) {
+                     Friend *friend = [[Friend alloc] init];
+                     friend.code = [[friendArray objectAtIndex:i] valueForKey:@"code"];
+                     //friend.name = [[friendArray objectAtIndex:i] valueForKey:@"name"];
+                     [friends_ addObject:friend];
+                 }
+                 self.friends = friends_;
+                 [self.tableView reloadData];
+             }
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+         }
+     ];
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,8 +96,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     Friend *friend = (self.friends)[indexPath.row];
-    cell.textLabel.text = friend.name;
-    cell.detailTextLabel.text = friend.code;
+    cell.textLabel.text = friend.code;
     
     return cell;
 }
@@ -89,7 +108,7 @@
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
     
     // sevd 버튼 활성화
-    [sendButton setEnabled:YES];
+    [self.sendButton setEnabled:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,7 +118,7 @@
     // sevd 버튼 비활성화
     NSArray *selectedIndexPaths = [self.tableView indexPathsForSelectedRows];
     if (selectedIndexPaths.count < 1) {
-        [sendButton setEnabled:NO];
+        [self.sendButton setEnabled:NO];
     }
 }
 
@@ -111,10 +130,11 @@
         NSMutableArray *selectedFriends = [NSMutableArray arrayWithCapacity: selectedIndexPaths.count];
         for (NSIndexPath *indexPath in selectedIndexPaths)
         {
-            [selectedFriends addObject: [self.friends objectAtIndex:indexPath.row]];
+            Friend *friend = (Friend*)[self.friends objectAtIndex:indexPath.row];
+            [selectedFriends addObject: friend.code];
         }
         
-        NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:selectedFriends, @"selectedFriends", secInfo, @"selectedSec", nil];
+        NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:selectedFriends, @"selectedFriends", secInfo, @"selectedSec", sendImage, @"sendImage", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UPLOAD_PICTURE" object:nil userInfo:infoToObject];
     }];
 }

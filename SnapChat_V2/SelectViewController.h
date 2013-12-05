@@ -11,6 +11,7 @@
 @interface SelectViewController : UITableViewController
 
 @property NSString *secInfo;
+@property UIImage *sendImage;
 @property (nonatomic, strong) NSMutableArray *friends;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sendButton;
 

@@ -7,6 +7,7 @@
 //
 
 #import "LogInViewController.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface LogInViewController ()
 
@@ -29,7 +30,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    // TODO 安
+    // 테스트용으로 유저 아이디를 입력(유저 아이디:알림 토큰의 10자리, 비밀번호는 무시)
+    // 등록된 유저 아이디가 없을 경우, 서버에서는 자동으로 신규 등록을 해버린다.
+    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
+    NSString *testLoginId = [token substringToIndex:10];
+    [account setText:testLoginId];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,15 +49,40 @@
     NSLog(@"account:%@", account.text);
     NSLog(@"password:%@", password.text);
     
-    NSLog(@"desc0: %@", [[self navigationController] childViewControllers]);
-    
-    [self performSegueWithIdentifier:@"cameraSegue" sender:self];
-    
-    /**
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *vc_ = [sb instantiateViewControllerWithIdentifier:@"MainView"];
-    [self presentViewController:vc_ animated:YES completion:nil];
-     */
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+
+        NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
+        NSDictionary *parameters = @{@"code": account.text,
+                                     @"password": password.text,
+                                     @"token": token};
+        
+        [manager GET:@"http://211.239.124.234:13405/login"
+          parameters:parameters
+             success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                 
+                 NSString *string = [[NSString alloc] initWithData:responseObject
+                                                          encoding:NSUTF8StringEncoding];
+                 NSLog(@"RESPONSE: %@", string);
+                 
+                 [self performSegueWithIdentifier:@"cameraSegue" sender:self];
+                 
+             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 NSLog(@"Error: %@", error);
+             }
+         ];
+        
+    } else {
+        // 카메라가 없으면 로그인 거부
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                        message:@"Please use the camera phone."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 
