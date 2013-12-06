@@ -170,6 +170,10 @@
     [uploadViewController.imagePicture setImage:takenImage];
      */
     
+    // 버튼의 이름을 초기치로 돌려준다.
+    [frontButton setTitle:@"Front" forState:UIControlStateNormal];
+    [flashButton setTitle:@"Auto" forState:UIControlStateNormal];
+    
     if ([[segue identifier] isEqualToString:@"updateSegue"]) {
         UINavigationController *navigationController = (UINavigationController*)[segue destinationViewController];
         UploadViewController *uploadViewController_ = (UploadViewController*)[navigationController topViewController];
@@ -233,10 +237,11 @@
         NSDictionary* infoToObject = [notification userInfo];
         NSString *newCount = (NSString*)[infoToObject valueForKey:@"newCount"];
         
-        // 히스토리 버튼의 뱃지 카운트를 증가시켜준다.
-        historyBadge.value += [newCount intValue];
+        // 히스토리 버튼의 뱃지 카운트를 갱신 시켜준다.
+        historyBadge.value = [newCount intValue];
         
         // TODO 安: 히스토리 뷰에 새로도착한 챗의 리스트가 표시되도록, 테이블을 다시 그려줘야 할 듯
+        [self updateBadge];
     }
 }
 
@@ -263,7 +268,8 @@
     
     NSData *imageData = UIImageJPEGRepresentation(sendImage, 0.5);
     [manager POST:@"http://211.239.124.234:13405/send"
-       parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+       parameters:parameters
+       constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
            
            [formData appendPartWithFileData:imageData
                                        name:@"image"
