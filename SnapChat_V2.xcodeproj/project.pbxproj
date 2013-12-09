@@ -23,6 +23,7 @@
 		06A7687718012AA70090CBF5 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7687618012AA70090CBF5 /* LogInViewController.m */; };
 		06A7687C1801314F0090CBF5 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7687B1801314F0090CBF5 /* SignInViewController.m */; };
 		06A7688018013E080090CBF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06A7687F18013E070090CBF5 /* Main.storyboard */; };
+		06C23209185618B2000D65E3 /* PlusFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C23208185618B2000D65E3 /* PlusFriendViewController.m */; };
 		4F2DB940E3504AA19825692D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2227F3D6A884D75A1185C5C /* libPods.a */; };
 		685F5A24180BDCE900A900DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685F5A23180BDCE900A900DF /* AVFoundation.framework */; };
 		6873C66E1848FCE100E7FC19 /* HistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6873C66D1848FCE100E7FC19 /* HistoryCell.m */; };
@@ -72,6 +73,8 @@
 		06A7687A1801314F0090CBF5 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		06A7687B1801314F0090CBF5 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		06A7687F18013E070090CBF5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		06C23207185618B2000D65E3 /* PlusFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlusFriendViewController.h; sourceTree = "<group>"; };
+		06C23208185618B2000D65E3 /* PlusFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlusFriendViewController.m; sourceTree = "<group>"; };
 		1F99B063392F4379B5996717 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		685F5A23180BDCE900A900DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6873C66C1848FCE100E7FC19 /* HistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCell.h; sourceTree = "<group>"; };
@@ -181,6 +184,8 @@
 				68A090A718379B0D001F5AAC /* UploadViewController.m */,
 				68A090AB18383F5A001F5AAC /* FriendViewController.h */,
 				68A090AC18383F5A001F5AAC /* FriendViewController.m */,
+				06C23207185618B2000D65E3 /* PlusFriendViewController.h */,
+				06C23208185618B2000D65E3 /* PlusFriendViewController.m */,
 				68A090AE18383FB9001F5AAC /* Friend.h */,
 				68A090AF18383FB9001F5AAC /* Friend.m */,
 				68DE914B1841BBE6001635AD /* SelectViewController.h */,
@@ -379,6 +384,7 @@
 				06A7684D180129C90090CBF5 /* main.m in Sources */,
 				68A090A818379B0D001F5AAC /* UploadViewController.m in Sources */,
 				6873C66E1848FCE100E7FC19 /* HistoryCell.m in Sources */,
+				06C23209185618B2000D65E3 /* PlusFriendViewController.m in Sources */,
 				68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */,
 				68DE914D1841BBE6001635AD /* SelectViewController.m in Sources */,
 				68961D69184638070069337E /* MKNumberBadgeView.m in Sources */,
