@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlusFriendViewController.h"
 
-@interface FriendViewController : UITableViewController
+@interface FriendViewController : UITableViewController {
+    PlusFriendViewController *plusFriendViewController;
+}
 
 @property (nonatomic, strong) NSMutableArray *friends;
+
 
 @end

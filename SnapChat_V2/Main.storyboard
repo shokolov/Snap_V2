@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="uSK-hj-M4d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="uSK-hj-M4d">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--App Store Ex View Controller - Start-->
@@ -428,16 +428,13 @@ Privacy Policy</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FriendCell" id="G4i-CK-NbN">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" id="G4i-CK-NbN">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G4i-CK-NbN" id="zrB-ls-llf">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="V9a-Uk-3Ba" kind="push" id="zoK-M6-Tum"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
@@ -447,24 +444,47 @@ Privacy Policy</string>
             </objects>
             <point key="canvasLocation" x="2129" y="-922"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="eYp-rv-CPT">
+        <!--Plus Friend View Controller-->
+        <scene sceneID="8wM-vU-OSL">
             <objects>
-                <viewController id="V9a-Uk-3Ba" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlusFriend" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Iqp-Y5-4Ht" customClass="PlusFriendViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="I9Z-DD-TJt"/>
-                        <viewControllerLayoutGuide type="bottom" id="srS-88-Y7E"/>
+                        <viewControllerLayoutGuide type="top" id="nLT-Ls-P3U"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Yi-Yo-Ikf"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jaB-lU-uiu">
+                    <view key="view" contentMode="scaleToFill" id="UW2-7T-4gK" customClass="Plus">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zdQ-v2-0te">
+                                <rect key="frame" x="0.0" y="47" width="320" height="483"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Iqp-Y5-4Ht" id="CXk-w7-iWO"/>
+                                    <outlet property="delegate" destination="Iqp-Y5-4Ht" id="RLo-pl-TIe"/>
+                                </connections>
+                            </tableView>
+                            <segmentedControl opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g1d-uV-0Ih">
+                                <rect key="frame" x="0.0" y="65" width="320" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Friends"/>
+                                    <segment title="Contact List"/>
+                                    <segment title="find ID"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="2d7-52-s0h"/>
+                    <navigationItem key="navigationItem" id="UQA-nc-9WV"/>
+                    <connections>
+                        <outlet property="friendTableView" destination="zdQ-v2-0te" id="2TX-WB-Sn2"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DVi-Sb-q6F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O0q-kU-JU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2595" y="-922"/>
+            <point key="canvasLocation" x="2621" y="-922"/>
         </scene>
         <!--Upload View Controller-->
         <scene sceneID="Qil-jh-4c4">

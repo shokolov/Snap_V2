@@ -8,12 +8,16 @@
 
 #import "FriendViewController.h"
 #import "Friend.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface FriendViewController ()
 
 @end
 
 @implementation FriendViewController
+
+NSString *CellIdentifier = @"FriendCell";
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,22 +31,70 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // タイトルを設定
+    self.title = @"MyFriends";
     
-    NSMutableArray *friends_ = [NSMutableArray arrayWithCapacity:20];
+    // バーにボタンを追加
+    UIBarButtonItem *button = [[UIBarButtonItem alloc]
+                               initWithTitle:@"Find"
+                               style:UIBarButtonItemStyleBordered
+                               target:self
+                               action:@selector(showNextView:)];
     
-    Friend *friend = [[Friend alloc] init];
-    friend.code = @"000001";
-    friend.name = @"ggammo";
-    [friends_ addObject:friend];
+    // ナビゲーションバーの右にボタンをセット
+    self.navigationItem.rightBarButtonItem = button;
     
-    friend = [[Friend alloc] init];
-    friend.code = @"000002";
-    friend.name = @"hhammo";
-    [friends_ addObject:friend];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    self.friends = friends_;
+    // TODO 安
+    // 테스트용으로 유저 아이디를 입력(유저 아이디:알림 토큰의 10자리, 비밀번호는 무시)
+    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
+    NSString *testLoginId = [token substringToIndex:10];
     
-    NSLog(@"FriendViewController.viewDidLoad");
+    NSDictionary *parameters = @{@"code": testLoginId};
+    
+    [manager GET:@"http://211.239.124.234:13405/friend"
+      parameters:parameters
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             
+             NSString *string = [[NSString alloc] initWithData:responseObject
+                                                      encoding:NSUTF8StringEncoding];
+             NSLog(@"JSON1: %@", string);
+             
+             NSError *error;
+             NSMutableArray *friendArray = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                           options:NSJSONReadingMutableContainers
+                                                                             error:&error];
+             if(error) {
+                 NSLog(@"%@", [error localizedDescription]);
+                 
+             } else {
+                 NSMutableArray *friends_ = [NSMutableArray arrayWithCapacity:friendArray.count];
+                 
+                 for (int i = 0; i < friendArray.count; i++) {
+                     Friend *friend = [[Friend alloc] init];
+                     friend.code = [[friendArray objectAtIndex:i] valueForKey:@"code"];
+                   //  friend.name = [[friendArray objectAtIndex:i] valueForKey:@"name"];
+                     [friends_ addObject:friend];
+                 }
+                 self.friends = friends_;
+                 [self.tableView reloadData];
+             }
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+         }
+     ];
+
+}
+
+/**
+ * 次へボタンがタップされたとき
+ */
+- (void)showNextView:(id)sender
+{
+    plusFriendViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PlusFriend"];
+    [self.navigationController pushViewController:plusFriendViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,12 +116,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"FriendCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    if(cell == nil) {
+        // cellのインスタンスを生成する
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
     Friend *friend = (self.friends)[indexPath.row];
-    cell.textLabel.text = friend.name;
-    cell.detailTextLabel.text = friend.code;
+    cell.textLabel.text = friend.code;
+    //cell.detailTextLabel.text = friend.code;
     
     return cell;
 }
@@ -79,16 +133,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"FriendViewController.didSelectRowAtIndexPath,%@", indexPath);
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.detailTextLabel.text = @"Test Friend Info";
+
     
-    UITableViewCellAccessoryType theCheckMark;
-    
-    theCheckMark = [tableView cellForRowAtIndexPath:indexPath].accessoryType;
-    if( theCheckMark == UITableViewCellAccessoryNone )
-        theCheckMark = UITableViewCellAccessoryCheckmark;
-    else
-        theCheckMark = UITableViewCellAccessoryNone;
-    
-    [tableView cellForRowAtIndexPath:indexPath].accessoryType = theCheckMark;
 }
 
 @end
