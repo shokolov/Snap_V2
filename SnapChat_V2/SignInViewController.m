@@ -7,6 +7,7 @@
 //
 
 #import "SignInViewController.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface SignInViewController ()
 
@@ -41,7 +42,29 @@
 - (IBAction)doButtonDown:(id)sender {
     NSLog(@"newAccount:%@", account.text);
     NSLog(@"newPassword:%@", password.text);
-    [self performSegueWithIdentifier:@"cameraSegue" sender:self];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
+    NSDictionary *parameters = @{@"code": account.text,
+                                 @"password": password.text,
+                                 @"token": token};
+    
+    [manager POST:@"http://54.238.237.80/signIn"
+       parameters:parameters
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              
+              NSString *string = [[NSString alloc] initWithData:responseObject
+                                                       encoding:NSUTF8StringEncoding];
+              NSLog(@"RESPONSE: %@", string);
+              
+              cameraController = [self.storyboard instantiateViewControllerWithIdentifier:@"Camera"];
+              [self.navigationController pushViewController:cameraController animated:YES];
+              
+          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              NSLog(@"Error: %@", error);
+          }
+     ];
     
 }
 @end

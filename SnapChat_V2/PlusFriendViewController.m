@@ -16,8 +16,6 @@
 
 @implementation PlusFriendViewController
 
-NSString *CellIdentifier3 = @"FriendInfoCell";
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,11 +34,12 @@ NSString *CellIdentifier3 = @"FriendInfoCell";
     // TODO 安
     // 테스트용으로 유저 아이디를 입력(유저 아이디:알림 토큰의 10자리, 비밀번호는 무시)
     NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
-    NSString *testLoginId = [token substringToIndex:10];
+    NSString *testLoginId = @"shokolov";
     
     NSDictionary *parameters = @{@"code": testLoginId};
-    
-    [manager GET:@"http://211.239.124.234:13405/friend"
+    parameters = @{@"token": token};
+    parameters = @{@"password": @"password"};
+    [manager POST:@"http://54.238.237.80/login"
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              
@@ -87,6 +86,7 @@ NSString *CellIdentifier3 = @"FriendInfoCell";
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    NSString *CellIdentifier3 = @"FriendInfoCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier3 forIndexPath:indexPath];
     if(cell == nil) {
         // cellのインスタンスを生成する

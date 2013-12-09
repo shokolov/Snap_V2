@@ -58,10 +58,10 @@
             </objects>
             <point key="canvasLocation" x="252" y="-181"/>
         </scene>
-        <!--View Controller - SignIn-->
+        <!--Sign In View Controller - SignIn-->
         <scene sceneID="egq-qU-QBj">
             <objects>
-                <viewController title="SignIn" id="4eo-wc-qcX" sceneMemberID="viewController">
+                <viewController title="SignIn" id="4eo-wc-qcX" customClass="SignInViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="smD-PS-V9f"/>
                         <viewControllerLayoutGuide type="bottom" id="aG3-NC-vt1"/>
@@ -97,11 +97,18 @@ Privacy Policy</string>
                                 <state key="normal" title="Enter">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="doButtonDown:" destination="4eo-wc-qcX" eventType="touchUpInside" id="BFh-bC-2Um"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="vaC-gg-Rr6"/>
+                    <connections>
+                        <outlet property="account" destination="Ypa-id-MGe" id="22X-Qh-Grw"/>
+                        <outlet property="password" destination="dOT-nx-q1e" id="W0F-yI-6U8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgw-ds-7rz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -123,7 +130,7 @@ Privacy Policy</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3M-Sy-cYK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1140" y="176"/>
+            <point key="canvasLocation" x="1524" y="852"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="mGS-eb-WRd">
@@ -298,7 +305,7 @@ Privacy Policy</string>
         <!--Camera View Controller-->
         <scene sceneID="zCn-gB-3qH">
             <objects>
-                <viewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="9k7-Lf-2Iz" customClass="CameraViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Camera" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9k7-Lf-2Iz" customClass="CameraViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qb6-fh-ehI"/>
                         <viewControllerLayoutGuide type="bottom" id="R2L-oi-k2G"/>
