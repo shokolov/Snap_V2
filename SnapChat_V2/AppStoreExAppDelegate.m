@@ -157,16 +157,22 @@
 {
     NSLog(@"didReceiveRemoteNotification");
     
-    // 히스토리 버튼의 뱃지 카운트를 증가시켜준다.
     int newCount = [userInfo[@"aps"][@"badge"] intValue];
+    
+    // 히스토리 버튼의 뱃지 카운트를 증가시켜준다.
+    /*
     NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:[@(newCount) stringValue], @"newCount", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_HISTORY_STATUS" object:nil userInfo:infoToObject];
+    */
     
-    // 어플 아이콘의 뱃지 카운트를 증가시켜준다.
-    [UIApplication sharedApplication].applicationIconBadgeNumber += newCount;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_BADGE" object:nil userInfo:nil];
+    
+    // 어플 아이콘의 뱃지 카운트를 갱신
+    [UIApplication sharedApplication].applicationIconBadgeNumber = newCount;
     
     // 알림 팝업창을 표시한다.
-    NSString *string = [NSString stringWithFormat:@"%@", userInfo];
+    NSString *from = userInfo[@"from"];
+    NSString *string = [NSString stringWithFormat:@"%@からメッセージが届きました", from];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:string delegate:nil
                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];

@@ -32,6 +32,11 @@
     [super viewDidLoad];
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UPDATE_BADGE" object:nil userInfo:nil];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -113,9 +118,12 @@
     UIImage *image = [UIImage imageNamed: @"download_001.png"];
     
     NSString *imageUrl = @"http://an.just4fun.co.kr:13405/image/";
-    imageUrl = [imageUrl stringByAppendingString:[(HistoryCell *)sender url]];
+    NSString *imageName = [(HistoryCell *)sender url];
+    imageUrl = [imageUrl stringByAppendingString:imageName];
 
-    image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
+    NSURL *url = [NSURL URLWithString:imageUrl];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    image = [[UIImage alloc] initWithData:data];
     
     // 이미지, 테이블 셀을 전달
     [chatViewController setImageSource:image];
