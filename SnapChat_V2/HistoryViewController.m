@@ -65,6 +65,9 @@
     
     NSDictionary *history = (self.historyList)[indexPath.row];
     
+    // TODO: 安
+    // 비월님 서버연결 여기서 작업 멈췄음. 서버 사양 수정 필요. '업로드'쪽이 확인이 먼저 끝나면 그 쪽을 구현해도 좋고.
+    
     // 수신, 송신 표시
     NSString *typeText = @"";
     if ([[history valueForKey:@"type"] intValue] == 0) {

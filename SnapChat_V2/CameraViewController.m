@@ -294,12 +294,10 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    // TODO 安
-    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
-    NSString *testLoginId = [token substringToIndex:10];
+    NSString *loginId = [[NSUserDefaults standardUserDefaults] stringForKey:@"LOGIN_ID"];
     
-    NSDictionary *parameters = @{@"code": testLoginId};
-    [manager GET:@"http://211.239.124.234:13405/history"
+    NSDictionary *parameters = @{@"code": loginId};
+    [manager POST:@"http://54.238.237.80/getNoreadMsgList"
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              
@@ -308,22 +306,29 @@
              NSLog(@"JSON1: %@", string);
  
              NSError *error;
-             historyArray = [NSJSONSerialization JSONObjectWithData:responseObject
+             NSMutableArray *responseJson = [NSJSONSerialization JSONObjectWithData:responseObject
                                                             options:NSJSONReadingMutableContainers
                                                               error:&error];
              if(error) {
                  NSLog(@"%@", [error localizedDescription]);
              
              } else {
+                 NSMutableArray *paramList = [responseJson valueForKey:@"params"];
+                 historyArray = [paramList valueForKey:@"messageList"];
+                 
+                 // TODO 安: 비월님 서버 연결하면서 히스토리 뱃지 카운드 갱신 부분은 주석 처리
+                 
                  // 미확인 메시지 건수를 취득해서, 히스토리 버튼의 뱃지 카운트를 갱신한다.
+                 /*
                  int newChatCount = 0;
                  for (int i = 0; i < historyArray.count; i++) {
-                     NSString *chatType = [[historyArray objectAtIndex:i] valueForKey:@"type"];
+                     NSString *chatType = [[historyArray objectAtIndex:i] valueForKey:@"isnew"];
                      if ([chatType isEqualToString:@"0"]) {
                          newChatCount++;
                      }
                  }
                  historyBadge.value = newChatCount;
+                 */
                  
                  // 데이터를 가져온 후, 버튼을 활성화 시킨다.
                  historyButton.enabled = YES;
