@@ -33,14 +33,12 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    // TODO 安
-    // 테스트용으로 유저 아이디를 입력(유저 아이디:알림 토큰의 10자리, 비밀번호는 무시)
-    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
-    NSString *testLoginId = [token substringToIndex:10];
+    // 로그인시 저장했던 아이디를 꺼내온다.
+    NSString *loginId = [[NSUserDefaults standardUserDefaults] stringForKey:@"LOGIN_ID"];
     
-    NSDictionary *parameters = @{@"code": testLoginId};
+    NSDictionary *parameters = @{@"code": loginId};
     
-    [manager GET:@"http://211.239.124.234:13405/friend"
+    [manager POST:@"http://54.238.237.80/friend_selectList"
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              
@@ -49,19 +47,20 @@
              NSLog(@"JSON1: %@", string);
              
              NSError *error;
-             NSMutableArray *friendArray = [NSJSONSerialization JSONObjectWithData:responseObject
+             NSMutableArray *responseJson = [NSJSONSerialization JSONObjectWithData:responseObject
                                                                           options:NSJSONReadingMutableContainers
                                                                             error:&error];
              if(error) {
                  NSLog(@"%@", [error localizedDescription]);
                  
              } else {
-                 NSMutableArray *friends_ = [NSMutableArray arrayWithCapacity:friendArray.count];
+                 NSMutableArray *paramList = [responseJson valueForKey:@"params"];
+                 NSMutableArray *friendList = [paramList valueForKey:@"friendsList"];
+                 NSMutableArray *friends_ = [NSMutableArray arrayWithCapacity:friendList.count];
                  
-                 for (int i = 0; i < friendArray.count; i++) {
+                 for (int i = 0; i < friendList.count; i++) {
                      Friend *friend = [[Friend alloc] init];
-                     friend.code = [[friendArray objectAtIndex:i] valueForKey:@"code"];
-                     //friend.name = [[friendArray objectAtIndex:i] valueForKey:@"name"];
+                     friend.code = [[friendList objectAtIndex:i] valueForKey:@"f_code"];
                      [friends_ addObject:friend];
                  }
                  self.friends = friends_;

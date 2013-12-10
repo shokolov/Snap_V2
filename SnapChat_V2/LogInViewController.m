@@ -36,7 +36,7 @@
     // 등록된 유저 아이디가 없을 경우, 서버에서는 자동으로 신규 등록을 해버린다.
     NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
   //  NSString *testLoginId = [token substringToIndex:10];
-    NSString *testLoginId = @"shokolov";
+    NSString *testLoginId = @"andev";
     [account setText:testLoginId];
 }
 
@@ -67,6 +67,9 @@
                  NSString *string = [[NSString alloc] initWithData:responseObject
                                                           encoding:NSUTF8StringEncoding];
                  NSLog(@"RESPONSE: %@", string);
+                 
+                 // 아이디를 저장해 둔다
+                 [[NSUserDefaults standardUserDefaults] setObject:account.text forKey:@"LOGIN_ID"];
                  
                  [self performSegueWithIdentifier:@"cameraSegue" sender:self];
                  

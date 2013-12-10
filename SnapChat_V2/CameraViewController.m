@@ -264,10 +264,12 @@
     NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
     NSString *testLoginId = [token substringToIndex:10];
 
-    NSDictionary *parameters = @{ @"code": testLoginId, @"friendList": friendList, @"secInfo":secString };
+    NSDictionary *parameters = @{@"send_code ": testLoginId,
+                                 @"receive_code": [friendList objectAtIndex:0],
+                                 @"sec":secString };
     
     NSData *imageData = UIImageJPEGRepresentation(sendImage, 0.5);
-    [manager POST:@"http://211.239.124.234:13405/send"
+    [manager POST:@"http://54.238.237.80/sendMsg"
        parameters:parameters
        constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
            
