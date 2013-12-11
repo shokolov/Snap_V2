@@ -70,6 +70,7 @@
                  NSLog(@"RESPONSE: %@", [[jsonObject valueForKey:@"params"] valueForKey:@"login"]);
                  if([[[jsonObject valueForKey:@"params"] valueForKey:@"login"]
                      isEqualToString:@"success"]) {
+                     /*
                      NSError *error;
                      NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                      NSString *oldUsername = [defaults objectForKey:@"USERNAME"];
@@ -78,6 +79,9 @@
                      }
                      [defaults setObject:account.text forKey:@"USERNAME"];
                      [SFHFKeychainUtils storeUsername:account.text andPassword:password.text forServiceName:@"SnapChatApp" updateExisting:YES error:&error];
+                      */
+                     
+                     [[NSUserDefaults standardUserDefaults] setObject:account.text forKey:@"LOGIN_ID"];
 
                      [self performSegueWithIdentifier:@"cameraSegue" sender:self];
                  } else {
