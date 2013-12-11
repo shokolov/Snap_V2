@@ -8,6 +8,7 @@
 
 #import "LogInViewController.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "SFHFKeychainUtils.h"
 
 @interface LogInViewController ()
 
@@ -34,10 +35,9 @@
     // TODO 安
     // 테스트용으로 유저 아이디를 입력(유저 아이디:알림 토큰의 10자리, 비밀번호는 무시)
     // 등록된 유저 아이디가 없을 경우, 서버에서는 자동으로 신규 등록을 해버린다.
-    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
-  //  NSString *testLoginId = [token substringToIndex:10];
     NSString *testLoginId = @"shokolov";
     [account setText:testLoginId];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,13 +63,27 @@
         [manager POST:@"http://54.238.237.80/login"
           parameters:parameters
              success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                 
+
                  NSString *string = [[NSString alloc] initWithData:responseObject
                                                           encoding:NSUTF8StringEncoding];
-                 NSLog(@"RESPONSE: %@", string);
-                 
-                 [self performSegueWithIdentifier:@"cameraSegue" sender:self];
-                 
+                 NSArray *jsonObject = [NSJSONSerialization JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding]options:0 error:NULL];
+                 NSLog(@"RESPONSE: %@", [[jsonObject valueForKey:@"params"] valueForKey:@"login"]);
+                 if([[[jsonObject valueForKey:@"params"] valueForKey:@"login"]
+                     isEqualToString:@"success"]) {
+                     NSError *error;
+                     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                     NSString *oldUsername = [defaults objectForKey:@"USERNAME"];
+                     if (![oldUsername isEqualToString:account.text]) {
+                          [SFHFKeychainUtils deleteItemForUsername:oldUsername andServiceName:@"SnapChatApp" error:&error];
+                     }
+                     [defaults setObject:account.text forKey:@"USERNAME"];
+                     [SFHFKeychainUtils storeUsername:account.text andPassword:password.text forServiceName:@"SnapChatApp" updateExisting:YES error:&error];
+
+                     [self performSegueWithIdentifier:@"cameraSegue" sender:self];
+                 } else {
+                     
+                 }
+
              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                  NSLog(@"Error: %@", error);
              }

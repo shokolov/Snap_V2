@@ -7,6 +7,7 @@
 //
 
 #import "AppStoreExViewController.h"
+#import "CameraViewController.h"
 
 @interface AppStoreExViewController ()
 
@@ -17,6 +18,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *oldUsername = [defaults objectForKey:@"USERNAME"];
+    NSLog(@"UserName:%@", oldUsername);
+    if(oldUsername !=NULL) {
+        cameraController = [self.storyboard instantiateViewControllerWithIdentifier:@"Camera"];
+        [self.navigationController pushViewController:cameraController animated:YES];
+    }
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

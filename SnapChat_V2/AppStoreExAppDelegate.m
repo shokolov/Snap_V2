@@ -7,6 +7,7 @@
 //
 
 #import "AppStoreExAppDelegate.h"
+#import "SFHFKeychainUtils.h"
 
 @implementation AppStoreExAppDelegate
 
@@ -54,6 +55,11 @@
 {
     NSLog(@"applicationWillTerminate");
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    NSError *error;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *oldUsername = [defaults objectForKey:@"USERNAME"];
+    [SFHFKeychainUtils deleteItemForUsername:oldUsername andServiceName:@"SnapChatApp" error:&error];
+    
 }
 
 // 알림 키
