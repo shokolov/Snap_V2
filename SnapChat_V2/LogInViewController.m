@@ -35,7 +35,7 @@
     // TODO 安
     // 테스트용으로 유저 아이디를 입력(유저 아이디:알림 토큰의 10자리, 비밀번호는 무시)
     // 등록된 유저 아이디가 없을 경우, 서버에서는 자동으로 신규 등록을 해버린다.
-    NSString *testLoginId = @"shokolov";
+    NSString *testLoginId = @"andev";
     [account setText:testLoginId];
     [password setText:testLoginId];
 }
