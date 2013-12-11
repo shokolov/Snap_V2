@@ -65,9 +65,6 @@
     
     NSDictionary *history = (self.historyList)[indexPath.row];
     
-    // TODO: 安
-    // 비월님 서버연결 여기서 작업 멈췄음. 서버 사양 수정 필요. '업로드'쪽이 확인이 먼저 끝나면 그 쪽을 구현해도 좋고.
-    
     // 수신, 송신 표시
     NSString *typeText = @"";
     if ([[history valueForKey:@"type"] intValue] == 0) {
@@ -76,20 +73,24 @@
         typeText = @"から受信";
     } else if ([[history valueForKey:@"type"] intValue] == 1) {
         cell.typeLabel.text = @"⇒";
-        cell.getButton.hidden = YES;
+        // TODO 安 되돌릴것
+        //cell.getButton.hidden = YES;
+        cell.getButton.hidden = NO;
         typeText = @"から受信";
     } else {
         cell.typeLabel.text = @"←";
-        cell.getButton.hidden = YES;
+        // TODO 安 되돌릴것
+        //cell.getButton.hidden = YES;
+        cell.getButton.hidden = NO;
         typeText = @"に送信";
     }
     
     // 내용(송수신 아이디)
-    NSString *content = [history valueForKey:@"code"];
+    NSString *content = [history valueForKey:@"target"];
     content = [content stringByAppendingString:typeText];
     
     // 시간
-    double unixTimeStamp =[[history valueForKey:@"time"] doubleValue];
+    double unixTimeStamp =[[history valueForKey:@"createdt"] doubleValue];
     NSTimeInterval timeInterval=unixTimeStamp/1000;
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
     NSDateFormatter *dateformatter=[[NSDateFormatter alloc]init];
@@ -101,9 +102,9 @@
     cell.dateLabel.text = dateString;
     
     // 이미지 표시 시간, _id, url을 저장
-    cell.sec = [history valueForKey:@"sec"];
-    cell._id = [history valueForKey:@"_id"];
-    cell.url = [history valueForKey:@"url"];
+    cell.sec = [@([[history valueForKey:@"sec"] integerValue]) stringValue];
+    //cell._id = [history valueForKey:@"_id"];
+    cell.url = [history valueForKey:@"img"];
     return cell;
 }
 
@@ -120,9 +121,7 @@
     // 서버 연결이 안될 경우를 대비해서 디폴트 이미지를 먼저 셋팅
     UIImage *image = [UIImage imageNamed: @"download_001.png"];
     
-    NSString *imageUrl = @"http://an.just4fun.co.kr:13405/image/";
-    NSString *imageName = [(HistoryCell *)sender url];
-    imageUrl = [imageUrl stringByAppendingString:imageName];
+    NSString *imageUrl = [(HistoryCell *)sender url];
 
     NSURL *url = [NSURL URLWithString:imageUrl];
     NSData *data = [NSData dataWithContentsOfURL:url];

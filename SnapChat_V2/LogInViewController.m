@@ -38,6 +38,7 @@
   //  NSString *testLoginId = [token substringToIndex:10];
     NSString *testLoginId = @"andev";
     [account setText:testLoginId];
+    [password setText:testLoginId];
 }
 
 - (void)didReceiveMemoryWarning

@@ -204,6 +204,8 @@
     }
     
     // TODO 安: 확인한 챗은 _id를 서버로 전송할 것
+    // 비월님 서버에 아직 구현이 안된 관계로 일단 주석 처리
+    /*
     NSLog(@"%@", _id);
     NSString *completeUrl = @"http://an.just4fun.co.kr:13405/complete/";
     completeUrl = [completeUrl stringByAppendingString:_id];
@@ -214,6 +216,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+     */
 }
 
 - (void)uploadPicture:(NSNotification*)notification
@@ -259,16 +262,18 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString *secString = [@(secInfo) stringValue];
     
-    // TODO 安
-    // 테스트용으로 유저 아이디를 입력(유저 아이디:알림 토큰의 10자리, 비밀번호는 무시)
+    NSString *loginId = [[NSUserDefaults standardUserDefaults] stringForKey:@"LOGIN_ID"];
     NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
-    NSString *testLoginId = [token substringToIndex:10];
-
-    NSDictionary *parameters = @{@"send_code ": testLoginId,
-                                 @"receive_code": [friendList objectAtIndex:0],
-                                 @"sec":secString };
+    
+    NSDictionary *parameters = @{@"send_code ": loginId,
+                                 @"target": [friendList objectAtIndex:0],
+                                 @"sec":secString,
+                                 @"token":token};
     
     NSData *imageData = UIImageJPEGRepresentation(sendImage, 0.5);
+    
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
     [manager POST:@"http://54.238.237.80/sendMsg"
        parameters:parameters
        constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -316,19 +321,15 @@
                  NSMutableArray *paramList = [responseJson valueForKey:@"params"];
                  historyArray = [paramList valueForKey:@"messageList"];
                  
-                 // TODO 安: 비월님 서버 연결하면서 히스토리 뱃지 카운드 갱신 부분은 주석 처리
-                 
                  // 미확인 메시지 건수를 취득해서, 히스토리 버튼의 뱃지 카운트를 갱신한다.
-                 /*
                  int newChatCount = 0;
                  for (int i = 0; i < historyArray.count; i++) {
-                     NSString *chatType = [[historyArray objectAtIndex:i] valueForKey:@"isnew"];
+                     NSString *chatType = [[historyArray objectAtIndex:i] valueForKey:@"type"];
                      if ([chatType isEqualToString:@"0"]) {
                          newChatCount++;
                      }
                  }
                  historyBadge.value = newChatCount;
-                 */
                  
                  // 데이터를 가져온 후, 버튼을 활성화 시킨다.
                  historyButton.enabled = YES;
