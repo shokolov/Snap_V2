@@ -30,16 +30,10 @@
     [super viewDidLoad];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    // TODO 安
-    // 테스트용으로 유저 아이디를 입력(유저 아이디:알림 토큰의 10자리, 비밀번호는 무시)
-    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
-    NSString *testLoginId = @"shokolov";
-    
-    NSDictionary *parameters = @{@"code": testLoginId};
-    parameters = @{@"token": token};
-    parameters = @{@"password": @"password"};
-    [manager POST:@"http://54.238.237.80/login"
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *username = [defaults objectForKey:@"USERNAME"];
+    NSDictionary *parameters = @{@"code": username};
+    [manager POST:@"http://54.238.237.80/friend_selectList"
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              

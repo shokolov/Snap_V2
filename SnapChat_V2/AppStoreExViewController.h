@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CameraViewController.h"
 
-@interface AppStoreExViewController : UIViewController
+@interface AppStoreExViewController : UIViewController{
+    CameraViewController *cameraController;
+}
+
 
 @end

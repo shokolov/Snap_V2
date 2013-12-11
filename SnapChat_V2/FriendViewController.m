@@ -47,13 +47,10 @@ NSString *CellIdentifier = @"FriendCell";
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    // TODO 安
-    // 테스트용으로 유저 아이디를 입력(유저 아이디:알림 토큰의 10자리, 비밀번호는 무시)
-    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"DEVICE_TOKEN"];
-    NSString *testLoginId = [token substringToIndex:10];
-    
-    NSDictionary *parameters = @{@"code": testLoginId};
-    
+    //NSDictionary *parameters = @{@"code": testLoginId};
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *username = [defaults objectForKey:@"USERNAME"];
+    NSDictionary *parameters = @{@"code": username};
     [manager GET:@"http://211.239.124.234:13405/friend"
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
