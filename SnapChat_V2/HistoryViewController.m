@@ -68,21 +68,19 @@
     // 수신, 송신 표시
     NSString *typeText = @"";
     if ([[history valueForKey:@"type"] intValue] == 0) {
-        cell.typeLabel.text = @"⇒";
-        cell.getButton.hidden = NO;
-        typeText = @"から受信";
+        cell.typeLabel.text = @"←";
+        cell.getButton.hidden = YES;
+        typeText = @"に送信";
+        
     } else if ([[history valueForKey:@"type"] intValue] == 1) {
         cell.typeLabel.text = @"⇒";
-        // TODO 安 되돌릴것
-        //cell.getButton.hidden = YES;
         cell.getButton.hidden = NO;
         typeText = @"から受信";
+        
     } else {
-        cell.typeLabel.text = @"←";
-        // TODO 安 되돌릴것
-        //cell.getButton.hidden = YES;
-        cell.getButton.hidden = NO;
-        typeText = @"に送信";
+        cell.typeLabel.text = @"⇒";
+        cell.getButton.hidden = YES;
+        typeText = @"から受信";
     }
     
     // 내용(송수신 아이디)
@@ -103,7 +101,7 @@
     
     // 이미지 표시 시간, _id, url을 저장
     cell.sec = [@([[history valueForKey:@"sec"] integerValue]) stringValue];
-    //cell._id = [history valueForKey:@"_id"];
+    cell._id = [history valueForKey:@"msghistoryseq"];
     cell.url = [history valueForKey:@"img"];
     return cell;
 }
