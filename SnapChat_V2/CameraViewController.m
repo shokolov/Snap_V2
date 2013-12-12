@@ -203,20 +203,39 @@
         [UIApplication sharedApplication].applicationIconBadgeNumber--;
     }
     
-    // TODO 安: 확인한 챗은 _id를 서버로 전송할 것
-    // 비월님 서버에 아직 구현이 안된 관계로 일단 주석 처리
-    /*
+    // 확인한 챗은 _id를 서버로 전송
     NSLog(@"%@", _id);
-    NSString *completeUrl = @"http://an.just4fun.co.kr:13405/complete/";
-    completeUrl = [completeUrl stringByAppendingString:_id];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:completeUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-     */
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSString *loginId = [[NSUserDefaults standardUserDefaults] stringForKey:@"LOGIN_ID"];
+    
+    NSDictionary *parameters = @{@"code":loginId, @"msghistoryseq":_id};
+    [manager POST:@"http://54.238.237.80/updateReadStatus"
+       parameters:parameters
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              
+              NSString *string = [[NSString alloc] initWithData:responseObject
+                                                       encoding:NSUTF8StringEncoding];
+              NSLog(@"JSON2: %@", string);
+              
+              NSError *error;
+              NSMutableArray *responseJson = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                             options:NSJSONReadingMutableContainers
+                                                                               error:&error];
+              if(error) {
+                  NSLog(@"%@", [error localizedDescription]);
+                  
+              } else {
+                  NSMutableArray *paramList = [responseJson valueForKey:@"params"];
+                  NSString *result = [paramList valueForKey:@"message"];
+                  
+              }
+          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              NSLog(@"Error: %@", error);
+          }
+     ];
 }
 
 - (void)uploadPicture:(NSNotification*)notification
@@ -286,9 +305,21 @@
        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
            NSLog(@"Success: %@", responseObject);
            historyBadge.value++;
-       
+           
        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
            NSLog(@"Error: %@", error);
+           
+           NSURL *documentDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] objectAtIndex:0];
+           NSURL *tmpDir = [[documentDir URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"tmp" isDirectory:YES];
+           NSLog(@"tmpDir: %@", [tmpDir path]);
+           
+           NSString *fileName = @"pkm";
+           NSURL *fileURL = [tmpDir URLByAppendingPathComponent:fileName isDirectory:NO];
+           fileURL = [fileURL URLByAppendingPathExtension:@"jpg"];
+           
+           [imageData writeToFile:[fileURL absoluteString] atomically:YES];
+           
+           // TODO 安 임시 파일 저장까지 작성, 여기서 히스토리뷰에 '재전송' 표시를 지시해야 할 듯
        }
      ];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"RETAKE_PICTURE" object:nil userInfo:nil];
@@ -325,7 +356,7 @@
                  int newChatCount = 0;
                  for (int i = 0; i < historyArray.count; i++) {
                      NSString *chatType = [[historyArray objectAtIndex:i] valueForKey:@"type"];
-                     if ([chatType isEqualToString:@"0"]) {
+                     if ([chatType isEqualToString:@"1"]) {
                          newChatCount++;
                      }
                  }
