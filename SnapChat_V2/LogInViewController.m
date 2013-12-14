@@ -81,7 +81,13 @@
 
                      [self performSegueWithIdentifier:@"cameraSegue" sender:self];
                  } else {
-                     
+                     UIAlertView *alert = [[UIAlertView alloc]
+                                           initWithTitle:@"ログイン情報ちがうで！"
+                                           message:@"IDとpassword確認してね"
+                                           delegate:self
+                                           cancelButtonTitle:@"OK！" otherButtonTitles:nil];
+                     [alert show];
+
                  }
 
              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
