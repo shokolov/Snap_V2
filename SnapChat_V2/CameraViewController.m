@@ -315,7 +315,7 @@
            NSLog(@"Error: %@", error);
            
            // 전송 실패시에는, 첫 전송일 경우에만 전송 실패 목록에 추가를 한다.
-           if (!isReUpload) {
+           //if (!isReUpload) {
                
                // TODO 安: 서버쪽에서 friendList 리스트 파라메타 대응 후에는, 1명당 송신 실패 이력이 나오도록 for문을 추가해 준다.
                NSURL *documentDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] objectAtIndex:0];
@@ -357,7 +357,7 @@
                
                // 테이블뷰에 넣어준다.
                [missArray addObject:missInfo];
-           }
+           //}
        }
      ];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"RETAKE_PICTURE" object:nil userInfo:nil];

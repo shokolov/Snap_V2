@@ -66,7 +66,7 @@
     // 전송 실패 건을 가장 테이블 가장 위에 표시
     NSDictionary *history = nil;
     if (self.missList.count < indexPath.row + 1) {
-        int missListCount = [self.missList count];
+        NSInteger missListCount = [self.missList count];
         history = (self.historyList)[indexPath.row - missListCount];
     } else {
         history = (self.missList)[indexPath.row];
@@ -119,10 +119,9 @@
     cell.contentLabel.text = content;
     cell.dateLabel.text = dateString;
     
-    // 이미지 표시 시간, _id을 저장
+    // 그 밖에 필요한 정보를 저장
     cell.sec = [@([[history valueForKey:@"sec"] integerValue]) stringValue];
     cell._id = [history valueForKey:@"msghistoryseq"];
-    
     return cell;
 }
 
@@ -131,16 +130,9 @@
     NSLog(@"HistoryViewController.chatAction");
 }
 
-- (IBAction)uploadAction:(id)sender {
+- (IBAction)uploadAction:(id)sender
+{
     NSLog(@"HistoryViewController.uploadAction");
-    
-    NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [sender valueForKey:@"target"], @"target",
-                                  [sender valueForKey:@"sec"], @"sec",
-                                  [sender valueForKey:@"img"], @"img",
-                                  true, @"missUpload",
-                                  nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UPLOAD_PICTURE" object:nil userInfo:infoToObject];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -178,7 +170,29 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HistoryCell *cell = (HistoryCell*)[tableView cellForRowAtIndexPath:indexPath];
-    if (cell.getButton.isHidden == NO || cell.uploadButton.isHidden == NO) {
+    if (cell.uploadButton.isHidden == NO) {
+        NSDictionary *history = (self.missList)[indexPath.row];
+        
+        NSString *forceUrlstring = [NSString stringWithFormat:@"%@", [history valueForKey:@"img"]];
+        NSURL *url = [NSURL URLWithString:forceUrlstring];
+        NSString *path = [url path];
+        NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
+        UIImage *image = [[UIImage alloc] initWithData:data];
+    
+        NSMutableArray *target = [[NSMutableArray alloc] initWithObjects:[history valueForKey:@"target"], nil];
+        NSDictionary *parameters = @{@"target": target,
+                                     @"sec":[history valueForKey:@"sec"],
+                                     @"img":image,
+                                     @"missUpload":@true};
+        
+        // missList에서 항목 삭제랑 로컬 이미지 파일을 지워준다.
+        [self.missList removeObjectAtIndex:indexPath.row];
+        NSFileManager *file = [[NSFileManager alloc] init];
+        [file removeItemAtPath:path error:nil];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UPLOAD_PICTURE" object:nil userInfo:parameters];
+        
+    } else if (cell.getButton.isHidden == NO) {
         [self performSegueWithIdentifier:@"chatSegue" sender:cell];
     }
 }
