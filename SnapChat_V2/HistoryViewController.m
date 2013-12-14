@@ -188,7 +188,12 @@
         // missList에서 항목 삭제랑 로컬 이미지 파일을 지워준다.
         [self.missList removeObjectAtIndex:indexPath.row];
         NSFileManager *file = [[NSFileManager alloc] init];
-        [file removeItemAtPath:path error:nil];
+        
+        NSError *error;
+        [file removeItemAtPath:path error:&error];
+        if (error) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UPLOAD_PICTURE" object:nil userInfo:parameters];
         
