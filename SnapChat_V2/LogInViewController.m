@@ -79,7 +79,7 @@
                       */
                      
                      [[NSUserDefaults standardUserDefaults] setObject:account.text forKey:@"LOGIN_ID"];
-
+                     
                      [self performSegueWithIdentifier:@"cameraSegue" sender:self];
                  } else {
                      

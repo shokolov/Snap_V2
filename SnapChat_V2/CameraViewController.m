@@ -22,6 +22,7 @@
     UIImage *takenImage;
     MKNumberBadgeView *historyBadge;
     NSMutableArray *historyArray;
+    NSMutableArray *missArray;
 }
 
 @synthesize flashButton, frontButton, historyButton;
@@ -30,7 +31,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -184,6 +185,7 @@
     } else if ([[segue identifier] isEqualToString: @"historySegue"]) {
         HistoryViewController *historyViewController = (HistoryViewController *)[segue destinationViewController];
         [historyViewController setHistoryList:historyArray];
+        [historyViewController setMissList:missArray];
     }
 }
 
@@ -230,6 +232,7 @@
               } else {
                   NSMutableArray *paramList = [responseJson valueForKey:@"params"];
                   NSString *result = [paramList valueForKey:@"message"];
+                  NSLog(@"JSON: %@", result);
                   
               }
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -242,13 +245,14 @@
 {
     if(notification) {
         NSDictionary* infoToObject = [notification userInfo];
-        NSArray *friendList = (NSArray *)[infoToObject valueForKey:@"selectedFriends"];
-        NSInteger secInfo = [[infoToObject valueForKey:@"selectedSec"] intValue];
-        UIImage *sendImage = (UIImage *)[infoToObject valueForKey:@"sendImage"];
+        NSArray *friendList = (NSArray *)[infoToObject valueForKey:@"target"];
+        NSInteger secInfo = [[infoToObject valueForKey:@"sec"] intValue];
+        UIImage *sendImage = (UIImage *)[infoToObject valueForKey:@"img"];
+        bool missUpload = [infoToObject valueForKey:@"missUpload"];
         
         [self presentViewController:imagePickerController animated:YES completion:nil];
         
-        [self upload:friendList secInfo:secInfo sendImage:sendImage];
+        [self upload:friendList secInfo:secInfo sendImage:sendImage isReUpload:missUpload];
     }
     
 }
@@ -275,7 +279,7 @@
 
 #pragma mark - private
 
-- (void)upload:(NSArray*)friendList secInfo:(NSInteger)secInfo sendImage:(UIImage*)sendImage
+- (void)upload:(NSArray*)friendList secInfo:(NSInteger)secInfo sendImage:(UIImage*)sendImage isReUpload:(Boolean)isReUpload
 {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -286,6 +290,7 @@
     
     NSDictionary *parameters = @{@"send_code ": loginId,
                                  @"target": [friendList objectAtIndex:0],
+                                 //@"target": friendList,
                                  @"sec":secString,
                                  @"token":token};
     
@@ -293,7 +298,7 @@
     
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
-    [manager POST:@"http://54.238.237.80/sendMsg"
+    [manager POST:@"http://54.238.237.80/sendMsg_"
        parameters:parameters
        constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
            
@@ -309,17 +314,50 @@
        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
            NSLog(@"Error: %@", error);
            
-           NSURL *documentDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] objectAtIndex:0];
-           NSURL *tmpDir = [[documentDir URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"tmp" isDirectory:YES];
-           NSLog(@"tmpDir: %@", [tmpDir path]);
-           
-           NSString *fileName = @"pkm";
-           NSURL *fileURL = [tmpDir URLByAppendingPathComponent:fileName isDirectory:NO];
-           fileURL = [fileURL URLByAppendingPathExtension:@"jpg"];
-           
-           [imageData writeToFile:[fileURL absoluteString] atomically:YES];
-           
-           // TODO 安 임시 파일 저장까지 작성, 여기서 히스토리뷰에 '재전송' 표시를 지시해야 할 듯
+           // 전송 실패시에는, 첫 전송일 경우에만 전송 실패 목록에 추가를 한다.
+           if (!isReUpload) {
+               
+               // TODO 安: 서버쪽에서 friendList 리스트 파라메타 대응 후에는, 1명당 송신 실패 이력이 나오도록 for문을 추가해 준다.
+               NSURL *documentDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] objectAtIndex:0];
+               NSURL *tmpDir = [[documentDir URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"tmp" isDirectory:YES];
+               
+               NSLog(@"tmpDir: %@", [tmpDir path]);
+               
+               NSNumber *now = [NSNumber numberWithDouble:CACurrentMediaTime()];
+               NSString *fileName = now.stringValue;
+               NSURL *fileURL = [tmpDir URLByAppendingPathComponent:fileName isDirectory:NO];
+               fileURL = [fileURL URLByAppendingPathExtension:@"jpg"];
+               
+               if ([imageData writeToFile:[fileURL path] atomically:YES]) {
+                   NSLog(@"Oh, no~~~~~");
+               }
+               
+               // 히스토리 버튼의 뱃지 카운트를 +1
+               historyBadge.value++;
+               
+               // 어플 아이콘의 뱃지 카운트를 +1
+               [UIApplication sharedApplication].applicationIconBadgeNumber++;
+               
+               // 전송 실패의 셀 정보를 만들어준다.
+               NSDictionary *missInfo = @{@"type": @"99",
+                                          @"target": [friendList objectAtIndex:0],
+                                          //@"target": friendList,
+                                          @"createdt":[@(CACurrentMediaTime()) stringValue],
+                                          @"sec":secString,
+                                          @"img":fileURL};
+               
+               // 로컬에 저장되어 있는 전송 실패 리스트를 가져와서, 이번 전송 실패건을 추가해준다
+               NSMutableArray *missList = [[NSUserDefaults standardUserDefaults] objectForKey:@"MISS_LIST"];
+               if (missList == nil) {
+                   missArray = [[NSMutableArray alloc] init];
+               }
+               
+               [missList addObject:missInfo];
+               [[NSUserDefaults standardUserDefaults] setObject:missList forKey:@"MISS_LIST"];
+               
+               // 테이블뷰에 넣어준다.
+               [missArray addObject:missInfo];
+           }
        }
      ];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"RETAKE_PICTURE" object:nil userInfo:nil];

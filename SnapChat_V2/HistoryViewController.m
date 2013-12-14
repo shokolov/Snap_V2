@@ -16,7 +16,7 @@
 
 @implementation HistoryViewController
 
-@synthesize historyList;
+@synthesize historyList, missList;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -51,7 +51,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.historyList count];
+    return [self.historyList count] + [self.missList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -63,23 +63,43 @@
         cell = [[HistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary *history = (self.historyList)[indexPath.row];
+    // 전송 실패 건을 가장 테이블 가장 위에 표시
+    NSDictionary *history = nil;
+    if (self.missList.count < indexPath.row + 1) {
+        int missListCount = [self.missList count];
+        history = (self.historyList)[indexPath.row - missListCount];
+    } else {
+        history = (self.missList)[indexPath.row];
+    }
     
     // 수신, 송신 표시
     NSString *typeText = @"";
-    if ([[history valueForKey:@"type"] intValue] == 0) {
+    if ([[history valueForKey:@"type"] isEqualToString:@"99"]) {
+        cell.url = [history valueForKey:@"img"];
+        cell.typeLabel.text = @"!";
+        cell.getButton.hidden = YES;
+        cell.uploadButton.hidden = NO;
+        typeText = @"へ失敗";
+        
+    } else if ([[history valueForKey:@"type"] isEqualToString:@"0"]) {
+        cell.url = [history valueForKey:@"img"];
         cell.typeLabel.text = @"←";
         cell.getButton.hidden = YES;
+        cell.uploadButton.hidden = YES;
         typeText = @"に送信";
         
-    } else if ([[history valueForKey:@"type"] intValue] == 1) {
+    } else if ([[history valueForKey:@"type"] isEqualToString:@"1"]) {
+        cell.url = [history valueForKey:@"img"];
         cell.typeLabel.text = @"⇒";
         cell.getButton.hidden = NO;
+        cell.uploadButton.hidden = YES;
         typeText = @"から受信";
         
     } else {
+        cell.url = [history valueForKey:@"img"];
         cell.typeLabel.text = @"⇒";
         cell.getButton.hidden = YES;
+        cell.uploadButton.hidden = YES;
         typeText = @"から受信";
     }
     
@@ -99,16 +119,28 @@
     cell.contentLabel.text = content;
     cell.dateLabel.text = dateString;
     
-    // 이미지 표시 시간, _id, url을 저장
+    // 이미지 표시 시간, _id을 저장
     cell.sec = [@([[history valueForKey:@"sec"] integerValue]) stringValue];
     cell._id = [history valueForKey:@"msghistoryseq"];
-    cell.url = [history valueForKey:@"img"];
+    
     return cell;
 }
 
 - (IBAction)chatAction:(id)sender
 {
     NSLog(@"HistoryViewController.chatAction");
+}
+
+- (IBAction)uploadAction:(id)sender {
+    NSLog(@"HistoryViewController.uploadAction");
+    
+    NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [sender valueForKey:@"target"], @"target",
+                                  [sender valueForKey:@"sec"], @"sec",
+                                  [sender valueForKey:@"img"], @"img",
+                                  true, @"missUpload",
+                                  nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UPLOAD_PICTURE" object:nil userInfo:infoToObject];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -121,8 +153,19 @@
     
     NSString *imageUrl = [(HistoryCell *)sender url];
 
-    NSURL *url = [NSURL URLWithString:imageUrl];
-    NSData *data = [NSData dataWithContentsOfURL:url];
+    NSString *forceUrlstring = [NSString stringWithFormat:@"%@", imageUrl];
+    NSURL *url = [NSURL URLWithString:forceUrlstring];
+    NSData *data = nil;
+    
+    if ([NSURL fileURLWithPath:forceUrlstring]) {
+        // 전송 실패했던 이미지를 보는 경우
+        NSString *path = [url path];
+        data = [[NSFileManager defaultManager] contentsAtPath:path];
+        
+    } else {
+        // 수신한 이미지를 보는 경우
+        data = [NSData dataWithContentsOfURL:url];
+    }
     image = [[UIImage alloc] initWithData:data];
     
     // 이미지, 테이블 셀을 전달
@@ -135,7 +178,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HistoryCell *cell = (HistoryCell*)[tableView cellForRowAtIndexPath:indexPath];
-    if (cell.getButton.isHidden == NO) {
+    if (cell.getButton.isHidden == NO || cell.uploadButton.isHidden == NO) {
         [self performSegueWithIdentifier:@"chatSegue" sender:cell];
     }
 }
