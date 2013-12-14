@@ -51,7 +51,7 @@ NSString *CellIdentifier = @"FriendCell";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *username = [defaults objectForKey:@"USERNAME"];
     NSDictionary *parameters = @{@"code": username};
-    [manager GET:@"http://211.239.124.234:13405/friend"
+    [manager POST:@"http://54.238.237.80/friend_selectList"
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              
