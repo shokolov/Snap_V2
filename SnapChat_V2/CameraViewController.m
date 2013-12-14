@@ -298,7 +298,7 @@
     
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
-    [manager POST:@"http://54.238.237.80/sendMsg_"
+    [manager POST:@"http://54.238.237.80/sendMsg"
        parameters:parameters
        constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
            
