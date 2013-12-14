@@ -11,7 +11,9 @@
 @interface HistoryViewController : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *historyList;
+@property (nonatomic, strong) NSMutableArray *missList;
 
 - (IBAction)chatAction:(id)sender;
+- (IBAction)uploadAction:(id)sender;
 
 @end

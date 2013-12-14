@@ -179,6 +179,20 @@ Privacy Policy</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UoI-Dh-JQO">
+                                            <rect key="frame" x="264" y="12" width="36" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="再転">
+                                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="uploadAction:" destination="qnG-Gb-Uh0" eventType="touchUpInside" id="EGW-x3-mu3"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -186,6 +200,7 @@ Privacy Policy</string>
                                     <outlet property="dateLabel" destination="zJw-tN-i6x" id="vbb-Lr-PiW"/>
                                     <outlet property="getButton" destination="h33-wM-tzF" id="jd2-kE-Z07"/>
                                     <outlet property="typeLabel" destination="UsX-kb-rch" id="dJq-xC-4Im"/>
+                                    <outlet property="uploadButton" destination="UoI-Dh-JQO" id="64C-b5-xQO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -397,34 +412,6 @@ Privacy Policy</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i01-xB-xpu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1607" y="-618"/>
-        </scene>
-        <!--Table View Controller-->
-        <scene sceneID="ymo-PZ-35d">
-            <objects>
-                <tableViewController id="0KP-Pt-WII" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="NaU-GI-5MG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="pIJ-Sx-Jtc">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pIJ-Sx-Jtc" id="wfH-VR-uiv">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="0KP-Pt-WII" id="qYK-Xd-Rvj"/>
-                            <outlet property="delegate" destination="0KP-Pt-WII" id="Olw-7F-Oi1"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oR1-zx-idN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2033" y="-1855"/>
         </scene>
         <!--Friend View Controller-->
         <scene sceneID="8Ro-VA-nrg">

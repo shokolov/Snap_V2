@@ -75,8 +75,11 @@
 {
     [timer invalidate];
     [historyCell.getButton setHidden:YES];
-    NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:historyCell._id, @"_id", nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"COMPLETE_CHAT" object:nil userInfo:infoToObject];
+    
+    if (historyCell._id != nil) {
+        NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:historyCell._id, @"_id", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"COMPLETE_CHAT" object:nil userInfo:infoToObject];
+    }
 }
 
 - (void)countdown

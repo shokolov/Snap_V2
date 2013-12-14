@@ -32,12 +32,9 @@
 {
     [super viewDidLoad];
 	
-    // TODO 安
-    // 테스트용으로 유저 아이디를 입력(유저 아이디:알림 토큰의 10자리, 비밀번호는 무시)
-    // 등록된 유저 아이디가 없을 경우, 서버에서는 자동으로 신규 등록을 해버린다.
-    NSString *testLoginId = @"shokolov";
+    NSString *testLoginId = @"andev";
     [account setText:testLoginId];
-    
+    [password setText:testLoginId];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,6 +67,7 @@
                  NSLog(@"RESPONSE: %@", [[jsonObject valueForKey:@"params"] valueForKey:@"login"]);
                  if([[[jsonObject valueForKey:@"params"] valueForKey:@"login"]
                      isEqualToString:@"success"]) {
+                     /*
                      NSError *error;
                      NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                      NSString *oldUsername = [defaults objectForKey:@"USERNAME"];
@@ -78,7 +76,10 @@
                      }
                      [defaults setObject:account.text forKey:@"USERNAME"];
                      [SFHFKeychainUtils storeUsername:account.text andPassword:password.text forServiceName:@"SnapChatApp" updateExisting:YES error:&error];
-
+                      */
+                     
+                     [[NSUserDefaults standardUserDefaults] setObject:account.text forKey:@"LOGIN_ID"];
+                     
                      [self performSegueWithIdentifier:@"cameraSegue" sender:self];
                  } else {
                      UIAlertView *alert = [[UIAlertView alloc]

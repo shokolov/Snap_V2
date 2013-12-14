@@ -133,7 +133,12 @@
             [selectedFriends addObject: friend.code];
         }
         
-        NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:selectedFriends, @"selectedFriends", secInfo, @"selectedSec", sendImage, @"sendImage", nil];
+        NSDictionary *infoToObject = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      selectedFriends, @"target",
+                                      secInfo, @"sec",
+                                      sendImage, @"img",
+                                      false, @"missUpload",
+                                      nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UPLOAD_PICTURE" object:nil userInfo:infoToObject];
     }];
 }

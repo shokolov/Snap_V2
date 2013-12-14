@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *getButton;
+@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
+
 @property NSString *sec;
 @property NSString *_id;
 @property NSString *url;

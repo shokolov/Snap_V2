@@ -38,6 +38,7 @@
 		68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A29C4A1827E72700D8E6D2 /* CameraViewController.m */; };
 		68DE914D1841BBE6001635AD /* SelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE914C1841BBE6001635AD /* SelectViewController.m */; };
 		68DE919118425A88001635AD /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE919018425A88001635AD /* HistoryViewController.m */; };
+		68E108941858BEF40096C88E /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E108931858BEF40096C88E /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,8 @@
 		68DE914C1841BBE6001635AD /* SelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectViewController.m; sourceTree = "<group>"; };
 		68DE918F18425A88001635AD /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		68DE919018425A88001635AD /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		68E108921858BEF40096C88E /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		68E108931858BEF40096C88E /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		A2227F3D6A884D75A1185C5C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -453,7 +456,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: YOUNGMO AN (CXA4P2TES6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YOUNGMO AN (CXA4P2TES6)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -471,6 +475,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "344F0406-5F5F-4467-A4F1-F64633705874";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -492,7 +497,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: YOUNGMO AN (CXA4P2TES6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YOUNGMO AN (CXA4P2TES6)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -503,6 +509,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "344F0406-5F5F-4467-A4F1-F64633705874";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
