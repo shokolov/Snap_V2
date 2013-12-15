@@ -18,7 +18,7 @@ profile
 DerivedData
 *.hmap
 *.xccheckout
-
+SnapChat_V2/SnapChat_V2-Info.plist
 # CocoaPods
 Pods/
 

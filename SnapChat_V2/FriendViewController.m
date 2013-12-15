@@ -49,7 +49,7 @@ NSString *CellIdentifier = @"FriendCell";
     
     //NSDictionary *parameters = @{@"code": testLoginId};
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *username = [defaults objectForKey:@"USERNAME"];
+    NSString *username = [defaults objectForKey:@"LOGIN_ID"];
     NSDictionary *parameters = @{@"code": username};
     [manager POST:@"http://54.238.237.80/friend_selectList"
       parameters:parameters
@@ -65,14 +65,15 @@ NSString *CellIdentifier = @"FriendCell";
                                                                              error:&error];
              if(error) {
                  NSLog(@"%@", [error localizedDescription]);
-                 
              } else {
+                 NSArray *jsonObject = [NSJSONSerialization JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding]options:0 error:NULL];
+                 NSLog(@"FriendList : @%", friendArray);
                  NSMutableArray *friends_ = [NSMutableArray arrayWithCapacity:friendArray.count];
-                 
+                 NSLog(@"RESPONSE: %@", [[jsonObject valueForKey:@"params"] valueForKey:@"friendsList"]);
+
                  for (int i = 0; i < friendArray.count; i++) {
                      Friend *friend = [[Friend alloc] init];
                      friend.code = [[friendArray objectAtIndex:i] valueForKey:@"code"];
-                   //  friend.name = [[friendArray objectAtIndex:i] valueForKey:@"name"];
                      [friends_ addObject:friend];
                  }
                  self.friends = friends_;

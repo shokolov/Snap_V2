@@ -7,7 +7,6 @@
 //
 
 #import "AppStoreExAppDelegate.h"
-#import "SFHFKeychainUtils.h"
 
 @implementation AppStoreExAppDelegate
 
@@ -55,11 +54,9 @@
 {
     NSLog(@"applicationWillTerminate");
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    NSError *error;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *oldUsername = [defaults objectForKey:@"USERNAME"];
-    [SFHFKeychainUtils deleteItemForUsername:oldUsername andServiceName:@"SnapChatApp" error:&error];
-    
+    [defaults removeObjectForKey:@"LOGIN_ID"];
+
 }
 
 // 알림 키
@@ -91,7 +88,7 @@
     else if (rntypes == UIRemoteNotificationTypeAlert) {
         pushAlert = @"enabled";
     }
-    
+
     else if (rntypes == UIRemoteNotificationTypeSound) {
         pushSound = @"enabled";
     }

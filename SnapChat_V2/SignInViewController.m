@@ -57,7 +57,7 @@
               NSString *string = [[NSString alloc] initWithData:responseObject
                                                        encoding:NSUTF8StringEncoding];
               NSLog(@"RESPONSE: %@", string);
-              
+              [[NSUserDefaults standardUserDefaults] setObject:account.text forKey:@"LOGIN_ID"];
               cameraController = [self.storyboard instantiateViewControllerWithIdentifier:@"Camera"];
               [self.navigationController pushViewController:cameraController animated:YES];
               

@@ -8,7 +8,6 @@
 
 #import "LogInViewController.h"
 #import "AFHTTPRequestOperationManager.h"
-#import "SFHFKeychainUtils.h"
 
 @interface LogInViewController ()
 
@@ -32,7 +31,7 @@
 {
     [super viewDidLoad];
 	
-    NSString *testLoginId = @"andev";
+    NSString *testLoginId = @"shokolov";
     [account setText:testLoginId];
     [password setText:testLoginId];
 }
@@ -67,16 +66,6 @@
                  NSLog(@"RESPONSE: %@", [[jsonObject valueForKey:@"params"] valueForKey:@"login"]);
                  if([[[jsonObject valueForKey:@"params"] valueForKey:@"login"]
                      isEqualToString:@"success"]) {
-                     /*
-                     NSError *error;
-                     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                     NSString *oldUsername = [defaults objectForKey:@"USERNAME"];
-                     if (![oldUsername isEqualToString:account.text]) {
-                          [SFHFKeychainUtils deleteItemForUsername:oldUsername andServiceName:@"SnapChatApp" error:&error];
-                     }
-                     [defaults setObject:account.text forKey:@"USERNAME"];
-                     [SFHFKeychainUtils storeUsername:account.text andPassword:password.text forServiceName:@"SnapChatApp" updateExisting:YES error:&error];
-                      */
                      
                      [[NSUserDefaults standardUserDefaults] setObject:account.text forKey:@"LOGIN_ID"];
                      
