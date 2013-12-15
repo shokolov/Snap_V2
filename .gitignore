@@ -25,3 +25,5 @@ Pods/
 # AFNetworking
 *.xcworkspace
 
+*.plist
+
