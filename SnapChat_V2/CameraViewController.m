@@ -369,9 +369,8 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSString *loginId = [[NSUserDefaults standardUserDefaults] stringForKey:@"LOGIN_ID"];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *username = [defaults objectForKey:@"USERNAME"];
-    NSDictionary *parameters = @{@"code": username};
+    
+    NSDictionary *parameters = @{@"code": loginId};
     [manager POST:@"http://54.238.237.80/getNoreadMsgList"
       parameters:parameters
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
