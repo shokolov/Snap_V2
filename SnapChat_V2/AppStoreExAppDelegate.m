@@ -178,7 +178,8 @@
     
     // 알림 팝업창을 표시한다.
     NSString *from = userInfo[@"from"];
-    NSString *string = [NSString stringWithFormat:@"%@からメッセージが届きました", from];
+    //NSString *string = [NSString stringWithFormat:@"%@からメッセージが届きました", from];
+    NSString *string = [NSString stringWithFormat:@"%@新しいメッセージが届きました", from];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:string delegate:nil
                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
