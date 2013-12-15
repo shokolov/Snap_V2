@@ -149,15 +149,16 @@
     NSURL *url = [NSURL URLWithString:forceUrlstring];
     NSData *data = nil;
     
-    if ([NSURL fileURLWithPath:forceUrlstring]) {
-        // 전송 실패했던 이미지를 보는 경우
-        NSString *path = [url path];
-        data = [[NSFileManager defaultManager] contentsAtPath:path];
-        
-    } else {
+    // TODO 安: 버그로 인해 일시적으로 주석 처리
+    //if ([NSURL fileURLWithPath:forceUrlstring]) {
+    //    // 전송 실패했던 이미지를 보는 경우
+    //NSString *path = [url path];
+    //    data = [[NSFileManager defaultManager] contentsAtPath:path];
+    //
+    //} else {
         // 수신한 이미지를 보는 경우
         data = [NSData dataWithContentsOfURL:url];
-    }
+    //}
     image = [[UIImage alloc] initWithData:data];
     
     // 이미지, 테이블 셀을 전달
