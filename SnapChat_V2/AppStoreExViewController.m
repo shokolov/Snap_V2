@@ -18,8 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *oldUsername = [defaults objectForKey:@"USERNAME"];
+    NSString *oldUsername = [[NSUserDefaults standardUserDefaults] objectForKey:@"LOGIN_ID"];
     NSLog(@"UserName:%@", oldUsername);
     if(oldUsername !=NULL) {
         cameraController = [self.storyboard instantiateViewControllerWithIdentifier:@"Camera"];

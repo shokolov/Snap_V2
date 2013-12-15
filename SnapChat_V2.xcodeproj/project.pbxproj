@@ -25,7 +25,6 @@
 		06C23209185618B2000D65E3 /* PlusFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C23208185618B2000D65E3 /* PlusFriendViewController.m */; };
 		06C2320B18561AB4000D65E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06C2320A18561AB4000D65E3 /* Main.storyboard */; };
 		06C2320E18561AD5000D65E3 /* FriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C2320D18561AD5000D65E3 /* FriendViewController.m */; };
-		06C2321118577E1E000D65E3 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C2321018577E1D000D65E3 /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4F2DB940E3504AA19825692D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2227F3D6A884D75A1185C5C /* libPods.a */; };
 		685F5A24180BDCE900A900DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685F5A23180BDCE900A900DF /* AVFoundation.framework */; };
 		6873C66E1848FCE100E7FC19 /* HistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6873C66D1848FCE100E7FC19 /* HistoryCell.m */; };
@@ -38,7 +37,6 @@
 		68A29C4B1827E72700D8E6D2 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A29C4A1827E72700D8E6D2 /* CameraViewController.m */; };
 		68DE914D1841BBE6001635AD /* SelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE914C1841BBE6001635AD /* SelectViewController.m */; };
 		68DE919118425A88001635AD /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE919018425A88001635AD /* HistoryViewController.m */; };
-		68E108941858BEF40096C88E /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E108931858BEF40096C88E /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,8 +77,6 @@
 		06C2320A18561AB4000D65E3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		06C2320C18561AD5000D65E3 /* FriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendViewController.h; sourceTree = "<group>"; };
 		06C2320D18561AD5000D65E3 /* FriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendViewController.m; sourceTree = "<group>"; };
-		06C2320F18577E1D000D65E3 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = SnapChat_V2/SFHFKeychainUtils.h; sourceTree = "<group>"; };
-		06C2321018577E1D000D65E3 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = SnapChat_V2/SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		1F99B063392F4379B5996717 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		685F5A23180BDCE900A900DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6873C66C1848FCE100E7FC19 /* HistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCell.h; sourceTree = "<group>"; };
@@ -101,8 +97,6 @@
 		68DE914C1841BBE6001635AD /* SelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectViewController.m; sourceTree = "<group>"; };
 		68DE918F18425A88001635AD /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		68DE919018425A88001635AD /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
-		68E108921858BEF40096C88E /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
-		68E108931858BEF40096C88E /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		A2227F3D6A884D75A1185C5C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -136,8 +130,6 @@
 		06A76834180129C90090CBF5 = {
 			isa = PBXGroup;
 			children = (
-				06C2320F18577E1D000D65E3 /* SFHFKeychainUtils.h */,
-				06C2321018577E1D000D65E3 /* SFHFKeychainUtils.m */,
 				06A76846180129C90090CBF5 /* SnapChat_V2 */,
 				06A76865180129C90090CBF5 /* SnapChat_V2Tests */,
 				06A7683F180129C90090CBF5 /* Frameworks */,
@@ -384,7 +376,6 @@
 			files = (
 				06A7687C1801314F0090CBF5 /* SignInViewController.m in Sources */,
 				68A090B018383FB9001F5AAC /* Friend.m in Sources */,
-				06C2321118577E1E000D65E3 /* SFHFKeychainUtils.m in Sources */,
 				6873C671184984A700E7FC19 /* ChatViewController.m in Sources */,
 				06A7687718012AA70090CBF5 /* LogInViewController.m in Sources */,
 				06A76857180129C90090CBF5 /* AppStoreExViewController.m in Sources */,
@@ -521,13 +512,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Shoko Emi (VM52GYRY28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Shoko Emi (VM52GYRY28)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SnapChat_V2/SnapChat_V2-Prefix.pch";
 				INFOPLIST_FILE = "SnapChat_V2/SnapChat_V2-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "571F6339-79B5-43C4-98B5-9C3462B76FC3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -538,13 +529,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Shoko Emi (VM52GYRY28)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Shoko Emi (VM52GYRY28)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SnapChat_V2/SnapChat_V2-Prefix.pch";
 				INFOPLIST_FILE = "SnapChat_V2/SnapChat_V2-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "571F6339-79B5-43C4-98B5-9C3462B76FC3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
