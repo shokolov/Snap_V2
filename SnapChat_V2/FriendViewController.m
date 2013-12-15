@@ -60,20 +60,20 @@ NSString *CellIdentifier = @"FriendCell";
              NSLog(@"JSON1: %@", string);
              
              NSError *error;
-             NSMutableArray *friendArray = [NSJSONSerialization JSONObjectWithData:responseObject
-                                                                           options:NSJSONReadingMutableContainers
-                                                                             error:&error];
+             NSMutableArray *responseJson = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                            options:NSJSONReadingMutableContainers
+                                                                              error:&error];
              if(error) {
                  NSLog(@"%@", [error localizedDescription]);
              } else {
                  NSArray *jsonObject = [NSJSONSerialization JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding]options:0 error:NULL];
-                 NSLog(@"FriendList : @%", friendArray);
-                 NSMutableArray *friends_ = [NSMutableArray arrayWithCapacity:friendArray.count];
-                 NSLog(@"RESPONSE: %@", [[jsonObject valueForKey:@"params"] valueForKey:@"friendsList"]);
-
-                 for (int i = 0; i < friendArray.count; i++) {
+                 NSMutableArray *paramList = [responseJson valueForKey:@"params"];
+                 NSMutableArray *friendList = [paramList valueForKey:@"friendsList"];
+                 NSMutableArray *friends_ = [NSMutableArray arrayWithCapacity:friendList.count];
+                 
+                 for (int i = 0; i < friendList.count; i++) {
                      Friend *friend = [[Friend alloc] init];
-                     friend.code = [[friendArray objectAtIndex:i] valueForKey:@"code"];
+                     friend.code = [[friendList objectAtIndex:i] valueForKey:@"f_code"];
                      [friends_ addObject:friend];
                  }
                  self.friends = friends_;
